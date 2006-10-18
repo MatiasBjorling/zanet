@@ -1,0 +1,360 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ZabbixAgent</name>
+    </assembly>
+    <members>
+        <member name="T:ZabbixAgent.Counters.Disk">
+            <summary>
+            Disk check
+            when the key contains free, return free disk space in bytes
+            when the key contains total, return total disk space in bytes
+            when the key contains used, return used disk space in bytes
+            </summary>
+        </member>
+        <member name="T:ZabbixAgent.Counters.ILoadableCounter">
+            <summary>
+            Interface implementation of a counter. This should be used for implementing counters.
+            </summary>
+        </member>
+        <member name="M:ZabbixAgent.Counters.ILoadableCounter.getValue">
+            <summary>
+            Return a counter's value at a given time.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZabbixAgent.Counters.ILoadableCounter.isType(System.String)">
+            <summary>
+            Returns counter object if counter accept the string, else null.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZabbixAgent.Counters.ILoadableCounter.getCounter(System.String)">
+            <summary>
+            Request a counter of it self with the key initialized.
+            </summary>
+        </member>
+        <member name="M:ZabbixAgent.Counters.Disk.#ctor(System.String,System.String)">
+            <summary>
+            Constructor for Disk. Sets diskname to be monitored for counter, and what to return.
+            </summary>
+            <param name="diskname"></param>
+        </member>
+        <member name="M:ZabbixAgent.Counters.Disk.getValue">
+            <summary>
+            Returns counter value at a given time.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZabbixAgent.Counters.Disk.isType(System.String)">
+            <summary>
+            Check if type is vfs.fs.size and give back Disk object.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ZabbixAgent.Counters.FileTime">
+            <summary>
+            Gets the last updated timestamp for a file. ( Last modified )
+            Returns DD-MM-YY HH:SS
+            </summary>
+        </member>
+        <member name="M:ZabbixAgent.Counters.FileTime.isType(System.String)">
+            <summary>
+            Check if key match counter.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZabbixAgent.Counters.FileTime.getCounter(System.String)">
+            <summary>
+            Set the key for the counter.
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="T:ZabbixAgent.Counters.Httping">
+            <summary>
+            Gets time which a webpage is loaded.
+            </summary>
+        </member>
+        <member name="T:ZabbixAgent.Counters.Perfcounter">
+            <summary>
+            Summary description for Perfcounter.
+            </summary>
+            
+        </member>
+        <member name="M:ZabbixAgent.Counters.Perfcounter.isType(System.String)">
+            <summary>
+            Check if key match counter.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZabbixAgent.Counters.Perfcounter.getCounter(System.String)">
+            <summary>
+            Set the key for the counter.
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="T:ZabbixAgent.Counters.PerfCounterMapping">
+            <summary>
+            Summary description for PerfCounterMapping.
+            </summary>
+        </member>
+        <member name="M:ZabbixAgent.Counters.PerfCounterMapping.getValue">
+            <summary>
+            Return a counter's value at a given time.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZabbixAgent.Counters.PerfCounterMapping.isType(System.String)">
+            <summary>
+            Returns counter object if counter accept the string, else null.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZabbixAgent.Counters.PerfCounterMapping.getCounter(System.String)">
+            <summary>
+            Request a counter of it self with the key initialized.
+            </summary>
+        </member>
+        <member name="T:ZabbixAgent.Counters.RemoteUpdate">
+            <summary>
+            Summary description for RemoteUpdate.
+            </summary>
+        </member>
+        <member name="M:ZabbixAgent.Counters.RemoteUpdate.isType(System.String)">
+            <summary>
+            Check if key match counter.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZabbixAgent.Counters.RemoteUpdate.getCounter(System.String)">
+            <summary>
+            Set the key for the counter.
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="T:ZabbixAgent.Counters.ServiceState">
+            <summary>
+            Summary description for ServiceState.
+            </summary>
+        </member>
+        <member name="M:ZabbixAgent.Counters.ServiceState.isType(System.String)">
+            <summary>
+            Check if key match counter.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZabbixAgent.Counters.ServiceState.getCounter(System.String)">
+            <summary>
+            Set the key for the counter.
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="T:ZabbixAgent.Counters.SQLSelect">
+            <summary>
+            Counter for getting aggregated values from database.
+            </summary>
+        </member>
+        <member name="M:ZabbixAgent.Counters.SQLSelect.#ctor(System.String)">
+            <summary>
+            Constructor for SQLSelect. Set configuration from config file and sets sql query to be used for getValue.
+            </summary>
+            <param name="sqlquery"></param>
+        </member>
+        <member name="M:ZabbixAgent.Counters.SQLSelect.getValue">
+            <summary>
+            Return scalar value from SQL query.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZabbixAgent.Counters.SQLSelect.isType(System.String)">
+            <summary>
+            Check if key match counter.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZabbixAgent.Counters.SQLSelect.getCounter(System.String)">
+            <summary>
+            Set the key for the counter.
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="T:ZabbixAgent.Counters.UnknownCounter">
+            <summary>
+            Summary description for UnknownCounter.
+            </summary>
+        </member>
+        <member name="M:ZabbixAgent.Counters.UnknownCounter.isType(System.String)">
+            <summary>
+            Check if key match counter.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZabbixAgent.Counters.UnknownCounter.getCounter(System.String)">
+            <summary>
+            Set the key for the counter.
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="T:ZabbixAgent.Counters.VersionCounter">
+            <summary>
+            Summary description for Version.
+            </summary>
+        </member>
+        <member name="M:ZabbixAgent.Counters.VersionCounter.isType(System.String)">
+            <summary>
+            Check if key match counter.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZabbixAgent.Counters.VersionCounter.getCounter(System.String)">
+            <summary>
+            Set the key for the counter.
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="T:ZabbixAgent.Util.ClassUtils">
+            <summary>
+            Summary description for ClassUtils.
+            </summary>
+        </member>
+        <member name="M:ZabbixAgent.Util.ClassUtils.ScanILoadableCounter">
+            <summary>
+            Looks for ILookCounter Classes and returns them in a arraylist.
+            </summary>
+            <param name="path"></param>
+            <param name="pattern"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ZabbixAgent.Active">
+            <summary>
+            Active communication between server and agent implementation.
+            </summary>
+        </member>
+        <member name="T:ZabbixAgent.Class1">
+            <summary>
+            Summary description for Class1.
+            </summary>
+        </member>
+        <member name="M:ZabbixAgent.Class1.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="M:ZabbixAgent.Configuration.GetConfigurationByString(System.String)">
+            <summary>
+            Returns a configuration parameter from configuration file as a string.
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ZabbixAgent.Connection">
+            <summary>
+            Connection singleton. 
+            </summary>
+        </member>
+        <member name="T:ZabbixAgent.ProjectInstaller">
+            <summary>
+            Summary description for ProjectInstaller.
+            </summary>
+        </member>
+        <member name="F:ZabbixAgent.ProjectInstaller.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ZabbixAgent.ProjectInstaller.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:ZabbixAgent.ProjectInstaller.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:ZabbixAgent.Tunneler">
+            <summary>
+            Summary description for Tunneler.
+            </summary>
+        </member>
+        <member name="T:UpdateService">
+            <remarks/>
+        </member>
+        <member name="M:UpdateService.#ctor">
+            <remarks/>
+        </member>
+        <member name="M:UpdateService.getNewVersionLink(System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:UpdateService.BegingetNewVersionLink(System.String,System.String,System.String,System.AsyncCallback,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:UpdateService.EndgetNewVersionLink(System.IAsyncResult)">
+            <remarks/>
+        </member>
+        <member name="T:ZabbixAgent.WorkJob">
+            <summary>
+            WorkJob is used for transfering parametres to threads.
+            </summary>
+        </member>
+        <member name="T:ZabbixAgent.WorkJobAge">
+            <summary>
+            Summary description for WorkJobAge.
+            </summary>
+        </member>
+        <member name="F:ZabbixAgent.WorkJobAge.key">
+            <summary>
+            Counter name from Zabbix.
+            </summary>
+        </member>
+        <member name="F:ZabbixAgent.WorkJobAge.age">
+            <summary>
+            Age integer which will be increased.
+            </summary>
+        </member>
+        <member name="F:ZabbixAgent.WorkJobAge.tooOld">
+            <summary>
+            The param will be set when thread should die.
+            </summary>
+        </member>
+        <member name="M:ZabbixAgent.WorkJobAge.#ctor(System.String,System.Int64)">
+            <summary>
+            Initialize the age with show old it is and what counter it represents. 
+            </summary>
+            <param name="key">Countername.</param>
+            <param name="age">Start age of thread.</param>
+        </member>
+        <member name="M:ZabbixAgent.WorkJobAge.increaseage">
+            <summary>
+            Increase age by one. 
+            </summary>
+        </member>
+        <member name="M:ZabbixAgent.WorkJobAge.resetage">
+            <summary>
+            Resets the age to 0. ( Keeps the thread alive )  
+            </summary>
+        </member>
+        <member name="T:ZabbixAgent.WorkPool">
+            <summary>
+            Summary description for WorkPool.
+            </summary>
+        </member>
+        <member name="T:ZabbixAgent.WorkThread">
+            <summary>
+            WorkThread is the thread which execute a single counter.
+            </summary>
+        </member>
+    </members>
+</doc>
