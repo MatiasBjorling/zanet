@@ -1,0 +1,959 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ZabbixConf</name>
+    </assembly>
+    <members>
+        <member name="T:System.ComponentModel.AsyncCompletedEventArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.AsyncCompletedEventArgs.#ctor(System.Boolean,System.Exception,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="isCancelled"></param>
+            <param name="exception"></param>
+            <param name="state"></param>
+        </member>
+        <member name="F:System.ComponentModel.AsyncCompletedEventArgs._exception">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.AsyncCompletedEventArgs.Cancelled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.AsyncCompletedEventArgs.Error">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.AsyncCompletedEventArgs.State">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:System.ComponentModel.BackgroundWorker">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.BackgroundWorker.CancelAsync">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.BackgroundWorker.InvokeDelegate(System.Delegate,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="handler"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:System.ComponentModel.BackgroundWorker.ReportCompletion(System.IAsyncResult)">
+            <summary>
+            
+            </summary>
+            <param name="asyncResult"></param>
+        </member>
+        <member name="M:System.ComponentModel.BackgroundWorker.ReportProgress(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="percent"></param>
+        </member>
+        <member name="M:System.ComponentModel.BackgroundWorker.RunWorkerAsync">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.BackgroundWorker.RunWorkerAsync(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="argument"></param>
+        </member>
+        <member name="F:System.ComponentModel.BackgroundWorker._isCancelPending">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:System.ComponentModel.BackgroundWorker._isProgressReported">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:System.ComponentModel.BackgroundWorker._isCancellationSupported">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:System.ComponentModel.BackgroundWorker.DoWork">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:System.ComponentModel.BackgroundWorker.ProgressChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:System.ComponentModel.BackgroundWorker.RunWorkerCompleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.BackgroundWorker.WorkerSupportsCancellation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.BackgroundWorker.WorkerReportsProgress">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.BackgroundWorker.CancellationPending">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:System.ComponentModel.DoWorkEventArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.DoWorkEventArgs.#ctor(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="argument"></param>
+        </member>
+        <member name="F:System.ComponentModel.DoWorkEventArgs._argument">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:System.ComponentModel.DoWorkEventArgs._result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.DoWorkEventArgs.Argument">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.DoWorkEventArgs.Result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:System.ComponentModel.DoWorkEventHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:System.ComponentModel.ProgressChangedEventArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.ProgressChangedEventArgs.#ctor(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="progressPercentage"></param>
+        </member>
+        <member name="M:System.ComponentModel.ProgressChangedEventArgs.#ctor(System.Int32,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="progressPercentage"></param>
+            <param name="state"></param>
+        </member>
+        <member name="F:System.ComponentModel.ProgressChangedEventArgs._progressPercentage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:System.ComponentModel.ProgressChangedEventArgs._state">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.ProgressChangedEventArgs.State">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:System.ComponentModel.ProgressChangedEventHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:System.ComponentModel.RunWorkerCompletedEventArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.RunWorkerCompletedEventArgs.#ctor(System.Object,System.Exception,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="result"></param>
+            <param name="exception"></param>
+            <param name="isCancelled"></param>
+        </member>
+        <member name="F:System.ComponentModel.RunWorkerCompletedEventArgs._result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.RunWorkerCompletedEventArgs.Result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:System.ComponentModel.RunWorkerCompletedEventHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:AssemblyInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:AssemblyInfo.myType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AssemblyInfo.#ctor(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="P:AssemblyInfo.AsmName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AssemblyInfo.AsmFQName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AssemblyInfo.CodeBase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AssemblyInfo.Copyright">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AssemblyInfo.Company">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AssemblyInfo.Description">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AssemblyInfo.Product">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AssemblyInfo.Title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AssemblyInfo.Version">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ZabbixConf.ZabbixAgentConf">
+            <summary>
+            Summary description for Form1.
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.ZabbixAgentConf.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.ZabbixAgentConf.RegistryRoot">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.ZabbixAgentConf.PuttyKeyGlobal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.ZabbixAgentConf.PuttyKeyRoot">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.ZabbixAgentConf.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.ZabbixAgentConf.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.ZabbixAgentConf.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.ZabbixAgentConf.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.ZabbixAgentConf.LoadFromXml(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="filename"></param>
+        </member>
+        <member name="M:ZabbixConf.ZabbixAgentConf.RecursiveLoadFromXml(System.Xml.XmlNode,System.Windows.Forms.TreeNode)">
+            <summary>
+            
+            </summary>
+            <param name="xmlNode"></param>
+            <param name="parentTreeNode"></param>
+        </member>
+        <member name="M:ZabbixConf.ZabbixAgentConf.treeView1_AfterSelect(System.Object,System.Windows.Forms.TreeViewEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZabbixConf.ZabbixAgentConf.SetActiveForm(System.Windows.Forms.Form)">
+            <summary>
+            
+            </summary>
+            <param name="form"></param>
+        </member>
+        <member name="M:ZabbixConf.ZabbixAgentConf.btnSave_Click(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZabbixConf.ZabbixAgentConf.SaveRecursive(System.Windows.Forms.TreeNode)">
+            <summary>
+            
+            </summary>
+            <param name="treeNode"></param>
+        </member>
+        <member name="T:ZabbixConf.General">
+            <summary>
+            Summary description for General.
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.General.RegistryRoot">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.General.PuttyKeyGlobal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.General.PuttyKeyRoot">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.General.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.General.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.General.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.General.Save">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.General.ReadValues">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.General.useFQDN_changed(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:System.Windows.Forms.GLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.GLabel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.GLabel.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:System.Windows.Forms.GLabel.BeginColor">
+            <summary>
+            property of begin color in linear gradient
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.GLabel.EndColor">
+            <summary>
+            property of end color in linear gradient
+            </summary>
+        </member>
+        <member name="T:ZabbixConf.Info">
+            <summary>
+            Summary description for Info.
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.Info.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Info.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Info.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Info.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Info.link_Clicked(System.Object,System.Windows.Forms.LinkLabelLinkClickedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:ListViewColumnSorter">
+            <summary>
+            This class is an implementation of the 'IComparer' interface.
+            </summary>
+        </member>
+        <member name="F:ListViewColumnSorter.ColumnToSort">
+            <summary>
+            Specifies the column to be sorted
+            </summary>
+        </member>
+        <member name="F:ListViewColumnSorter.OrderOfSort">
+            <summary>
+            Specifies the order in which to sort (i.e. 'Ascending').
+            </summary>
+        </member>
+        <member name="F:ListViewColumnSorter.ObjectCompare">
+            <summary>
+            Case insensitive comparer object
+            </summary>
+        </member>
+        <member name="M:ListViewColumnSorter.#ctor">
+            <summary>
+            Class constructor.  Initializes various elements
+            </summary>
+        </member>
+        <member name="M:ListViewColumnSorter.Compare(System.Object,System.Object)">
+            <summary>
+            This method is inherited from the IComparer interface.  It compares the two objects passed using a case insensitive comparison.
+            </summary>
+            <param name="x">First object to be compared</param>
+            <param name="y">Second object to be compared</param>
+            <returns>The result of the comparison. "0" if equal, negative if 'x' is less than 'y' and positive if 'x' is greater than 'y'</returns>
+        </member>
+        <member name="P:ListViewColumnSorter.SortColumn">
+            <summary>
+            Gets or sets the number of the column to which to apply the sorting operation (Defaults to '0').
+            </summary>
+        </member>
+        <member name="P:ListViewColumnSorter.Order">
+            <summary>
+            Gets or sets the order of sorting to apply (for example, 'Ascending' or 'Descending').
+            </summary>
+        </member>
+        <member name="T:ZabbixConf.Logging">
+            <summary>
+            Summary description for Logging.
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.Logging.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Logging.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Logging.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Logging.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Logging.button1_Click(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZabbixConf.Logging.Save">
+            <summary>
+            Save the values
+            </summary>
+        </member>
+        <member name="T:ZabbixConf.Perf">
+            <summary>
+            Summary description for Perf.
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.Perf.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.Perf.PerfCountRegistryKey">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Perf.#ctor">
+            <summary>
+            Initialize, add listview columnheaders, add listview sort and retrieve saved settings
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Perf.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Perf.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Perf.Perf_Load(System.Object,System.EventArgs)">
+            <summary>
+            Form load
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZabbixConf.Perf.BackgroundWorkerDoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZabbixConf.Perf.BackgroundWorkerRunWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZabbixConf.Perf.BackgroundWorkerProgressChanged(System.Object,System.ComponentModel.ProgressChangedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZabbixConf.Perf.treeView1_AfterSelect(System.Object,System.Windows.Forms.TreeViewEventArgs)">
+            <summary>
+            Retrieve counterinfo on treeview_afterselect
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZabbixConf.Perf.btnAddCounter_Click(System.Object,System.EventArgs)">
+            <summary>
+            Add key to listview
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZabbixConf.Perf.btnCounterDelete_Click(System.Object,System.EventArgs)">
+            <summary>
+            Delete key from listview and ZabbixConf.exe.xml
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZabbixConf.Perf.Save">
+            <summary>
+            Save added counters to ZabbixConf.exe.xml
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Perf.readsettings">
+            <summary>
+            Retrieve settings from ZabbixConf.exe.xml
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Perf.checkKey(System.String)">
+            <summary>
+            Check if key already exists in keylist
+            </summary>
+            <param name="keyToCheck"></param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:ZabbixConf.Perf.lvColumnClick(System.Object,System.Windows.Forms.ColumnClickEventArgs)">
+            <summary>
+            Provide sorting for the added counters listview
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:ZabbixConf.PerformanceCounters">
+            <summary>
+            Summary description for PerformanceCounters.
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.PerformanceCounters.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.PerformanceCounters.PerfCountRegistryKey">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.PerformanceCounters.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.PerformanceCounters.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.PerformanceCounters.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.PerformanceCounters.PerformanceCounters_Load(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZabbixConf.PerformanceCounters.DumpPerformanceCounterToTree">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZabbixConf.PerformanceCounters.treeView1_AfterSelect(System.Object,System.Windows.Forms.TreeViewEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZabbixConf.PerformanceCounters.btnAddCounter_Click(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:ZabbixConf.SQL">
+            <summary>
+            Summary description for SQL.
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.SQL.PuttyKeyGlobal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.SQL.PuttyKeyRoot">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.SQL.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.SQL.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.SQL.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.SQL.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.SQL.Save">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.SQL.getValues">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.SQL.chkUseMSSQL_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:ZabbixConf.SSH">
+            <summary>
+            Summary description for SSH.
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.SSH.PuttyKeyGlobal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.SSH.PuttyKeyRoot">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.SSH.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.SSH.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.SSH.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.SSH.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.SSH.Save">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.SSH.getValues">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.SSH.chkUseSSH_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:ZabbixConf.Updater">
+            <summary>
+            Summary description for Updater.
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.Updater.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Updater.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Updater.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Updater.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Updater.Save">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.Updater.ReadSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ZabbixConf.UserParams">
+            <summary>
+            Summary description for UserParams.
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.UserParams.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.UserParams.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.UserParams.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.UserParams.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.UserParams.Save">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.UserParams.ReadSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.UserParams.btnAddUserParam_Click(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZabbixConf.UserParams.checkKey(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="keyToCheck"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZabbixConf.UserParams.btnCommandFile_Click(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:ZabbixConf.WMI">
+            <summary>
+            Summary description for WMI.
+            </summary>
+        </member>
+        <member name="F:ZabbixConf.WMI.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.WMI.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.WMI.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:ZabbixConf.WMI.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>
