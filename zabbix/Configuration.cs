@@ -27,14 +27,15 @@ using log4net;
 using Microsoft.Win32;
 using System.Xml;
 using AMS.Profile;
+using System.Windows.Forms;
 
 namespace ZabbixAgent
 {
 	
 	public class Configuration
 	{
-		private string RegistryRoot = ".DEFAULT\\Software\\Zabbix\\MonitoringAgent\\v1";
-		private string ConfigFile = "ZabbixAgent.xml";
+		private static readonly string RegistryRoot = ".DEFAULT\\Software\\Zabbix\\MonitoringAgent\\v1";
+		private static readonly string ConfigFile = Application.StartupPath +"\\ZabbixAgent.xml";
 
 		private readonly ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixagent.configuration");
 
@@ -112,22 +113,36 @@ namespace ZabbixAgent
 
 		public void GetConfiguration() 
 		{
-			log.Info("Configuration setup: ");
-			Xml profile = new Xml(ConfigFile);
-			foreach(string section in profile.GetSectionNames()) 
+			log.Info("Configuration setup read from: " + ConfigFile);
+			try 
 			{
-				log.Info("\tSection: " + section);
-				Hashtable htsection = new Hashtable();
-				foreach(string val in profile.GetEntryNames(section)) 
-				{
-					Object obj = profile.GetValue(section,val);
-					log.Info("\t\t"+val+": " + obj  );
 
-					htsection.Add(val, obj);
-				}   
-			ht.Add(section, htsection);
-			}       
-			log.Info("Loaded configuration");
+				Xml profile = new Xml(ConfigFile);
+				
+				string[] sections = profile.GetSectionNames();
+
+				if (sections != null) 
+				{
+					foreach(string section in profile.GetSectionNames()) 
+					{
+						log.Info("\tSection: " + section);
+						Hashtable htsection = new Hashtable();
+
+						foreach(string val in profile.GetEntryNames(section)) 
+						{
+							Object obj = profile.GetValue(section,val);
+							log.Info("\t\t"+val+": " + obj  );
+
+							htsection.Add(val, obj);
+						}   
+						ht.Add(section, htsection);
+					}       
+					log.Info("Loaded configuration");
+				} 
+				else throw new Exception("Cannot find configuration file " + ConfigFile + " or configuration file is empty.");
+			} catch (Exception ex) {				
+				log.Error(ex.Message);
+			}
 		}
 
 /* Deprecated code (Using registry for configuration settings)

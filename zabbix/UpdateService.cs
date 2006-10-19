@@ -50,7 +50,7 @@ public class UpdateService : System.Web.Services.Protocols.SoapHttpClientProtoco
     /// <remarks/>
     public UpdateService() {
 			Configuration c = Configuration.getInstance;
-			this.Url = c.GetConfigurationByString("UpdateServiceLink");
+			this.Url = c.GetConfigurationByString("UpdateService","Updater");
     }
 
     /// <remarks/>

@@ -57,26 +57,29 @@ namespace ZabbixAgent.Counters
 			try 
 			{
 				Configuration conf = Configuration.getInstance;
-				log.Info("Connection with: " + conf.GetConfigurationByString("CustomerGroup", "Updater") + " Servername: " + System.Net.Dns.GetHostByName("LocalHost").HostName + " Version: " + new VersionCounter().getBuildValue().ToString());
-				UpdateService us = new UpdateService();
-				
-				// Get update information from update service.
-				
-				String response = us.getNewVersionLink(conf.GetConfigurationByString("CustomerGroup", "Updater"), System.Net.Dns.GetHostByName("LocalHost").HostName, new VersionCounter().getBuildValue().ToString());
-				
-				// Lock for updates to only coming from specified link. 
-				// FIXME: Will be used until better security method is made.
 
-				if (response.StartsWith(updateServiceLnk)) 
+				if (conf.GetConfigurationByString("UpdateService","Updater").Length == 0) 
 				{
-					log.Info("Receiving new version from " + response);
-					returnval = UpdateClient(response);
-				} 
-				else 
-				{
-					returnval = response;
+					UpdateService us = new UpdateService();
+#if (DEBUG)
+					log.Debug("Connection with: " + conf.GetConfigurationByString("CustomerGroup", "Updater") + " Servername: " + System.Net.Dns.GetHostByName("LocalHost").HostName + " Version: " + new VersionCounter().getBuildValue().ToString());
+#endif		
+					// Get update information from update service.	
+					String response = us.getNewVersionLink(conf.GetConfigurationByString("CustomerGroup", "Updater"), System.Net.Dns.GetHostByName("LocalHost").HostName, new VersionCounter().getBuildValue().ToString());
+				
+					// Lock for updates to only coming from specified link. 
+					// FIXME: Will be used until better security method is made. Strongly signing of DLLs maybe?
+
+					if (response.StartsWith(updateServiceLnk)) 
+					{
+						log.Info("Receiving new version from " + response);
+						returnval = UpdateClient(response);
+					} 
+					else 
+					{
+						returnval = response;
+					}
 				}
-
 			} 
 			catch (Exception ex) 
 			{

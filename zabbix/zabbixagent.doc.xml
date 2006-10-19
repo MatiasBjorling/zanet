@@ -241,16 +241,6 @@
             Active communication between server and agent implementation.
             </summary>
         </member>
-        <member name="T:ZabbixAgent.Class1">
-            <summary>
-            Summary description for Class1.
-            </summary>
-        </member>
-        <member name="M:ZabbixAgent.Class1.Main(System.String[])">
-            <summary>
-            The main entry point for the application.
-            </summary>
-        </member>
         <member name="M:ZabbixAgent.Configuration.GetConfigurationByString(System.String)">
             <summary>
             Returns a configuration parameter from configuration file as a string.

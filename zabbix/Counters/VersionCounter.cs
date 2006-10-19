@@ -29,11 +29,10 @@ namespace ZabbixAgent.Counters
 	/// </summary>
 	public class VersionCounter : ILoadableCounter
 	{
-		private string key = "";
 		private int _AgentVersionLittle = 9;
 		private int _AgentVersionMajor = 0;
 
-		private int _AgentVersionBuild = 13;
+		private int _AgentVersionBuild = 12;
 		private string _AgentVersion = "Agent.NET";
 
 		public VersionCounter()

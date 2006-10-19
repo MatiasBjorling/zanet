@@ -1,15 +1,13 @@
 <log4net>
 	<appender name="FileAppender" type="log4net.Appender.RollingFileAppender">
-		<file value="c:\agent.log" />
+		<file value="agent_debug.log" />
 		<appendToFile value="true" />
 		<lockingModel type="log4net.Appender.FileAppender+MinimalLock"/>
 		<layout type="log4net.Layout.PatternLayout">
 			<conversionPattern value="%date %-5level %logger - %message%newline" />
 		</layout>
 	</appender>
-
 	
-	<!-- Set root logger level to DEBUG and its only appender to A1 -->
 	<root>
 		<level value="DEBUG" />
 		<appender-ref ref="FileAppender" />

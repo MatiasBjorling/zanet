@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.3077"
+        ProductVersion = "7.10.6030"
         SchemaVersion = "2.0"
         ProjectGuid = "{56C05D1A-B8EE-45D4-A716-EBB35D8DAB78}"
     >
@@ -20,7 +20,7 @@
                 PostBuildEvent = ""
                 RootNamespace = "ZabbixAgent"
                 RunPostBuildEvent = "OnBuildSuccess"
-                StartupObject = "ZabbixAgent.Class1"
+                StartupObject = "ZabbixAgent.Service1"
             >
                 <Config
                     Name = "Debug"
@@ -36,7 +36,7 @@
                     NoStdLib = "false"
                     NoWarn = ""
                     Optimize = "false"
-                    OutputPath = "bin\Debug\"
+                    OutputPath = "bin\debug\"
                     RegisterForComInterop = "false"
                     RemoveIntegerChecks = "false"
                     TreatWarningsAsErrors = "false"
@@ -151,7 +151,7 @@
                 <File
                     RelPath = "Class1.cs"
                     SubType = "Code"
-                    BuildAction = "Compile"
+                    BuildAction = "None"
                 />
                 <File
                     RelPath = "Configuration.cs"
@@ -176,7 +176,7 @@
                 <File
                     RelPath = "Service1.cs"
                     SubType = "Component"
-                    BuildAction = "None"
+                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Service1.resx"
@@ -221,11 +221,6 @@
                 />
                 <File
                     RelPath = "Counters\FileTime.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Counters\ILoadableCounter.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
