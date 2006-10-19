@@ -49,6 +49,7 @@ namespace ZabbixAgent.Counters
 				this.updateServiceLnk = updateServiceLnk;
 		}
 
+		Configuration conf = Configuration.getInstance;
 
 		// Check for new server version and new client verion, update if not equal
 		public string getValue() 
@@ -56,8 +57,6 @@ namespace ZabbixAgent.Counters
 			string returnval = "Error";
 			try 
 			{
-				Configuration conf = Configuration.getInstance;
-
 				if (conf.GetConfigurationByString("UpdateService","Updater").Length == 0) 
 				{
 					UpdateService us = new UpdateService();
@@ -177,7 +176,7 @@ namespace ZabbixAgent.Counters
 		public bool isType(string key) 
 		{ 
 			// Remote update
-			if (key.StartsWith("agent.update")) 
+			if (key.StartsWith("agent.update") && Convert.ToBoolean(conf.GetConfigurationByString("EnableUpdateService", "Updater"))) 
 				return true;
 			else 
 				return false;

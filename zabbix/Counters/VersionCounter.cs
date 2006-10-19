@@ -66,7 +66,7 @@ namespace ZabbixAgent.Counters
 		/// <returns></returns>
 		public bool isType(string key) 
 		{ 
-			if (key.StartsWith("agent.version")) 
+			if (key.StartsWith("agent.version"))
 				return true;
 			else 
 				return false;

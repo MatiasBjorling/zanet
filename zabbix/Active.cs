@@ -57,6 +57,13 @@ log.Info("Started in DEBUGGING mode");
 			//log.Debug("ZBX_GET_ACTIVE_CHECKS\n" + System.Net.Dns.GetHostByName("LocalHost").HostName);
 			String askForActiveClients = "ZBX_GET_ACTIVE_CHECKS\n" + System.Net.Dns.GetHostByName("LocalHost").HostName + "\n";
 			
+			int refreshTime = 15;
+			try 
+			{
+				refreshTime = Int32.Parse(conf.GetConfigurationByString("ActiveChecks", "General")); 
+			} 
+			catch {};
+
 			try 
 			{
 				while (!stop) 
@@ -70,7 +77,7 @@ log.Info("Started in DEBUGGING mode");
 					catch (Exception ex ) 
 					{
 						log.Info(ex.Message);
-						Thread.Sleep(15000);
+						Thread.Sleep(refreshTime);
 					}
 
 					string[] lines = response.Split('\n');
@@ -94,7 +101,7 @@ log.Info("Started in DEBUGGING mode");
 						}
 						wp.increaseCounter();
 					}
-					for (int i=0;i<15;i++) 
+					for (int i=0;i<refreshTime;i++) 
 					{
 						if (!stop)
 							Thread.Sleep(1000);
