@@ -407,8 +407,6 @@ namespace ZabbixConf
 			profile.SetValue("General", "ActiveChecks", chkActiveChecks.Checked.ToString());
 			profile.SetValue("General", "TimeOut", nudTimeOut.Value);
 			profile.SetValue("General", "RemoteCommands", chkRemComm.Checked.ToString());
-
-			MessageBox.Show("General settings saved");
 		}
 
 		/// <summary>
@@ -433,10 +431,13 @@ namespace ZabbixConf
 				//profile.SetValue("Logging", "LogFile", txtLogFile.Text);
 				profile.SetValue("Updater", "CustomerGroup", (string)ht["CustomerGroup"]);
 				profile.SetValue("Updater", "UpdateService", (string)ht["UpdateServiceLink"]);
+				
+				
 				profile.SetValue("SSH", "SSHUse", (int)ht["UseSSH"]);
 				profile.SetValue("SSH", "SSHLocalPort", (string)ht["LocalBoundPort"]);
 				profile.SetValue("SSH", "SSHUser", (string)ht["SSHUser"]);
 				profile.SetValue("SSH", "SSHKeyPath", (string)ht["SSHPrivateKeyPath"]);
+
 				profile.SetValue("SQL", "MSSQLUse", (int)ht["UseMSSQL"]);
 				profile.SetValue("SQL", "MSSQLServer", (string)ht["MSSQLServer"]);
 				profile.SetValue("SQL", "MSSQLUsername", (string)ht["MSSQLUsername"]);
@@ -444,15 +445,15 @@ namespace ZabbixConf
 				profile.SetValue("SQL", "MSSQLDatabase", (string)ht["MSSQLDatabase"]);
 
 				try
-					{
+				{
 					RegistryKey delkey = Microsoft.Win32.Registry.Users.OpenSubKey(".DEFAULT\\Software", true);
 					delkey.DeleteSubKeyTree("Zabbix");
 					MessageBox.Show("Your configuration settings have been migrated, old registry keys are deleted");
-					}
+				}
 				catch (Exception ex)
-					{
+				{
 					MessageBox.Show(ex.ToString());
-					}
+				}
 			}
 				try
 					{

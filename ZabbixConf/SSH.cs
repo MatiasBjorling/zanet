@@ -418,11 +418,34 @@ namespace ZabbixConf
 		/// </summary>
 		public void Save()
 		{
-			Xml profile = new Xml(ZabbixAgentConf.ConfigFile);
-			profile.SetValue("SSH", "SSHUse", chkUseSSH.Checked.ToString());
-			profile.SetValue("SSH", "SSHLocalPort", txtLocalPort.Text);
-			profile.SetValue("SSH", "SSHUser", txtSSHUser.Text);
-			profile.SetValue("SSH", "SSHKeyPath", txtKeyPath.Text);
+			try 
+			{
+				Xml profile = new Xml(ZabbixAgentConf.ConfigFile);
+			
+				// Required
+			
+				profile.SetValue("SSH", "Use", chkUseSSH.Checked.ToString());
+				profile.SetValue("SSH", "Server", txtSSHServer.Text);
+				profile.SetValue("SSH", "LocalPort", txtLocalPort.Text);
+				profile.SetValue("SSH", "ServerPort", txtSSHServerPort.Text);
+				MessageBox.Show(txtSSHUser.Text);
+				profile.SetValue("SSH", "User", txtSSHUser.Text);
+
+				// Either key or password 
+				if (rbChkUsePrivateKey.Checked) 
+				{
+					profile.SetValue("SSH", "UsePrivateKey", "True");
+					profile.SetValue("SSH", "KeyPath", txtKeyPath.Text);
+				} 
+				else 
+				{
+					profile.SetValue("SSH", "Password", txtSSHServerPassword.Text);
+				}
+			} 
+			catch (Exception ex) 
+			{
+				MessageBox.Show("SSH: " + ex.Message);
+			}
 		}
 
 		/// <summary>
@@ -433,29 +456,45 @@ namespace ZabbixConf
 			try
 			{
 				Xml profile = new Xml(ZabbixAgentConf.ConfigFile);
-				chkUseSSH.Checked = Convert.ToBoolean(profile.GetValue("SSH", "SSHUse"));
+				chkUseSSH.Checked = Convert.ToBoolean(profile.GetValue("SSH", "Use"));
+
+				
 				if (chkUseSSH.Checked) 
 				{
-					txtLocalPort.Text = profile.GetValue("SSH", "SSHLocalPort").ToString();
-					txtSSHServerPort.Text = profile.GetValue("SSH", "SSHServerPort").ToString();
-					txtSSHUser.Text = profile.GetValue("SSH", "SSHUser").ToString();
+					if (profile.HasEntry("SSH", "LocalPort"))
+						txtLocalPort.Text = (string)profile.GetValue("SSH", "LocalPort");
 					
-					txtSSHServerPassword.Text = profile.GetValue("SSH", "SSHPassword").ToString();
-					txtSSHServer.Text = profile.GetValue("SSH", "SSHServer").ToString();
-
+					if (profile.HasEntry("SSH", "ServerPort"))
+						txtSSHServerPort.Text = profile.GetValue("SSH", "ServerPort").ToString();
+					
+					if (profile.HasEntry("SSH", "User"))
+						txtSSHUser.Text = profile.GetValue("SSH", "User").ToString();
+					
+					if (profile.HasEntry("SSH", "Password")) 
+						txtSSHServerPassword.Text = profile.GetValue("SSH", "Password").ToString();
+					
+					if (profile.HasEntry("SSH", "Server"))
+						txtSSHServer.Text = (string)profile.GetValue("SSH", "Server");
+					
 					// Key or Password?
-					if (profile.GetValue("SSH", "SSHUseKeyFile").ToString().Equals("True")) 
+					if (profile.HasEntry("SSH", "UsePrivateKey")) 
 					{
-						rbChkUsePrivateKey.Checked = true;
-						txtKeyPath.Text = profile.GetValue("SSH", "SSHKeyPath").ToString();
-					}
-					else
-					{
-						rbChkUsePassword.Checked = true;
-						txtSSHServerPassword.Text = profile.GetValue("SSH", "SSHPassword").ToString();
+						if (Convert.ToBoolean(profile.GetValue("SSH", "UsePrivateKey"))) 
+						{
+							MessageBox.Show("fds");
+							rbChkUsePrivateKey.Checked = true;
+							if (profile.HasEntry("SSH", "KeyPath"))
+								txtKeyPath.Text = profile.GetValue("SSH", "KeyPath").ToString();
+						}
+						else
+						{
+							rbChkUsePassword.Checked = true;
+							if (profile.HasEntry("SSH", "Password"))
+								txtSSHServerPassword.Text = profile.GetValue("SSH", "Password").ToString();
+						}
 					}
 				}
-			} catch {}
+			} catch (Exception ex) { MessageBox.Show(ex.Message);}
 		}
 
 		/// <summary>

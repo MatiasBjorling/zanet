@@ -65,7 +65,6 @@ namespace ZabbixConf
 		private Hashtable ht = new Hashtable(20);
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.TreeView treeView1;
-		private System.Windows.Forms.Button btnCancel;
 		private System.Windows.Forms.GLabel label2;
 		//private Process p1 = null;
 		
@@ -109,7 +108,6 @@ namespace ZabbixConf
 			this.btnApply = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.treeView1 = new System.Windows.Forms.TreeView();
-			this.btnCancel = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.GLabel();
 			this.SuspendLayout();
 			// 
@@ -139,14 +137,6 @@ namespace ZabbixConf
 			this.treeView1.TabIndex = 0;
 			this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
 			// 
-			// btnCancel
-			// 
-			this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.btnCancel.Location = new System.Drawing.Point(592, 392);
-			this.btnCancel.Name = "btnCancel";
-			this.btnCancel.TabIndex = 18;
-			this.btnCancel.Text = "Cancel";
-			// 
 			// label2
 			// 
 			this.label2.BeginColor = System.Drawing.Color.Red;
@@ -164,7 +154,6 @@ namespace ZabbixConf
 			this.AcceptButton = this.btnApply;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(770, 424);
-			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.btnApply);
 			this.Controls.Add(this.treeView1);
@@ -312,9 +301,17 @@ namespace ZabbixConf
 		/// <param name="e"></param>
 		private void btnSave_Click(object sender, System.EventArgs e)
 		{
-			foreach (TreeNode treeNode in treeView1.Nodes)
-				SaveRecursive(treeNode);
+			try 
+			{
+				foreach (TreeNode treeNode in treeView1.Nodes)
+					SaveRecursive(treeNode);
 
+			} 
+			catch (Exception ex) 
+			{
+				MessageBox.Show(ex.Message);
+			}
+			MessageBox.Show("Settings saved");
 		} 
 
 		/// <summary>
