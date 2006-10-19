@@ -1,0 +1,11 @@
+<Settings>
+  <Category Name="Info" Form="ZabbixConf.Info" />
+  <Category Name="General" Form="ZabbixConf.General" />
+  <Category Name="Logging" Form="ZabbixConf.Logging" />
+  <Category Name="Updater" Form="ZabbixConf.Updater" />
+  <Category Name="SSH Configuration" Form="ZabbixConf.SSH" />
+  <Category Name="SQL Configuration" Form="ZabbixConf.SQL" />
+  <Category Name="User Parameters" Form="ZabbixConf.UserParams" />
+  <Category Name="Performance Monitor" Form="ZabbixConf.Perf" />
+  <!--<Category Name="WMI" Form="ZabbixConf.WMI" />-->
+</Settings>
