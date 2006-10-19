@@ -19,6 +19,8 @@ namespace ZabbixConf
 		internal System.Windows.Forms.Label lblCustGroup;
 		private System.Windows.Forms.Label lblUpdService;
 		private System.Windows.Forms.Label label1;
+		internal System.Windows.Forms.Label label2;
+		private System.Windows.Forms.CheckBox chkEnableUpdater;
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -34,7 +36,8 @@ namespace ZabbixConf
 			//
 			InitializeComponent();
 			ReadSettings();
-
+			txtCustomerGroup.Enabled=chkEnableUpdater.Checked;
+			txtUpdateService.Enabled=chkEnableUpdater.Checked;
 			//
 			// TODO: Add any constructor code after InitializeComponent call
 			//
@@ -63,16 +66,20 @@ namespace ZabbixConf
 		private void InitializeComponent()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.txtUpdateService = new System.Windows.Forms.TextBox();
 			this.txtCustomerGroup = new System.Windows.Forms.TextBox();
 			this.lblCustGroup = new System.Windows.Forms.Label();
 			this.lblUpdService = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.chkEnableUpdater = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.chkEnableUpdater);
+			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Controls.Add(this.txtUpdateService);
 			this.groupBox1.Controls.Add(this.txtCustomerGroup);
@@ -81,14 +88,22 @@ namespace ZabbixConf
 			this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.groupBox1.Location = new System.Drawing.Point(8, 8);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(560, 152);
+			this.groupBox1.Size = new System.Drawing.Size(560, 232);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Updater";
 			// 
+			// label1
+			// 
+			this.label1.Location = new System.Drawing.Point(16, 157);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(536, 64);
+			this.label1.TabIndex = 30;
+			this.label1.Text = @"The way the update service work is by using a web service that receive Customer group and agent version number. Those will be sendt to the Update service link and it will answer back with link to a new agent binary or OK if agent is the correct version number. At the moment there is no official implementation of this, but a WSDL can be given on request for implementing.";
+			// 
 			// txtUpdateService
 			// 
-			this.txtUpdateService.Location = new System.Drawing.Point(135, 54);
+			this.txtUpdateService.Location = new System.Drawing.Point(135, 80);
 			this.txtUpdateService.Name = "txtUpdateService";
 			this.txtUpdateService.Size = new System.Drawing.Size(256, 20);
 			this.txtUpdateService.TabIndex = 29;
@@ -96,7 +111,7 @@ namespace ZabbixConf
 			// 
 			// txtCustomerGroup
 			// 
-			this.txtCustomerGroup.Location = new System.Drawing.Point(135, 25);
+			this.txtCustomerGroup.Location = new System.Drawing.Point(135, 51);
 			this.txtCustomerGroup.Name = "txtCustomerGroup";
 			this.txtCustomerGroup.Size = new System.Drawing.Size(152, 20);
 			this.txtCustomerGroup.TabIndex = 26;
@@ -104,7 +119,7 @@ namespace ZabbixConf
 			// 
 			// lblCustGroup
 			// 
-			this.lblCustGroup.Location = new System.Drawing.Point(14, 30);
+			this.lblCustGroup.Location = new System.Drawing.Point(14, 56);
 			this.lblCustGroup.Name = "lblCustGroup";
 			this.lblCustGroup.Size = new System.Drawing.Size(96, 16);
 			this.lblCustGroup.TabIndex = 25;
@@ -112,25 +127,32 @@ namespace ZabbixConf
 			// 
 			// lblUpdService
 			// 
-			this.lblUpdService.Location = new System.Drawing.Point(14, 59);
+			this.lblUpdService.Location = new System.Drawing.Point(14, 85);
 			this.lblUpdService.Name = "lblUpdService";
 			this.lblUpdService.Size = new System.Drawing.Size(88, 16);
 			this.lblUpdService.TabIndex = 27;
 			this.lblUpdService.Text = "Update Service";
 			// 
-			// label1
+			// label2
 			// 
-			this.label1.Location = new System.Drawing.Point(16, 80);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(536, 64);
-			this.label1.TabIndex = 30;
-			this.label1.Text = @"The way the update service work is by using a web service that receive Customer group and agent version number. Those will be sendt to the Update service link and it will answer back with link to a new agent binary or OK if agent is the correct version number. At the moment there is no official implementation of this, but a WSDL can be given on request for implementing.";
-			this.label1.Click += new System.EventHandler(this.label1_Click);
+			this.label2.Location = new System.Drawing.Point(14, 26);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(96, 16);
+			this.label2.TabIndex = 31;
+			this.label2.Text = "Enable Updater";
+			// 
+			// chkEnableUpdater
+			// 
+			this.chkEnableUpdater.Location = new System.Drawing.Point(136, 24);
+			this.chkEnableUpdater.Name = "chkEnableUpdater";
+			this.chkEnableUpdater.Size = new System.Drawing.Size(16, 16);
+			this.chkEnableUpdater.TabIndex = 32;
+			this.chkEnableUpdater.CheckedChanged += new System.EventHandler(this.chkEnableUpdater_CheckedChanged);
 			// 
 			// Updater
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(576, 166);
+			this.ClientSize = new System.Drawing.Size(576, 246);
 			this.Controls.Add(this.groupBox1);
 			this.Name = "Updater";
 			this.Text = "Updater";
@@ -148,6 +170,7 @@ namespace ZabbixConf
 			Xml profile = new Xml(ZabbixAgentConf.ConfigFile);
 			profile.SetValue("Updater", "CustomerGroup", txtCustomerGroup.Text);
 			profile.SetValue("Updater", "UpdateService", txtUpdateService.Text);
+			profile.SetValue("Updater", "EnableUpdateService", chkEnableUpdater.Checked.ToString());
 		}
 
 		/// <summary>
@@ -160,6 +183,7 @@ namespace ZabbixConf
 			Xml profile = new Xml(ZabbixAgentConf.ConfigFile);
 			txtCustomerGroup.Text = profile.GetValue("Updater", "CustomerGroup").ToString();
 			txtUpdateService.Text = profile.GetValue("Updater", "UpdateService").ToString();
+			chkEnableUpdater.Checked = Convert.ToBoolean(profile.GetValue("Updater", "EnableUpdateService"));
 			}
 			catch
 			{
@@ -167,11 +191,18 @@ namespace ZabbixConf
 
 		}
 
-		private void label1_Click(object sender, System.EventArgs e)
+		private void chkEnableUpdater_CheckedChanged(object sender, System.EventArgs e)
 		{
-		
+			txtCustomerGroup.Enabled=chkEnableUpdater.Checked;
+			txtUpdateService.Enabled=chkEnableUpdater.Checked;
+
 		}
+
+
+
+}
+
 
 	}
 
-}
+
