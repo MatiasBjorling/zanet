@@ -87,7 +87,8 @@ namespace ZabbixConf
 			this.groupBox1.Size = new System.Drawing.Size(560, 152);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Logging";
+			this.groupBox1.Text = "Logging ( Not implemented yet. Logfile is called agent.log and are in the workdir" +
+				". )";
 			// 
 			// btnLogFile
 			// 
@@ -169,8 +170,8 @@ namespace ZabbixConf
 		public void Save()
 		{
 			Xml profile = new Xml(ZabbixAgentConf.ConfigFile);
-			profile.SetValue("Logging", "DebugLevel", cmbDebugLevel.SelectedItem.ToString());
-			profile.SetValue("Logging", "LogFile", txtLogFile.Text);
+			//profile.SetValue("Logging", "DebugLevel", cmbDebugLevel.SelectedItem.ToString());
+			//profile.SetValue("Logging", "LogFile", txtLogFile.Text);
 		}
 
 		private void ReadSettings() 

@@ -211,10 +211,10 @@ namespace ZabbixConf
 			this.linkLabel2.AutoSize = true;
 			this.linkLabel2.Location = new System.Drawing.Point(24, 72);
 			this.linkLabel2.Name = "linkLabel2";
-			this.linkLabel2.Size = new System.Drawing.Size(178, 16);
+			this.linkLabel2.Size = new System.Drawing.Size(241, 16);
 			this.linkLabel2.TabIndex = 3;
 			this.linkLabel2.TabStop = true;
-			this.linkLabel2.Text = "http://www.zabbix.com/forum ????";
+			this.linkLabel2.Text = "http://sourceforge.net/forum/?group_id=172159";
 			// 
 			// label3
 			// 

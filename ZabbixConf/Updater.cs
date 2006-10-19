@@ -18,6 +18,7 @@ namespace ZabbixConf
 		private System.Windows.Forms.TextBox txtUpdateService;
 		internal System.Windows.Forms.Label lblCustGroup;
 		private System.Windows.Forms.Label lblUpdService;
+		private System.Windows.Forms.Label label1;
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -66,11 +67,13 @@ namespace ZabbixConf
 			this.txtCustomerGroup = new System.Windows.Forms.TextBox();
 			this.lblCustGroup = new System.Windows.Forms.Label();
 			this.lblUpdService = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Controls.Add(this.txtUpdateService);
 			this.groupBox1.Controls.Add(this.txtCustomerGroup);
 			this.groupBox1.Controls.Add(this.lblCustGroup);
@@ -115,6 +118,15 @@ namespace ZabbixConf
 			this.lblUpdService.TabIndex = 27;
 			this.lblUpdService.Text = "Update Service";
 			// 
+			// label1
+			// 
+			this.label1.Location = new System.Drawing.Point(16, 80);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(536, 64);
+			this.label1.TabIndex = 30;
+			this.label1.Text = @"The way the update service work is by using a web service that receive Customer group and agent version number. Those will be sendt to the Update service link and it will answer back with link to a new agent binary or OK if agent is the correct version number. At the moment there is no official implementation of this, but a WSDL can be given on request for implementing.";
+			this.label1.Click += new System.EventHandler(this.label1_Click);
+			// 
 			// Updater
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -153,6 +165,11 @@ namespace ZabbixConf
 			{
 			}
 
+		}
+
+		private void label1_Click(object sender, System.EventArgs e)
+		{
+		
 		}
 
 	}

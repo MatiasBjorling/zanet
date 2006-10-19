@@ -75,6 +75,8 @@ namespace ZabbixConf
 		private System.Windows.Forms.CheckBox chkRemComm;
 		private System.Windows.Forms.NumericUpDown nudTimeOut;
 		private System.Windows.Forms.HelpProvider helpProvider1;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label2;
 		private Hashtable ht = new Hashtable(20);
 
 		/// <summary>
@@ -137,12 +139,16 @@ namespace ZabbixConf
 			this.lblServerHost = new System.Windows.Forms.Label();
 			this.lblHostname = new System.Windows.Forms.Label();
 			this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+			this.label1 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
 			this.grpBoxGeneral.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudTimeOut)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// grpBoxGeneral
 			// 
+			this.grpBoxGeneral.Controls.Add(this.label2);
+			this.grpBoxGeneral.Controls.Add(this.label1);
 			this.grpBoxGeneral.Controls.Add(this.chkRemComm);
 			this.grpBoxGeneral.Controls.Add(this.lblRemComm);
 			this.grpBoxGeneral.Controls.Add(this.nudTimeOut);
@@ -352,6 +358,22 @@ namespace ZabbixConf
 			this.lblHostname.Size = new System.Drawing.Size(88, 16);
 			this.lblHostname.TabIndex = 0;
 			this.lblHostname.Text = "Hostname:";
+			// 
+			// label1
+			// 
+			this.label1.Location = new System.Drawing.Point(224, 88);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(264, 32);
+			this.label1.TabIndex = 37;
+			this.label1.Text = "If SSH is used. Zabbix server is localhost and the port is the local bound port.";
+			// 
+			// label2
+			// 
+			this.label2.Location = new System.Drawing.Point(184, 160);
+			this.label2.Name = "label2";
+			this.label2.TabIndex = 38;
+			this.label2.Text = "Not implemented";
+			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// General
 			// 

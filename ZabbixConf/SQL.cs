@@ -62,6 +62,7 @@ namespace ZabbixConf
 		private System.Windows.Forms.Label lblPassword;
 		private System.Windows.Forms.Label lblUsername;
 		private System.Windows.Forms.Label lblServer;
+		private System.Windows.Forms.Label label1;
 
 		/// <summary>
 		/// Required designer variable.
@@ -106,6 +107,7 @@ namespace ZabbixConf
 		private void InitializeComponent()
 		{
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.chkUseMSSQL = new System.Windows.Forms.CheckBox();
 			this.txtMSSQLDatabase = new System.Windows.Forms.TextBox();
 			this.txtMSSQLPassword = new System.Windows.Forms.TextBox();
@@ -120,6 +122,7 @@ namespace ZabbixConf
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Controls.Add(this.label1);
 			this.groupBox2.Controls.Add(this.chkUseMSSQL);
 			this.groupBox2.Controls.Add(this.txtMSSQLDatabase);
 			this.groupBox2.Controls.Add(this.txtMSSQLPassword);
@@ -136,6 +139,17 @@ namespace ZabbixConf
 			this.groupBox2.TabIndex = 24;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Microsoft SQL Configuration";
+			// 
+			// label1
+			// 
+			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.label1.ForeColor = System.Drawing.Color.Red;
+			this.label1.Location = new System.Drawing.Point(232, 96);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(184, 24);
+			this.label1.TabIndex = 16;
+			this.label1.Text = "Password are saved in cleartext!";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// chkUseMSSQL
 			// 

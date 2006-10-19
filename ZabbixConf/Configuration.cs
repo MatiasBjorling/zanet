@@ -45,7 +45,6 @@ namespace ZabbixConf
 	{
 		internal System.Windows.Forms.OpenFileDialog OpenFileFindSSHKey;
 		internal System.Windows.Forms.Button btnApply;
-		private System.Windows.Forms.Label label17;
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -108,7 +107,6 @@ namespace ZabbixConf
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(ZabbixAgentConf));
 			this.OpenFileFindSSHKey = new System.Windows.Forms.OpenFileDialog();
 			this.btnApply = new System.Windows.Forms.Button();
-			this.label17 = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.btnCancel = new System.Windows.Forms.Button();
@@ -123,16 +121,6 @@ namespace ZabbixConf
 			this.btnApply.TabIndex = 15;
 			this.btnApply.Text = "Apply";
 			this.btnApply.Click += new System.EventHandler(this.btnSave_Click);
-			// 
-			// label17
-			// 
-			this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label17.ForeColor = System.Drawing.Color.RoyalBlue;
-			this.label17.Location = new System.Drawing.Point(8, 392);
-			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(224, 16);
-			this.label17.TabIndex = 15;
-			this.label17.Text = "Debug information is found in C:\\agent.log";
 			// 
 			// panel1
 			// 
@@ -178,7 +166,6 @@ namespace ZabbixConf
 			this.ClientSize = new System.Drawing.Size(770, 424);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.panel1);
-			this.Controls.Add(this.label17);
 			this.Controls.Add(this.btnApply);
 			this.Controls.Add(this.treeView1);
 			this.Controls.Add(this.label2);

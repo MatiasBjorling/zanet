@@ -76,6 +76,7 @@ namespace ZabbixConf
 		private System.Windows.Forms.RadioButton rbChkUsePrivateKey;
 		
 		private Process p1 = null;
+		private System.Windows.Forms.Label label5;
 
 		/// <summary>
 		/// Required designer variable.
@@ -120,6 +121,7 @@ namespace ZabbixConf
 		private void InitializeComponent()
 		{
 			this.GroupBox1 = new System.Windows.Forms.GroupBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.txtSSHServerPassword = new System.Windows.Forms.TextBox();
@@ -148,6 +150,7 @@ namespace ZabbixConf
 			// 
 			// GroupBox1
 			// 
+			this.GroupBox1.Controls.Add(this.label5);
 			this.GroupBox1.Controls.Add(this.label4);
 			this.GroupBox1.Controls.Add(this.label3);
 			this.GroupBox1.Controls.Add(this.txtSSHServerPassword);
@@ -177,6 +180,16 @@ namespace ZabbixConf
 			this.GroupBox1.TabIndex = 11;
 			this.GroupBox1.TabStop = false;
 			this.GroupBox1.Text = "SSH Configuration";
+			// 
+			// label5
+			// 
+			this.label5.ForeColor = System.Drawing.Color.Red;
+			this.label5.Location = new System.Drawing.Point(312, 168);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(176, 23);
+			this.label5.TabIndex = 22;
+			this.label5.Text = "Password are stored in cleartext.";
+			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// label4
 			// 
@@ -375,7 +388,7 @@ namespace ZabbixConf
 			this.txtLocalPort.Name = "txtLocalPort";
 			this.txtLocalPort.Size = new System.Drawing.Size(48, 20);
 			this.txtLocalPort.TabIndex = 3;
-			this.txtLocalPort.Text = "11000";
+			this.txtLocalPort.Text = "10051";
 			// 
 			// chkUseSSH
 			// 
