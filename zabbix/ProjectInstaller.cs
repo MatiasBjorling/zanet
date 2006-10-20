@@ -84,14 +84,14 @@ namespace ZabbixAgent
 			// serviceInstaller1
 			// 
 			this.serviceInstaller1.DisplayName = "TMCare Remote Monitoring";
-			this.serviceInstaller1.ServiceName = "tmcremotemon";
+			this.serviceInstaller1.ServiceName = "zabbixagentnet";
 			this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
 			// 
 			// ProjectInstaller
 			// 
 			this.Installers.AddRange(new System.Configuration.Install.Installer[] {
-																																							this.serviceProcessInstaller1,
-																																							this.serviceInstaller1});
+																					  this.serviceProcessInstaller1,
+																					  this.serviceInstaller1});
 
 		}
 		#endregion
