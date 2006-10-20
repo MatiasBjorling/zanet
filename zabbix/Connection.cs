@@ -55,11 +55,17 @@ namespace ZabbixAgent
 		
 		// Secure tunnel 
 		private Tunneler tunnel = new Tunneler();
-
+		private bool useSSH = false;
 		private Connection() {
 			try 
 			{
-				if (Convert.ToBoolean(conf.GetConfigurationByString("SSHUse", "SSH")))
+				try 
+				{
+					useSSH = Convert.ToBoolean(conf.GetConfigurationByString("Use", "SSH"));
+				}
+				catch {}
+				
+				if (useSSH)
 				{
 					tunnel.Start();
 					// Wait for tunnel to start up.
@@ -94,7 +100,7 @@ namespace ZabbixAgent
 			Socket s = null;
 			Int32 serverport = 0;
 			// Get IP for DNS
-			if (Convert.ToBoolean(conf.GetConfigurationByString("SSHUse", "SSH")))
+			if (useSSH)
 			{
 				hostEntry = Dns.GetHostByName("localhost");
 				serverport = Int32.Parse(conf.GetConfigurationByString("LocalBoundPort", "SSH"));

@@ -41,10 +41,25 @@ namespace ZabbixAgent
 		private Configuration conf = Configuration.getInstance;
 
 		private bool stop = false;
+		private bool useSSH = false;
+		private int refreshTime = 15;
 
 		private static readonly ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixagent.active");
 
-		public Active()	{}
+		public Active()	{
+			try 
+			{
+				refreshTime = Int32.Parse(conf.GetConfigurationByString("ActiveChecks", "General")); 
+			} 
+			catch {};
+
+			try 
+			{
+				useSSH = Convert.ToBoolean(conf.GetConfigurationByString("Use", "SSH"));
+			} 
+			catch {};
+			
+		}
 
 		public void get_active_checks() 
 		{
@@ -57,13 +72,6 @@ log.Info("Started in DEBUGGING mode");
 			//log.Debug("ZBX_GET_ACTIVE_CHECKS\n" + System.Net.Dns.GetHostByName("LocalHost").HostName);
 			String askForActiveClients = "ZBX_GET_ACTIVE_CHECKS\n" + System.Net.Dns.GetHostByName("LocalHost").HostName + "\n";
 			
-			int refreshTime = 15;
-			try 
-			{
-				refreshTime = Int32.Parse(conf.GetConfigurationByString("ActiveChecks", "General")); 
-			} 
-			catch {};
-
 			try 
 			{
 				while (!stop) 
@@ -121,12 +129,13 @@ log.Info("Started in DEBUGGING mode");
 			// Possible racecondition if there is added a job when aborting thread list.
 			wp.StopAllThreads();
 			
-			if (Convert.ToBoolean(conf.GetConfigurationByString("SSHUse", "SSH")))
+			if (useSSH)
 			{
 				if (c != null) 
 					c.CloseSecureConnections();
 			}
 			log.Debug("Closed active polling");
+
 		}
 	}
 }

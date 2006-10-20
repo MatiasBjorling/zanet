@@ -38,13 +38,71 @@ namespace ZabbixAgent
 		private static readonly ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixagent.tunneler");
 
 		private System.Diagnostics.Process p1;
-		private System.Diagnostics.Process p2;
 
 		private bool closeConnections = false;
 
-		private Configuration c = Configuration.getInstance;
-
 		private string arguments = "";
+
+		private bool useSSH = false;
+		private bool usePrivateKey = false;
+		
+		private int localport = 0;
+		private int serverport = 0;
+		
+		private string server = "";
+		private string user = "";
+		private string password = "";
+		private string keypath = "";
+		
+		public Tunneler()		
+		{	
+			// Retrieve config 
+			Configuration c = Configuration.getInstance;
+			
+			try {
+				useSSH = Convert.ToBoolean(c.GetConfigurationByString("Use", "SSH"));
+			} catch (Exception ex) {
+				log.Error("Not using SSH. Error: " + ex.Message);
+			} 
+
+			if (useSSH) 
+			{
+				try 
+				{
+					// Required
+					usePrivateKey = Convert.ToBoolean(c.GetConfigurationByString("UsePrivateKey", "SSH"));
+					server = c.GetConfigurationByString("Server", "SSH");
+					serverport = Convert.ToInt32(c.GetConfigurationByString("ServerPort", "SSH"));
+					localport = Convert.ToInt32(c.GetConfigurationByString("LocalPort", "SSH"));
+					user = c.GetConfigurationByString("User", "SSH");
+				} 
+				catch (Exception ex) 
+				{
+					log.Error("Not using SSH. Error: " + ex.Message);
+					useSSH = false;
+				}
+			}
+
+			try 
+			{
+				if (usePrivateKey)
+				{
+					keypath = c.GetConfigurationByString("KeyPath", "SSH");
+				} 
+				else 
+				{
+					password = c.GetConfigurationByString("Password", "SSH");
+				}
+				
+			} 
+			catch (Exception ex) 
+			{
+				log.Error("Not using SSH. Error: " + ex.Message);
+				useSSH = false;
+			}
+
+			
+		}
 
 		private void StartZabbixSecure() 
 		{
@@ -57,7 +115,7 @@ namespace ZabbixAgent
 					create = false;
 			}
 
-			if (create && Convert.ToBoolean(c.GetConfigurationByString("SSHUse", "SSH")))
+			if (create && useSSH)
 			{
 				// Start Zabbix
 				p1 = new Process();
@@ -72,59 +130,22 @@ namespace ZabbixAgent
 				p1.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
 				p1.Exited += new EventHandler(p1_Exited);
 				p1.Start();
-				log.Debug("Started secure connection");
+				log.Debug("Started SSH connection");
 			}
 		}
 
-		private void StartLog4jSecure() 
-		{
-			bool create = true;
-			if (p2 != null) 
-			{
-				if (p2.HasExited == true) 
-					create = true;
-				else
-					create = false;
-			}
-
-			if (create) {
-				// Start Log4j
-				p2 = new Process();
-				p2.StartInfo.UseShellExecute = false;
-				p2.StartInfo.RedirectStandardInput = true;
-				p2.StartInfo.RedirectStandardOutput = true;
-				p2.EnableRaisingEvents = true;
-				p2.StartInfo.Arguments = "-l " + c.GetConfigurationByString("SSHUser", "SSH") + " -L " + c.GetConfigurationByString("LocalBoundPort", "SSH") +":localhost:" + c.GetConfigurationByString("ServerPort") +" -x -a -T -C -i " + c.GetConfigurationByString("SSHPrivateKeyPath", "SSH") + " -N " + c.GetConfigurationByString("ServerHost");
-				p2.StartInfo.FileName = Environment.GetEnvironmentVariable("SystemRoot") + "\\plink.exe";		
-				p2.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-				p2.Exited += new EventHandler(p2_Exited);
-				p2.Start();
-				log.Debug("Started log4j secure connection");
-			}
-		}
 
 		private void StopZabbixSecure() 
 		{
-			if (Convert.ToBoolean(c.GetConfigurationByString("SSHUse", "SSH")))
+			if (p1 != null && useSSH) 
 			{
-				if (p1 != null) 
-				{
-					if (!p1.HasExited)
-						p1.Kill();
-					p1.Close();
-				}
-			} 
+				if (!p1.HasExited)
+					p1.Kill();
+				p1.Close();
+			}	
 		}
 
-		private void StopLog4jSecure() 
-		{
-			if (p2 != null) 
-			{
-				if (!p2.HasExited)
-					p2.Kill();
-				p2.Close();
-			}
-		}
+	
 
 		private void SavePlinkToDisk() 
 		{
@@ -170,18 +191,6 @@ namespace ZabbixAgent
 			}
 		}
 		
-		private void p2_Exited(object sender, System.EventArgs e) 
-		{
-			if (!closeConnections) 
-			{
-				if (p2.HasExited) 
-				{
-					StartLog4jSecure();
-					log.Error("Restarting secure connection for Log4j");
-					Thread.Sleep(5000);
-				}
-			}
-		}
 		
 		public void Start() 
 		{
@@ -189,37 +198,29 @@ namespace ZabbixAgent
 			if (!File.Exists(Environment.GetEnvironmentVariable("SystemRoot") + "\\plink.exe"))
 				SavePlinkToDisk();
 
-			log.Info("Systemroot for files: " + Environment.GetEnvironmentVariable("SystemRoot"));
-
 			// Generate argumentstring
 
-			if (Convert.ToBoolean(c.GetConfigurationByString("SSHUse", "SSH")))
+			if (useSSH)
 			{
 				// tunnels strings
-				string log4j = "";
 				string zabbix = "";
 
-				/*if (c.getTunnelLog4jSSH()) 
-					log4j = " -L " + c.getTunnelLog4jLocalPort() +":localhost:" + c.GetTunnelLog4jRemotePort();
-				*/
-				zabbix = " -L " + c.GetConfigurationByString("LocalBoundPort", "SSH") +":localhost:" + c.GetConfigurationByString("ServerPort");
+				zabbix = " -L " + localport +":localhost:" + serverport;
 	
-				arguments = "-l " + c.GetConfigurationByString("SSHUser", "SSH") + zabbix + " -x -a -T -C -i " + c.GetConfigurationByString("SSHPrivateKeyPath", "SSH") + " -N " + c.GetConfigurationByString("ServerHost");
+				if (usePrivateKey)
+					arguments = "-l " + user + zabbix + " -x -a -T -C -i " + keypath + " -N " + server;
+				else
+					arguments = "-l " + user + zabbix + " -x -a -T -C -pw " + password + " -N " + server;
 
 				log.Debug("Arguments for plink: " + arguments);
 				StartZabbixSecure();
 			}
-
-
-
-			//StartLog4jSecure();
 		}
 
 		public void Stop()
 		{
 			closeConnections = true;
 			StopZabbixSecure();
-			//StopLog4jSecure();
 		}
 	}
 }
