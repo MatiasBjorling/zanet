@@ -360,6 +360,7 @@ namespace ZabbixConf
 			this.btnFindKey.Size = new System.Drawing.Size(56, 24);
 			this.btnFindKey.TabIndex = 10;
 			this.btnFindKey.Text = "Find key";
+			this.btnFindKey.Visible = false;
 			this.btnFindKey.Click += new System.EventHandler(this.btnFindKey_Click);
 			// 
 			// lblForceConnection
@@ -400,6 +401,10 @@ namespace ZabbixConf
 			this.chkUseSSH.Text = "Use SSH";
 			this.chkUseSSH.CheckedChanged += new System.EventHandler(this.chkUseSSH_CheckedChanged);
 			// 
+			// OpenFileFindSSHKey
+			// 
+			this.OpenFileFindSSHKey.FileOk += new System.ComponentModel.CancelEventHandler(this.OpenFileFindSSHKey_FileOk);
+			// 
 			// SSH
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -428,7 +433,7 @@ namespace ZabbixConf
 				profile.SetValue("SSH", "Server", txtSSHServer.Text);
 				profile.SetValue("SSH", "LocalPort", txtLocalPort.Text);
 				profile.SetValue("SSH", "ServerPort", txtSSHServerPort.Text);
-				MessageBox.Show(txtSSHUser.Text);
+//				MessageBox.Show(txtSSHUser.Text);
 				profile.SetValue("SSH", "User", txtSSHUser.Text);
 
 				// Either key or password 
@@ -439,6 +444,7 @@ namespace ZabbixConf
 				} 
 				else 
 				{
+					profile.SetValue("SSH", "UsePrivateKey", "False");
 					profile.SetValue("SSH", "Password", txtSSHServerPassword.Text);
 				}
 			} 
@@ -481,7 +487,7 @@ namespace ZabbixConf
 					{
 						if (Convert.ToBoolean(profile.GetValue("SSH", "UsePrivateKey"))) 
 						{
-							MessageBox.Show("fds");
+							//MessageBox.Show("fds");
 							rbChkUsePrivateKey.Checked = true;
 							if (profile.HasEntry("SSH", "KeyPath"))
 								txtKeyPath.Text = profile.GetValue("SSH", "KeyPath").ToString();
@@ -653,6 +659,11 @@ namespace ZabbixConf
 			{
 				FindHostKey();
 			}
+		}
+
+		private void OpenFileFindSSHKey_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+		
 		}
 	}
 }

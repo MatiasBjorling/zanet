@@ -65,6 +65,7 @@ namespace ZabbixConf
 		private Hashtable ht = new Hashtable(20);
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.TreeView treeView1;
+		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.GLabel label2;
 		//private Process p1 = null;
 		
@@ -109,6 +110,7 @@ namespace ZabbixConf
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.label2 = new System.Windows.Forms.GLabel();
+			this.label1 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// btnApply
@@ -149,11 +151,21 @@ namespace ZabbixConf
 			this.label2.Size = new System.Drawing.Size(584, 23);
 			this.label2.TabIndex = 0;
 			// 
+			// label1
+			// 
+			this.label1.Location = new System.Drawing.Point(392, 392);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(280, 23);
+			this.label1.TabIndex = 18;
+			this.label1.Text = "Restart ZabbixAgent.NET Service after applying.";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
 			// ZabbixAgentConf
 			// 
 			this.AcceptButton = this.btnApply;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(770, 424);
+			this.Controls.Add(this.label1);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.btnApply);
 			this.Controls.Add(this.treeView1);
