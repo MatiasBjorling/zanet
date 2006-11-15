@@ -74,7 +74,6 @@ namespace ZabbixConf
 		private System.Windows.Forms.CheckBox chkActiveChecks;
 		private System.Windows.Forms.CheckBox chkRemComm;
 		private System.Windows.Forms.NumericUpDown nudTimeOut;
-		private System.Windows.Forms.HelpProvider helpProvider1;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label3;
@@ -150,7 +149,6 @@ namespace ZabbixConf
 			this.lblServerPort = new System.Windows.Forms.Label();
 			this.lblServerHost = new System.Windows.Forms.Label();
 			this.lblHostname = new System.Windows.Forms.Label();
-			this.helpProvider1 = new System.Windows.Forms.HelpProvider();
 			this.grpBoxGeneral.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudTimeOut)).BeginInit();
 			this.SuspendLayout();
@@ -248,10 +246,8 @@ namespace ZabbixConf
 			// chkRemComm
 			// 
 			this.chkRemComm.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.helpProvider1.SetHelpString(this.chkRemComm, "Check this if you want to disable active checks");
 			this.chkRemComm.Location = new System.Drawing.Point(168, 214);
 			this.chkRemComm.Name = "chkRemComm";
-			this.helpProvider1.SetShowHelp(this.chkRemComm, true);
 			this.chkRemComm.Size = new System.Drawing.Size(16, 16);
 			this.chkRemComm.TabIndex = 36;
 			// 
@@ -265,7 +261,6 @@ namespace ZabbixConf
 			// 
 			// nudTimeOut
 			// 
-			this.helpProvider1.SetHelpString(this.nudTimeOut, "Timeout in seconds ");
 			this.nudTimeOut.Location = new System.Drawing.Point(168, 185);
 			this.nudTimeOut.Maximum = new System.Decimal(new int[] {
 																	   30,
@@ -278,7 +273,6 @@ namespace ZabbixConf
 																	   0,
 																	   0});
 			this.nudTimeOut.Name = "nudTimeOut";
-			this.helpProvider1.SetShowHelp(this.nudTimeOut, true);
 			this.nudTimeOut.Size = new System.Drawing.Size(40, 20);
 			this.nudTimeOut.TabIndex = 34;
 			this.nudTimeOut.Value = new System.Decimal(new int[] {
@@ -300,20 +294,16 @@ namespace ZabbixConf
 			// 
 			this.chkActiveChecks.Enabled = false;
 			this.chkActiveChecks.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.helpProvider1.SetHelpString(this.chkActiveChecks, "Check this if you want to disable active checks");
 			this.chkActiveChecks.Location = new System.Drawing.Point(167, 164);
 			this.chkActiveChecks.Name = "chkActiveChecks";
-			this.helpProvider1.SetShowHelp(this.chkActiveChecks, true);
 			this.chkActiveChecks.Size = new System.Drawing.Size(16, 16);
 			this.chkActiveChecks.TabIndex = 32;
 			this.chkActiveChecks.TabStop = false;
 			// 
 			// txtRefresh
 			// 
-			this.helpProvider1.SetHelpString(this.txtRefresh, "How often should the agent check for new items?");
 			this.txtRefresh.Location = new System.Drawing.Point(167, 136);
 			this.txtRefresh.Name = "txtRefresh";
-			this.helpProvider1.SetShowHelp(this.txtRefresh, true);
 			this.txtRefresh.Size = new System.Drawing.Size(48, 20);
 			this.txtRefresh.TabIndex = 31;
 			this.txtRefresh.Text = "120";
@@ -337,10 +327,8 @@ namespace ZabbixConf
 			// txtAgentPort
 			// 
 			this.txtAgentPort.Enabled = false;
-			this.helpProvider1.SetHelpString(this.txtAgentPort, "What port should the agent be listening on?");
 			this.txtAgentPort.Location = new System.Drawing.Point(167, 112);
 			this.txtAgentPort.Name = "txtAgentPort";
-			this.helpProvider1.SetShowHelp(this.txtAgentPort, true);
 			this.txtAgentPort.Size = new System.Drawing.Size(49, 20);
 			this.txtAgentPort.TabIndex = 28;
 			this.txtAgentPort.Text = "Not used";
@@ -376,21 +364,16 @@ namespace ZabbixConf
 			// 
 			// txtServerPort
 			// 
-			this.helpProvider1.SetHelpString(this.txtServerPort, "What port is the Zabbix server listening on? (you can find this value in the zabb" +
-				"ix_server.conf file)");
 			this.txtServerPort.Location = new System.Drawing.Point(167, 88);
 			this.txtServerPort.Name = "txtServerPort";
-			this.helpProvider1.SetShowHelp(this.txtServerPort, true);
 			this.txtServerPort.Size = new System.Drawing.Size(48, 20);
 			this.txtServerPort.TabIndex = 2;
 			this.txtServerPort.Text = "10051";
 			// 
 			// txtServerHost
 			// 
-			this.helpProvider1.SetHelpString(this.txtServerHost, "Zabbix Server address. This can be a FQDN or an IP address");
 			this.txtServerHost.Location = new System.Drawing.Point(167, 64);
 			this.txtServerHost.Name = "txtServerHost";
-			this.helpProvider1.SetShowHelp(this.txtServerHost, true);
 			this.txtServerHost.Size = new System.Drawing.Size(256, 20);
 			this.txtServerHost.TabIndex = 1;
 			this.txtServerHost.Text = "";
