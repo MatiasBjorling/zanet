@@ -247,15 +247,15 @@ namespace ZabbixConf
 			this.txtSSHServerPort.Name = "txtSSHServerPort";
 			this.txtSSHServerPort.Size = new System.Drawing.Size(48, 20);
 			this.txtSSHServerPort.TabIndex = 2;
-			this.txtSSHServerPort.Text = "22";
+			this.txtSSHServerPort.Text = "10051";
 			// 
 			// label2
 			// 
 			this.label2.Location = new System.Drawing.Point(8, 96);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(96, 16);
+			this.label2.Size = new System.Drawing.Size(104, 16);
 			this.label2.TabIndex = 15;
-			this.label2.Text = "SSH Server Port:";
+			this.label2.Text = "Server bound port:";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// txtSSHServer
@@ -379,7 +379,7 @@ namespace ZabbixConf
 			this.lblLocalPort.Name = "lblLocalPort";
 			this.lblLocalPort.Size = new System.Drawing.Size(96, 16);
 			this.lblLocalPort.TabIndex = 2;
-			this.lblLocalPort.Text = "Local Bound Port:";
+			this.lblLocalPort.Text = "Local bound port:";
 			this.lblLocalPort.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// txtLocalPort

@@ -77,6 +77,11 @@ namespace ZabbixConf
 		private System.Windows.Forms.HelpProvider helpProvider1;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.TextBox txtQueueLength;
+		private System.Windows.Forms.CheckBox chkUseQueue;
 		private Hashtable ht = new Hashtable(20);
 
 		/// <summary>
@@ -120,6 +125,13 @@ namespace ZabbixConf
 		private void InitializeComponent()
 		{
 			this.grpBoxGeneral = new System.Windows.Forms.GroupBox();
+			this.txtQueueLength = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.chkUseQueue = new System.Windows.Forms.CheckBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
 			this.chkRemComm = new System.Windows.Forms.CheckBox();
 			this.lblRemComm = new System.Windows.Forms.Label();
 			this.nudTimeOut = new System.Windows.Forms.NumericUpDown();
@@ -139,14 +151,17 @@ namespace ZabbixConf
 			this.lblServerHost = new System.Windows.Forms.Label();
 			this.lblHostname = new System.Windows.Forms.Label();
 			this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
 			this.grpBoxGeneral.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudTimeOut)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// grpBoxGeneral
 			// 
+			this.grpBoxGeneral.Controls.Add(this.txtQueueLength);
+			this.grpBoxGeneral.Controls.Add(this.label5);
+			this.grpBoxGeneral.Controls.Add(this.label4);
+			this.grpBoxGeneral.Controls.Add(this.label3);
+			this.grpBoxGeneral.Controls.Add(this.chkUseQueue);
 			this.grpBoxGeneral.Controls.Add(this.label2);
 			this.grpBoxGeneral.Controls.Add(this.label1);
 			this.grpBoxGeneral.Controls.Add(this.chkRemComm);
@@ -170,10 +185,65 @@ namespace ZabbixConf
 			this.grpBoxGeneral.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.grpBoxGeneral.Location = new System.Drawing.Point(8, 8);
 			this.grpBoxGeneral.Name = "grpBoxGeneral";
-			this.grpBoxGeneral.Size = new System.Drawing.Size(560, 280);
+			this.grpBoxGeneral.Size = new System.Drawing.Size(560, 296);
 			this.grpBoxGeneral.TabIndex = 5;
 			this.grpBoxGeneral.TabStop = false;
 			this.grpBoxGeneral.Text = "General";
+			// 
+			// txtQueueLength
+			// 
+			this.txtQueueLength.Location = new System.Drawing.Point(168, 264);
+			this.txtQueueLength.Name = "txtQueueLength";
+			this.txtQueueLength.Size = new System.Drawing.Size(64, 20);
+			this.txtQueueLength.TabIndex = 43;
+			this.txtQueueLength.Text = "50000";
+			// 
+			// label5
+			// 
+			this.label5.Location = new System.Drawing.Point(8, 264);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(100, 16);
+			this.label5.TabIndex = 42;
+			this.label5.Text = "Queue length";
+			// 
+			// label4
+			// 
+			this.label4.Location = new System.Drawing.Point(192, 240);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(216, 16);
+			this.label4.TabIndex = 41;
+			this.label4.Text = "Use only with timestamp patched server.";
+			// 
+			// label3
+			// 
+			this.label3.Location = new System.Drawing.Point(8, 240);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(144, 16);
+			this.label3.TabIndex = 40;
+			this.label3.Text = "Enable queue";
+			// 
+			// chkUseQueue
+			// 
+			this.chkUseQueue.Location = new System.Drawing.Point(168, 240);
+			this.chkUseQueue.Name = "chkUseQueue";
+			this.chkUseQueue.Size = new System.Drawing.Size(16, 16);
+			this.chkUseQueue.TabIndex = 39;
+			// 
+			// label2
+			// 
+			this.label2.Location = new System.Drawing.Point(184, 160);
+			this.label2.Name = "label2";
+			this.label2.TabIndex = 38;
+			this.label2.Text = "Not implemented";
+			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// label1
+			// 
+			this.label1.Location = new System.Drawing.Point(224, 88);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(264, 32);
+			this.label1.TabIndex = 37;
+			this.label1.Text = "If SSH is used. Zabbix server is localhost and the port is the local bound port.";
 			// 
 			// chkRemComm
 			// 
@@ -359,26 +429,10 @@ namespace ZabbixConf
 			this.lblHostname.TabIndex = 0;
 			this.lblHostname.Text = "Hostname:";
 			// 
-			// label1
-			// 
-			this.label1.Location = new System.Drawing.Point(224, 88);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(264, 32);
-			this.label1.TabIndex = 37;
-			this.label1.Text = "If SSH is used. Zabbix server is localhost and the port is the local bound port.";
-			// 
-			// label2
-			// 
-			this.label2.Location = new System.Drawing.Point(184, 160);
-			this.label2.Name = "label2";
-			this.label2.TabIndex = 38;
-			this.label2.Text = "Not implemented";
-			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
 			// General
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(576, 294);
+			this.ClientSize = new System.Drawing.Size(576, 310);
 			this.Controls.Add(this.grpBoxGeneral);
 			this.HelpButton = true;
 			this.Name = "General";
@@ -407,6 +461,8 @@ namespace ZabbixConf
 			profile.SetValue("General", "ActiveChecks", chkActiveChecks.Checked.ToString());
 			profile.SetValue("General", "TimeOut", nudTimeOut.Value);
 			profile.SetValue("General", "RemoteCommands", chkRemComm.Checked.ToString());
+			profile.SetValue("General", "UseQueue", chkUseQueue.Checked.ToString());
+			profile.SetValue("General", "QueueLength", txtQueueLength.Text);
 		}
 
 		/// <summary>
@@ -427,6 +483,7 @@ namespace ZabbixConf
 				// General
 				profile.SetValue("General", "ServerHost", (string)ht["ServerHost"]);
 				profile.SetValue("General", "ServerPort", (string)ht["ServerPort"]);
+
 				profile.SetValue("Logging", "DebugLevel", (string)ht["DebugLevel"]);
 				//profile.SetValue("Logging", "LogFile", txtLogFile.Text);
 				profile.SetValue("Updater", "CustomerGroup", (string)ht["CustomerGroup"]);
@@ -455,22 +512,63 @@ namespace ZabbixConf
 					MessageBox.Show(ex.ToString());
 				}
 			}
-				try
-					{
-					txtHostname.Text = profile.GetValue("General", "Hostname").ToString();
-					chkFQDN.Checked = Convert.ToBoolean(profile.GetValue("General", "FQDN"));
-					txtServerHost.Text = profile.GetValue("General", "ServerHost").ToString();
-					txtServerPort.Text = profile.GetValue("General", "ServerPort").ToString();
-					txtAgentPort.Text = profile.GetValue("General", "AgentPort").ToString();
-					txtRefresh.Text = profile.GetValue("General", "Refresh").ToString();
-					chkActiveChecks.Checked = Convert.ToBoolean(profile.GetValue("General", "ActiveChecks"));
-					nudTimeOut.Value = Convert.ToDecimal(profile.GetValue("General", "TimeOut"));
-					chkRemComm.Checked = Convert.ToBoolean(profile.GetValue("General", "RemoteCommands"));
-					}
-				catch 
-					{
-					//MessageBox.Show(ex.ToString());
-					}
+
+			try
+			{
+				txtHostname.Text = profile.GetValue("General", "Hostname").ToString();
+			}
+			catch {}
+
+			try 
+			{
+				chkFQDN.Checked = Convert.ToBoolean(profile.GetValue("General", "FQDN"));
+			} 
+			catch {}
+			try 
+			{
+				txtServerHost.Text = profile.GetValue("General", "ServerHost").ToString();
+			} 
+			catch {}
+			try 
+			{
+				txtServerPort.Text = profile.GetValue("General", "ServerPort").ToString();
+			} 
+			catch {}
+			try 
+			{
+				txtAgentPort.Text = profile.GetValue("General", "AgentPort").ToString();
+			} 
+			catch {}
+			try 
+			{
+				txtRefresh.Text = profile.GetValue("General", "Refresh").ToString();
+			} 
+			catch {}
+			try 
+			{	
+				chkActiveChecks.Checked = Convert.ToBoolean(profile.GetValue("General", "ActiveChecks"));
+			} 
+			catch {}
+			try 
+			{	
+				nudTimeOut.Value = Convert.ToDecimal(profile.GetValue("General", "TimeOut"));
+			} 
+			catch {}
+			try 
+			{
+				chkRemComm.Checked = Convert.ToBoolean(profile.GetValue("General", "RemoteCommands"));
+			} 
+			catch {}
+			try 
+			{
+				chkUseQueue.Checked = Convert.ToBoolean(profile.GetValue("General", "UseQueue"));
+			} 
+			catch {}
+			try 
+			{
+				txtQueueLength.Text = profile.GetValue("General", "QueueLength").ToString();
+			} 
+			catch {}
 			
 		}
 
