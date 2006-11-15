@@ -20,7 +20,7 @@
                 PostBuildEvent = ""
                 RootNamespace = "ZabbixAgent"
                 RunPostBuildEvent = "OnBuildSuccess"
-                StartupObject = "ZabbixAgent.Service1"
+                StartupObject = ""
             >
                 <Config
                     Name = "Debug"
@@ -151,7 +151,7 @@
                 <File
                     RelPath = "Class1.cs"
                     SubType = "Code"
-                    BuildAction = "None"
+                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Configuration.cs"
@@ -176,7 +176,7 @@
                 <File
                     RelPath = "Service1.cs"
                     SubType = "Component"
-                    BuildAction = "Compile"
+                    BuildAction = "None"
                 />
                 <File
                     RelPath = "Service1.resx"

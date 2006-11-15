@@ -36,6 +36,35 @@ namespace ZabbixAgent
 	/// </summary>
 	public class Connection
 	{
+		// Queue Object
+		public class ConnQueueEventArgs : EventArgs
+		{
+			private string key;
+			private string val;
+			public ConnQueueEventArgs(string key, string val) 
+			{
+				this.key = key;
+				this.val = val;
+			}
+
+			public string Key
+			{
+				get { return key; }
+				set { this.key = value; }
+			}
+
+			public string Val
+			{
+				get { return val; }
+				set { this.val = value; }
+			}
+		}
+
+		// Queue
+		Queue commandQueue = null;
+		public delegate void NewCounterInQueueEventHandler(object sender, ConnQueueEventArgs e);
+		public event NewCounterInQueueEventHandler NewCounterInQueue;
+
 		// Logging
 		public ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixagent.connection");
 
@@ -51,12 +80,42 @@ namespace ZabbixAgent
 		// Connection
 		private IPHostEntry hostEntry = null;
 		private Socket socket = null;
-		private string hostName = System.Net.Dns.GetHostByName("localhost").HostName;
-		
+		private static string hostName = System.Net.Dns.GetHostByName("localhost").HostName;
+
+		// ConnectionPart
+		private static readonly string connHostName = "<req><host>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(hostName)) + "</host><key>";
+
 		// Secure tunnel 
 		private Tunneler tunnel = new Tunneler();
 		private bool useSSH = false;
+
+		// Configurations
+		int queueLength = 65768; // Arbitrary ( ... 500.000 can be allocated for a few megs )
+
 		private Connection() {
+			
+			// Setup queue
+			NewCounterInQueue += new NewCounterInQueueEventHandler(this.sendCountersFromQueue);
+
+			// Get static configuration
+			try 
+			{
+				int qtmp = Convert.ToInt32(conf.GetConfigurationByString("QueueLength"));
+				if (qtmp > 0)
+					queueLength = qtmp;
+
+				if(Convert.ToBoolean(conf.GetConfigurationByString("UseQueue"))) 
+					commandQueue = new Queue(queueLength);
+			} 
+			catch {}
+			finally 
+			{
+				if (commandQueue != null) 
+					log.Info("Using queue version with " + queueLength + " as queue length initalized.");
+				else 
+					log.Info("Using non-queue version. Counter reports will not be queued");
+			}
+
 			try 
 			{
 				try 
@@ -95,6 +154,12 @@ namespace ZabbixAgent
 			}
 		}
 
+		// Event for new a counter have pushed some data.
+		protected virtual void OnNewCounterInQueue(ConnQueueEventArgs e) {
+			if (NewCounterInQueue != null) 
+				NewCounterInQueue(this, e);
+		}
+		
 		private Socket GetSocket() 
 		{
 			Socket s = null;
@@ -103,7 +168,7 @@ namespace ZabbixAgent
 			if (useSSH)
 			{
 				hostEntry = Dns.GetHostByName("localhost");
-				serverport = Int32.Parse(conf.GetConfigurationByString("LocalBoundPort", "SSH"));
+				serverport = Int32.Parse(conf.GetConfigurationByString("LocalPort", "SSH"));
 			} 
 			else 
 			{
@@ -144,10 +209,53 @@ namespace ZabbixAgent
 				socket = s;
 		}
 
-		public string PushCounter(string key, string value) 
+		public void PushCounter(string key, string value) 
 		{
-			return SendTo("<req><host>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(hostName)) + "</host><key>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(key)) + "</key><data>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(value)) + "</data></req>");		
+			OnNewCounterInQueue(new ConnQueueEventArgs(key, value));
+			//log.Debug("Continuing...");
+			//return SendTo("<req><host>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(hostName)) + "</host><key>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(key)) + "</key><data>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(value)) + "</data></req>");		
 		}
+
+		public void sendCountersFromQueue(object sender, ConnQueueEventArgs e) 
+		{
+			//log.Debug("Responses in Counter Queue: " +  commandQueue.Count);
+			//log.Debug("Key: " + e.Key + " Value: " +e.Val);
+
+			if (commandQueue != null) 
+			{
+				// If not just a wakeupevent, but a counter which want to send some data, push to queue
+				if (!e.Key.Equals("")) 
+					Queue.Synchronized(commandQueue).Enqueue(e);
+			
+				while (commandQueue.Count != 0) 
+				{
+					ConnQueueEventArgs cqe = (ConnQueueEventArgs)Queue.Synchronized(commandQueue).Dequeue();
+					if (cqe != null) 
+					{
+						try 
+						{
+						
+							// Get unixtime
+							string timestamp = ((long)(DateTime.Now.AddHours(-2).AddMinutes(-20).ToUniversalTime() - new DateTime(1970, 1, 1)).TotalSeconds).ToString();
+							// connHostName is <reg><host>hostName</host><key>
+							SendTo(connHostName + Convert.ToBase64String(Encoding.UTF8.GetBytes(cqe.Key)) + "</key><data>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(cqe.Val)) + "</data><timestamp>"+ Convert.ToBase64String(Encoding.UTF8.GetBytes(timestamp)) +"</timestamp></req>");			
+						} 
+						catch (SocketException) 
+						{
+							// Requeue if broken.
+							//log.Debug("Connection down...Resending");
+							Queue.Synchronized(commandQueue).Enqueue(cqe);
+							break;
+						}
+					}
+				}
+			} 
+			else /* Just send if queue is not used */
+			{
+				SendTo(connHostName + Convert.ToBase64String(Encoding.UTF8.GetBytes(e.Key)) + "</key><data>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(e.Val)) + "</data></req>");			
+			}
+		}
+
 
 		public string SendTo(string message) 
 		{
@@ -173,6 +281,7 @@ namespace ZabbixAgent
 					socket.Close();
 				} 				
 			}
+			//log.Debug("Msg: " + message + " Res: \"" + response + "\"");
 			return response;			
 		}
 
