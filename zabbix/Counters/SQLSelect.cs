@@ -35,6 +35,8 @@ namespace ZabbixAgent.Counters
 
 		string sqlquery = "";
 
+		bool useSQL = false;
+
 		private SqlConnection conn;
 		private string server = "";
 		private string username = "";
@@ -53,10 +55,18 @@ namespace ZabbixAgent.Counters
 
 			Configuration conf = Configuration.getInstance;
 
-			this.server = conf.GetConfigurationByString("MSSQLServer", "SQL");
-			this.username = conf.GetConfigurationByString("MSSQLUsername", "SQL");
-			this.password = conf.GetConfigurationByString("MSSQLPassword", "SQL");
-			this.database = conf.GetConfigurationByString("MSSQLDatabase", "SQL");
+			try 
+			{
+				useSQL = Convert.ToBoolean(conf.GetConfigurationByString("MSSQLUse", "SQL"));
+				if (useSQL) 
+				{
+					this.server = conf.GetConfigurationByString("MSSQLServer", "SQL");
+					this.username = conf.GetConfigurationByString("MSSQLUsername", "SQL");
+					this.password = conf.GetConfigurationByString("MSSQLPassword", "SQL");
+					this.database = conf.GetConfigurationByString("MSSQLDatabase", "SQL");
+				}
+			} 
+			catch {}
 			
 			//log.Debug("Starting counter with: " + this.server + " U: " + this.username + " P: " + this.password + " DB: " + this.database);
 		}
@@ -106,11 +116,10 @@ namespace ZabbixAgent.Counters
 		/// <param name="key"></param>
 		/// <returns></returns>
 		public bool isType(string key) 
-		{ 
-			if (key.StartsWith("mssql.scalar"))
+		{  
+			if (useSQL && key.StartsWith("mssql.scalar")) 
 				return true;
-			else 
-				return false;
+			return false;
 		}
 
 		/// <summary>
