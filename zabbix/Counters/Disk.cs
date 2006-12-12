@@ -61,6 +61,8 @@ namespace ZabbixAgent.Counters
 		/// <returns></returns>
 		public string getValue() 
 		{
+			try
+			{
 			ManagementObject mydisk = new 
 			ManagementObject("win32_logicaldisk.deviceid='" + diskname + "'"); 
 			mydisk.Get();
@@ -73,8 +75,12 @@ namespace ZabbixAgent.Counters
 			else
 				log.Info("vfs.fs.size does not take " + disktype + " as parameter.");
 				return "-1";
-
-
+			}
+			catch
+			{
+				log.Info("Please check you configuration (vfs.fs.size), disk: " + diskname + " is not present on this host.");
+				return "-1";
+			}
 			//return mydisk["Size"].ToString(); 
 			//return mydisk["FreeSpace"].ToString();
 		}
