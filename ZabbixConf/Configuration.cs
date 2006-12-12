@@ -33,6 +33,9 @@ using System.Reflection;
 using System.Threading;
 using System.Diagnostics;
 using System.Xml;
+using System.ServiceProcess;
+
+
 
 
 namespace ZabbixConf
@@ -66,6 +69,7 @@ namespace ZabbixConf
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.TreeView treeView1;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Button btnRestart;
 		private System.Windows.Forms.GLabel label2;
 		//private Process p1 = null;
 		
@@ -111,6 +115,7 @@ namespace ZabbixConf
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.label2 = new System.Windows.Forms.GLabel();
 			this.label1 = new System.Windows.Forms.Label();
+			this.btnRestart = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// btnApply
@@ -153,18 +158,29 @@ namespace ZabbixConf
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(392, 392);
+			this.label1.Location = new System.Drawing.Point(312, 392);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(280, 23);
+			this.label1.Size = new System.Drawing.Size(248, 23);
 			this.label1.TabIndex = 18;
 			this.label1.Text = "Restart ZabbixAgent.NET Service after applying.";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// btnRestart
+			// 
+			this.btnRestart.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.btnRestart.Location = new System.Drawing.Point(568, 392);
+			this.btnRestart.Name = "btnRestart";
+			this.btnRestart.Size = new System.Drawing.Size(104, 23);
+			this.btnRestart.TabIndex = 19;
+			this.btnRestart.Text = "Restart Service";
+			this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
 			// 
 			// ZabbixAgentConf
 			// 
 			this.AcceptButton = this.btnApply;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(770, 424);
+			this.Controls.Add(this.btnRestart);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.btnApply);
@@ -340,6 +356,55 @@ namespace ZabbixConf
 			foreach (TreeNode childTreeNode in treeNode.Nodes)
 				SaveRecursive(childTreeNode);
 		}
+
+		private void btnRestart_Click(object sender, System.EventArgs e)
+		{
+			System.ServiceProcess.ServiceController service = new System.ServiceProcess.ServiceController("zabbixagentnet");
+			try
+			{
+				if (service.Status.Equals(ServiceControllerStatus.Stopped))
+				{
+					// Start the service if the current status is stopped.
+					DateTime tn = DateTime.Now; 
+					MessageBox.Show(tn.ToString() + " service was stopped, starting now");
+					service.Start();
+					service.WaitForStatus(ServiceControllerStatus.Running);
+				} 
+				else if(service.Status.Equals(ServiceControllerStatus.StopPending))
+				{
+					DateTime tn = DateTime.Now; 
+					MessageBox.Show(tn.ToString() + " Service is stopping, waiting....");
+					service.WaitForStatus(ServiceControllerStatus.Stopped);
+					DateTime tp = DateTime.Now; 
+					MessageBox.Show(tp.ToString() + " Restarting service.");
+					service.Start();
+					service.WaitForStatus(ServiceControllerStatus.Running);
+				}
+				else
+				{
+					// Stop the service if its status is not set to "Stopped".
+					DateTime tn = DateTime.Now; 
+					MessageBox.Show(tn.ToString() + " Stopping service.");
+					service.Stop();
+					service.WaitForStatus(ServiceControllerStatus.Stopped);
+					DateTime tp = DateTime.Now; 
+					MessageBox.Show(tp.ToString() + " Restarting service.");
+					service.Start();
+					service.WaitForStatus(ServiceControllerStatus.Running);
+					DateTime ts = DateTime.Now;
+					MessageBox.Show(ts.ToString() + " Service started successfuly.");
+				}  
+
+
+			}
+			catch(System.InvalidOperationException)
+			{
+				DateTime tn = DateTime.Now; 
+				MessageBox.Show(tn.ToString() + " Service does not exist.");
+			}
+		}
+
+
 
 
 
