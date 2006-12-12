@@ -90,11 +90,31 @@ namespace ZabbixAgent.Counters
 						// Start the engine for performance monitor
 						string tmp = "";
 
-						pc.NextValue();
-						tmp = pc.NextValue().ToString("0.000000").Replace(",",".");
+						// pc.NextValue(); ---Was wrong
+						// tmp = pc.NextValue().ToString("0.000000").Replace(",","."); ---Was wrong
 						//log.Debug("Getting: " + category + "-" + instancekey + "-" + instance + " Value: " + tmp);
 					
-						return tmp;
+						// return tmp;
+
+
+					if(pc.CounterType.ToString().StartsWith("NumberOfItems"))
+						{
+							tmp = pc.RawValue.ToString("0.000000").Replace(",",".");
+							return tmp;
+						}
+						else
+						{
+							// Retrieve a sample.
+							CounterSample sample1 = pc.NextSample();
+							// Wait some interval of time here and retrieve
+							// a second sample.
+							System.Threading.Thread.Sleep(1000);
+							CounterSample sample2 = pc.NextSample();
+							// Pass both samples to the Calculate method.
+							tmp = CounterSample.Calculate(sample1, sample2).ToString("0.000000").Replace(",",".");
+							return tmp;
+						}					
+
 					} 
 				catch (Exception ex) 
 				{
