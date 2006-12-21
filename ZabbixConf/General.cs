@@ -81,6 +81,8 @@ namespace ZabbixConf
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.TextBox txtQueueLength;
 		private System.Windows.Forms.CheckBox chkUseQueue;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.TextBox txtWorkerSockets;
 		private Hashtable ht = new Hashtable(20);
 
 		/// <summary>
@@ -149,12 +151,16 @@ namespace ZabbixConf
 			this.lblServerPort = new System.Windows.Forms.Label();
 			this.lblServerHost = new System.Windows.Forms.Label();
 			this.lblHostname = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
+			this.txtWorkerSockets = new System.Windows.Forms.TextBox();
 			this.grpBoxGeneral.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudTimeOut)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// grpBoxGeneral
 			// 
+			this.grpBoxGeneral.Controls.Add(this.txtWorkerSockets);
+			this.grpBoxGeneral.Controls.Add(this.label6);
 			this.grpBoxGeneral.Controls.Add(this.txtQueueLength);
 			this.grpBoxGeneral.Controls.Add(this.label5);
 			this.grpBoxGeneral.Controls.Add(this.label4);
@@ -183,14 +189,14 @@ namespace ZabbixConf
 			this.grpBoxGeneral.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.grpBoxGeneral.Location = new System.Drawing.Point(8, 8);
 			this.grpBoxGeneral.Name = "grpBoxGeneral";
-			this.grpBoxGeneral.Size = new System.Drawing.Size(560, 296);
+			this.grpBoxGeneral.Size = new System.Drawing.Size(560, 312);
 			this.grpBoxGeneral.TabIndex = 5;
 			this.grpBoxGeneral.TabStop = false;
 			this.grpBoxGeneral.Text = "General";
 			// 
 			// txtQueueLength
 			// 
-			this.txtQueueLength.Location = new System.Drawing.Point(168, 264);
+			this.txtQueueLength.Location = new System.Drawing.Point(168, 288);
 			this.txtQueueLength.Name = "txtQueueLength";
 			this.txtQueueLength.Size = new System.Drawing.Size(64, 20);
 			this.txtQueueLength.TabIndex = 43;
@@ -198,7 +204,7 @@ namespace ZabbixConf
 			// 
 			// label5
 			// 
-			this.label5.Location = new System.Drawing.Point(8, 264);
+			this.label5.Location = new System.Drawing.Point(8, 288);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(100, 16);
 			this.label5.TabIndex = 42;
@@ -206,7 +212,7 @@ namespace ZabbixConf
 			// 
 			// label4
 			// 
-			this.label4.Location = new System.Drawing.Point(192, 240);
+			this.label4.Location = new System.Drawing.Point(192, 264);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(216, 16);
 			this.label4.TabIndex = 41;
@@ -214,7 +220,7 @@ namespace ZabbixConf
 			// 
 			// label3
 			// 
-			this.label3.Location = new System.Drawing.Point(8, 240);
+			this.label3.Location = new System.Drawing.Point(8, 264);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(144, 16);
 			this.label3.TabIndex = 40;
@@ -222,14 +228,14 @@ namespace ZabbixConf
 			// 
 			// chkUseQueue
 			// 
-			this.chkUseQueue.Location = new System.Drawing.Point(168, 240);
+			this.chkUseQueue.Location = new System.Drawing.Point(168, 264);
 			this.chkUseQueue.Name = "chkUseQueue";
 			this.chkUseQueue.Size = new System.Drawing.Size(16, 16);
 			this.chkUseQueue.TabIndex = 39;
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(184, 160);
+			this.label2.Location = new System.Drawing.Point(184, 184);
 			this.label2.Name = "label2";
 			this.label2.TabIndex = 38;
 			this.label2.Text = "Not implemented";
@@ -246,14 +252,14 @@ namespace ZabbixConf
 			// chkRemComm
 			// 
 			this.chkRemComm.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.chkRemComm.Location = new System.Drawing.Point(168, 214);
+			this.chkRemComm.Location = new System.Drawing.Point(168, 240);
 			this.chkRemComm.Name = "chkRemComm";
 			this.chkRemComm.Size = new System.Drawing.Size(16, 16);
 			this.chkRemComm.TabIndex = 36;
 			// 
 			// lblRemComm
 			// 
-			this.lblRemComm.Location = new System.Drawing.Point(8, 216);
+			this.lblRemComm.Location = new System.Drawing.Point(8, 240);
 			this.lblRemComm.Name = "lblRemComm";
 			this.lblRemComm.Size = new System.Drawing.Size(144, 16);
 			this.lblRemComm.TabIndex = 35;
@@ -261,7 +267,7 @@ namespace ZabbixConf
 			// 
 			// nudTimeOut
 			// 
-			this.nudTimeOut.Location = new System.Drawing.Point(168, 185);
+			this.nudTimeOut.Location = new System.Drawing.Point(168, 208);
 			this.nudTimeOut.Maximum = new System.Decimal(new int[] {
 																	   30,
 																	   0,
@@ -283,7 +289,7 @@ namespace ZabbixConf
 			// 
 			// lblTimeOut
 			// 
-			this.lblTimeOut.Location = new System.Drawing.Point(8, 191);
+			this.lblTimeOut.Location = new System.Drawing.Point(8, 216);
 			this.lblTimeOut.Name = "lblTimeOut";
 			this.lblTimeOut.Size = new System.Drawing.Size(136, 16);
 			this.lblTimeOut.TabIndex = 33;
@@ -294,7 +300,7 @@ namespace ZabbixConf
 			// 
 			this.chkActiveChecks.Enabled = false;
 			this.chkActiveChecks.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.chkActiveChecks.Location = new System.Drawing.Point(167, 164);
+			this.chkActiveChecks.Location = new System.Drawing.Point(167, 184);
 			this.chkActiveChecks.Name = "chkActiveChecks";
 			this.chkActiveChecks.Size = new System.Drawing.Size(16, 16);
 			this.chkActiveChecks.TabIndex = 32;
@@ -302,7 +308,7 @@ namespace ZabbixConf
 			// 
 			// txtRefresh
 			// 
-			this.txtRefresh.Location = new System.Drawing.Point(167, 136);
+			this.txtRefresh.Location = new System.Drawing.Point(167, 160);
 			this.txtRefresh.Name = "txtRefresh";
 			this.txtRefresh.Size = new System.Drawing.Size(48, 20);
 			this.txtRefresh.TabIndex = 31;
@@ -310,7 +316,7 @@ namespace ZabbixConf
 			// 
 			// lblActiveChecks
 			// 
-			this.lblActiveChecks.Location = new System.Drawing.Point(8, 167);
+			this.lblActiveChecks.Location = new System.Drawing.Point(8, 192);
 			this.lblActiveChecks.Name = "lblActiveChecks";
 			this.lblActiveChecks.Size = new System.Drawing.Size(136, 16);
 			this.lblActiveChecks.TabIndex = 30;
@@ -318,7 +324,7 @@ namespace ZabbixConf
 			// 
 			// lblRefresh
 			// 
-			this.lblRefresh.Location = new System.Drawing.Point(8, 142);
+			this.lblRefresh.Location = new System.Drawing.Point(8, 168);
 			this.lblRefresh.Name = "lblRefresh";
 			this.lblRefresh.Size = new System.Drawing.Size(152, 16);
 			this.lblRefresh.TabIndex = 29;
@@ -326,12 +332,11 @@ namespace ZabbixConf
 			// 
 			// txtAgentPort
 			// 
-			this.txtAgentPort.Enabled = false;
 			this.txtAgentPort.Location = new System.Drawing.Point(167, 112);
 			this.txtAgentPort.Name = "txtAgentPort";
 			this.txtAgentPort.Size = new System.Drawing.Size(49, 20);
 			this.txtAgentPort.TabIndex = 28;
-			this.txtAgentPort.Text = "Not used";
+			this.txtAgentPort.Text = "10050";
 			// 
 			// lblAgentPort
 			// 
@@ -412,10 +417,26 @@ namespace ZabbixConf
 			this.lblHostname.TabIndex = 0;
 			this.lblHostname.Text = "Hostname:";
 			// 
+			// label6
+			// 
+			this.label6.Location = new System.Drawing.Point(8, 144);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(100, 16);
+			this.label6.TabIndex = 44;
+			this.label6.Text = "Passive workers";
+			// 
+			// txtWorkerSockets
+			// 
+			this.txtWorkerSockets.Location = new System.Drawing.Point(168, 136);
+			this.txtWorkerSockets.Name = "txtWorkerSockets";
+			this.txtWorkerSockets.Size = new System.Drawing.Size(48, 20);
+			this.txtWorkerSockets.TabIndex = 45;
+			this.txtWorkerSockets.Text = "4";
+			// 
 			// General
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(576, 310);
+			this.ClientSize = new System.Drawing.Size(576, 326);
 			this.Controls.Add(this.grpBoxGeneral);
 			this.HelpButton = true;
 			this.Name = "General";
@@ -446,6 +467,7 @@ namespace ZabbixConf
 			profile.SetValue("General", "RemoteCommands", chkRemComm.Checked.ToString());
 			profile.SetValue("General", "UseQueue", chkUseQueue.Checked.ToString());
 			profile.SetValue("General", "QueueLength", txtQueueLength.Text);
+			profile.SetValue("General", "WorkerSockets", txtWorkerSockets.Text);
 		}
 
 		/// <summary>
@@ -520,6 +542,11 @@ namespace ZabbixConf
 			try 
 			{
 				txtAgentPort.Text = profile.GetValue("General", "AgentPort").ToString();
+			} 
+			catch {}
+			try 
+			{
+				txtWorkerSockets.Text = profile.GetValue("General", "WorkerSockets").ToString();
 			} 
 			catch {}
 			try 
