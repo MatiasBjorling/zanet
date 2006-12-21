@@ -63,6 +63,7 @@ namespace ZabbixAgent
 				try 
 				{
 					ZabbixAgent.Active ac = new ZabbixAgent.Active();
+					ZabbixAgent.Passive ap = new ZabbixAgent.Passive();
 					ac.get_active_checks();
 					Thread.Sleep(10000);
 				} 

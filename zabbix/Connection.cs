@@ -289,5 +289,13 @@ namespace ZabbixAgent
 		{
 			tunnel.Stop();
 		}
+
+		// Passive socket handling
+
+		public Socket GetPassiveSocket() 
+		{
+			Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+			return s;
+		}
 	}
 }

@@ -44,7 +44,13 @@ namespace ZabbixAgent
 
 		private long agingcount = 0;
 
-		public WorkPool()
+		static WorkPool instance = null;
+	
+		// Instance lock
+		static readonly object uselock =  new object();
+
+
+		private WorkPool()
 		{
 			ArrayList tmp = ZabbixAgent.Util.ClassUtils.ScanILoadableCounter();
 			foreach (Type t in tmp) 
@@ -53,12 +59,26 @@ namespace ZabbixAgent
 				counters.Add(c);
 			}
 		}
+		// Singleton
+		public static WorkPool getInstance
+		{
+			get 
+			{
+				lock(uselock) 
+				{
+					if (instance == null) 
+						instance = new WorkPool();
+					return instance;
+				}
+			}
+		}
 
 		public void increaseCounter() 
 		{
 			agingcount += 1;
 		}
 
+		// Active host
 		public void addJob(string key, int interval, int unknown) 
 		{
 			key = key.Trim();
@@ -74,12 +94,7 @@ namespace ZabbixAgent
 			if (obj == null) 
 			{
 				// Find if the counter match
-				foreach (ILoadableCounter c in counters) 
-					if(c.isType(key)) 
-						counterobj = c.getCounter(key);
-
-				if (counterobj == null) 
-					counterobj = new UnknownCounter();
+				counterobj = FindCounterFromKey(key);
 
 				if (counterobj != null) {
 					// Make new thread with counter
@@ -173,6 +188,22 @@ namespace ZabbixAgent
 				log.Debug("Thread count: " + threads.Count);
 			}
 			log.Debug("Killed all threads");
+		}
+
+		private ILoadableCounter FindCounterFromKey(string key)
+		{
+			foreach (ILoadableCounter c in counters) 
+				if(c.isType(key)) 
+					return c.getCounter(key);
+
+			return new UnknownCounter();
+		}
+
+		// Fetch a counter value from host. ( Passive probing )
+		public string FetchCounterValue(string key) 
+		{
+			ILoadableCounter c = FindCounterFromKey(key);
+			return c.getValue();
 		}
 	}
 }

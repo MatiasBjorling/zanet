@@ -36,7 +36,7 @@ namespace ZabbixAgent
 	/// </summary>
 	public class Active
 	{
-		private WorkPool wp = new WorkPool();
+		private WorkPool wp = WorkPool.getInstance;
 		private Connection c = Connection.getInstance;
 		private Configuration conf = Configuration.getInstance;
 
@@ -79,7 +79,7 @@ log.Info("Started in DEBUGGING mode");
 					string response = "";
 					try 
 					{
-						//log.Info("Asking server for Active counters...");
+						log.Debug("Sent get_active_counters to server.");
 						response = Connection.getInstance.SendTo(askForActiveClients);
 					} 
 					catch (Exception ex ) 
