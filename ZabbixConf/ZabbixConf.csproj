@@ -272,6 +272,10 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "SubSystem\log_debug.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "SubSystem\plink.exe"
                     BuildAction = "EmbeddedResource"
                     CustomToolNamespace = "TMCService.Agent.SubSystem"

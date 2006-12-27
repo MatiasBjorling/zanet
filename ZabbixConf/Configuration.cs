@@ -34,7 +34,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Xml;
 using System.ServiceProcess;
-
+using log4net.Config;
 
 
 
@@ -80,10 +80,16 @@ namespace ZabbixConf
 		{
 			InitializeComponent();
 
+			foreach (string s in Assembly.GetCallingAssembly().GetManifestResourceNames())
+				Console.WriteLine(s);
+			XmlConfigurator.Configure(Assembly.GetCallingAssembly().GetManifestResourceStream("ZabbixConf.SubSystem.log_debug.xml"));
+
 			//getValues();
 			AssemblyInfo ainfo = new AssemblyInfo(this.GetType());
 			string version = ainfo.Version;
 			this.Text = this.Text + " - " + ainfo.Version;
+
+
 		}
 
 		/// <summary>

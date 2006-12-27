@@ -77,10 +77,11 @@ namespace ZabbixConf
 		private System.Windows.Forms.Label lblValue;
 		private System.Windows.Forms.Label txtValueType; 
 		private ListViewColumnSorter lvwColumnSorter;
+		private System.Windows.Forms.Button button1;
 		
-		public ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixagent.config");
+		private ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixconf.perf");
 
-		XmlConfigurator.Configure(Assembly.GetCallingAssembly().GetManifestResourceStream("ZabbixConfig.SubSystem.log.xml"));
+		//XmlConfigurator.Configure(Assembly.GetCallingAssembly().GetManifestResourceStream("ZabbixConfig.SubSystem.log.xml"));
 
 
 		/// <summary>
@@ -88,6 +89,7 @@ namespace ZabbixConf
 		/// </summary>
 		public Perf()
 		{
+		
 			//
 			// Required for Windows Form Designer support
 			//
@@ -98,6 +100,9 @@ namespace ZabbixConf
 			lvwColumnSorter = new ListViewColumnSorter();
 			this.listView1.ListViewItemSorter = lvwColumnSorter;
 			readsettings();
+
+
+			log.Debug("test");
 
 		}
 
@@ -126,6 +131,7 @@ namespace ZabbixConf
 			this.listView1 = new System.Windows.Forms.ListView();
 			this.progressBar1 = new System.Windows.Forms.ProgressBar();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.txtValueType = new System.Windows.Forms.Label();
 			this.lblValue = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.lblCounter = new System.Windows.Forms.Label();
@@ -143,7 +149,7 @@ namespace ZabbixConf
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.btnCounterDelete = new System.Windows.Forms.Button();
-			this.txtValueType = new System.Windows.Forms.Label();
+			this.button1 = new System.Windows.Forms.Button();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
@@ -189,6 +195,13 @@ namespace ZabbixConf
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Key - Counter Mapping";
+			// 
+			// txtValueType
+			// 
+			this.txtValueType.Location = new System.Drawing.Point(208, 131);
+			this.txtValueType.Name = "txtValueType";
+			this.txtValueType.Size = new System.Drawing.Size(128, 16);
+			this.txtValueType.TabIndex = 13;
 			// 
 			// lblValue
 			// 
@@ -313,6 +326,7 @@ namespace ZabbixConf
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Controls.Add(this.button1);
 			this.groupBox3.Controls.Add(this.btnCounterDelete);
 			this.groupBox3.Controls.Add(this.listView1);
 			this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -333,12 +347,13 @@ namespace ZabbixConf
 			this.btnCounterDelete.Text = "Delete";
 			this.btnCounterDelete.Click += new System.EventHandler(this.btnCounterDelete_Click);
 			// 
-			// txtValueType
+			// button1
 			// 
-			this.txtValueType.Location = new System.Drawing.Point(208, 131);
-			this.txtValueType.Name = "txtValueType";
-			this.txtValueType.Size = new System.Drawing.Size(128, 16);
-			this.txtValueType.TabIndex = 13;
+			this.button1.Location = new System.Drawing.Point(112, 128);
+			this.button1.Name = "button1";
+			this.button1.TabIndex = 8;
+			this.button1.Text = "button1";
+			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// Perf
 			// 
@@ -687,6 +702,11 @@ namespace ZabbixConf
 			}
 			// Perform the sort with these new sort options.
 			this.listView1.Sort();
+		}
+
+		private void button1_Click(object sender, System.EventArgs e)
+		{
+
 		}
 
 	}
