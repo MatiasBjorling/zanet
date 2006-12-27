@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.3077"
+        ProductVersion = "7.10.6030"
         SchemaVersion = "2.0"
         ProjectGuid = "{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}"
         SccProjectName = "SAK"
@@ -110,7 +110,7 @@
                 <File
                     RelPath = "Ini.cs"
                     SubType = "Code"
-                    BuildAction = "Compile"
+                    BuildAction = "None"
                 />
                 <File
                     RelPath = "IProfile.cs"
@@ -125,7 +125,7 @@
                 <File
                     RelPath = "Registry.cs"
                     SubType = "Code"
-                    BuildAction = "Compile"
+                    BuildAction = "None"
                 />
                 <File
                     RelPath = "Xml.cs"

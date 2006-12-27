@@ -22,6 +22,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profile", "..\AMS.Profile\P
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZabbixStart", "..\ZabbixStart\ZabbixStart.csproj", "{9645AECD-B7B8-4CD6-8A72-16CFB220B047}"
+	ProjectSection(ProjectDependencies) = postProject
+		{56C05D1A-B8EE-45D4-A716-EBB35D8DAB78} = {56C05D1A-B8EE-45D4-A716-EBB35D8DAB78}
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8} = {F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}
+		{0C6A5F4A-683C-4748-9478-5A186786DA86} = {0C6A5F4A-683C-4748-9478-5A186786DA86}
+		{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4} = {87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}
+		{BBE5BFA7-7012-4A35-B129-ACB26C39F009} = {BBE5BFA7-7012-4A35-B129-ACB26C39F009}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		ConfigurationEditor = ConfigurationEditor
@@ -60,6 +69,12 @@ Global
 		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Debug.Build.0 = Debug|.NET
 		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Release.ActiveCfg = Release|.NET
 		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Release.Build.0 = Release|.NET
+		{9645AECD-B7B8-4CD6-8A72-16CFB220B047}.ConfigurationEditor.ActiveCfg = Release|.NET
+		{9645AECD-B7B8-4CD6-8A72-16CFB220B047}.ConfigurationEditor.Build.0 = Release|.NET
+		{9645AECD-B7B8-4CD6-8A72-16CFB220B047}.Debug.ActiveCfg = Debug|.NET
+		{9645AECD-B7B8-4CD6-8A72-16CFB220B047}.Debug.Build.0 = Debug|.NET
+		{9645AECD-B7B8-4CD6-8A72-16CFB220B047}.Release.ActiveCfg = Release|.NET
+		{9645AECD-B7B8-4CD6-8A72-16CFB220B047}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

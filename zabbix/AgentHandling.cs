@@ -5,35 +5,24 @@ using log4net;
 using log4net.Config;
 using System.Resources;
 using System.Reflection;
+using ZabbixCommon;
 
 namespace ZabbixAgent
 {
 	/// <summary>
 	/// Summary description for Startup.
 	/// </summary>
-	public class AgentHandling
+	public class AgentHandling : IAgentHandling
 	{
 		private static readonly ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixagent");
 
-		private AgentHandling()
+		public AgentHandling()
 		{
 
 		}
 
-		public static void Start() 
+		public void Start() 
 		{
-#if (DEBUG)
-			
-			foreach (string tmp in Assembly.GetCallingAssembly().GetManifestResourceNames())
-			{
-				Console.WriteLine(tmp);
-			}
-			
-
-			XmlConfigurator.Configure(Assembly.GetCallingAssembly().GetManifestResourceStream("ZabbixAgent.SubSystem.log_debug.xml"));
-#else
-			XmlConfigurator.Configure(Assembly.GetCallingAssembly().GetManifestResourceStream("ZabbixAgent.SubSystem.log.xml"));
-#endif		
 			log.Info("Starting agent [" + (new Counters.VersionCounter()).getValue() + "]");
 			
 			while (true) 
@@ -50,6 +39,11 @@ namespace ZabbixAgent
 					log.Error(ex.Message + ex.StackTrace);
 				}
 			}
+		}
+
+		public void Stop() 
+		{
+
 		}
 	}
 }

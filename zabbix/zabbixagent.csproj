@@ -15,7 +15,7 @@
                 DefaultHTMLPageLayout = "Grid"
                 DefaultTargetSchema = "IE50"
                 DelaySign = "false"
-                OutputType = "WinExe"
+                OutputType = "Library"
                 PreBuildEvent = ""
                 PostBuildEvent = ""
                 RootNamespace = "ZabbixAgent"
@@ -100,11 +100,6 @@
                     HintPath = "..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.ServiceProcess.dll"
                 />
                 <Reference
-                    Name = "System.XML"
-                    AssemblyName = "System.Xml"
-                    HintPath = "..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
-                />
-                <Reference
                     Name = "System.Management"
                     AssemblyName = "System.Management"
                     HintPath = "..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Management.dll"
@@ -133,6 +128,11 @@
                     Name = "ZabbixCommon"
                     Project = "{0C6A5F4A-683C-4748-9478-5A186786DA86}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "System.XML"
+                    AssemblyName = "System.XML"
+                    HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
             </References>
         </Build>
@@ -228,14 +228,6 @@
                     RelPath = "Counters\VersionCounter.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "SubSystem\log.xml"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "SubSystem\log_debug.xml"
-                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "SubSystem\plink.exe"

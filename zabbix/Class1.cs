@@ -36,7 +36,7 @@ namespace ZabbixAgent
 		[STAThread]
 		static void Main(string[] args)
 		{
-			AgentHandling.Start();
+//			AgentHandling.Start();
 		}		
 	}
 }

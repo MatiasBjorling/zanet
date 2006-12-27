@@ -143,24 +143,6 @@ namespace ZabbixCounters.Counters
 
 					sw.Write(remotefile);
 					sw.Close();
-
-					//log.Debug(remotefile);
-					/*
-					log.Debug(write.ToString());
-					int Length = 256;
-					Byte [] buffer = new Byte[Length];
-
-
-					int bytesRead = stream.Read(buffer,0,Length);
-					// write the required bytes
-					while( bytesRead > 0 )
-					{
-						write.Write(buffer,0,bytesRead);
-						bytesRead = stream.Read(buffer,0,Length);
-					}
-					stream.Close();
-					write.Close();
-					*/
 				}
 			} 
 			catch (IOException ex)
