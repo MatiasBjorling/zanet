@@ -34,7 +34,7 @@ namespace ZabbixAgent
 #else
 			XmlConfigurator.Configure(Assembly.GetCallingAssembly().GetManifestResourceStream("ZabbixAgent.SubSystem.log.xml"));
 #endif		
-			//log.Info("Starting agent [" + (new Counters.VersionCounter()).getValue() + "]");
+			log.Info("Starting agent [" + (new Counters.VersionCounter()).getValue() + "]");
 			
 			while (true) 
 			{

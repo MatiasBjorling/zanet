@@ -26,6 +26,7 @@ using System.IO;
 using System.Collections;
 using log4net;
 using ZabbixCommon;
+using System.Diagnostics;
 
 
 namespace ZabbixAgent.Util
@@ -43,32 +44,15 @@ namespace ZabbixAgent.Util
 		public static ArrayList ScanILoadableCounter()
 		{
 			
-			// Tmo code
-			Assembly ab = Assembly.Load("ZabbixCounters, Culture=neutral, PublicKeyToken=60e868a7b39e2319");
-
-			Type[] asmTypes2 = ab.GetTypes();
-			foreach (Type t in asmTypes2) 
-			{
-				log.Debug("ZabbixCounters: " + t.ToString());
-				if (t.IsClass) 
-				{
-					Type[] interfaces = t.GetInterfaces();
-					foreach (Type i in interfaces) 
-					{
-						if (i.Equals(typeof(ILoadableCounter)))
-						{
-							//a.Add(t);
-							log.Info("Counter: " + t.Name + " found");
-						}
-					}
-				}
-			}
-
 			ArrayList a = new ArrayList(10);
 
-			log.Debug("Class Scan Begin");
-			Assembly asm = Assembly.GetAssembly(typeof(ZabbixAgent.Active));
-
+			//Assembly asm = Assembly.GetAssembly(typeof(ZabbixAgent.Active));
+			Assembly asm = Assembly.Load("ZabbixCounters, Culture=neutral, PublicKeyToken=60e868a7b39e2319");
+			
+			FileVersionInfo f = FileVersionInfo.GetVersionInfo(asm.Location);
+			log.Info("Loading agent with: [" + f.OriginalFilename + ", Version: " + f.ProductVersion + "]");
+			
+			log.Debug("Counter Scan Begin");
 			Type[] asmTypes = asm.GetTypes();
 			foreach (Type t in asmTypes) 
 			{
@@ -85,7 +69,7 @@ namespace ZabbixAgent.Util
 					}
 				}
 			}
-			log.Debug("Class Scan Ended");
+			log.Debug("Counter Scan Ended");
 			return a;
 		}
 	}
