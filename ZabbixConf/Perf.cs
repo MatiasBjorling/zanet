@@ -77,6 +77,7 @@ namespace ZabbixConf
 		private System.Windows.Forms.Label txtValueType; 
 		private ListViewColumnSorter lvwColumnSorter;
 		
+public ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixagent.config");
 
 
 		/// <summary>
@@ -400,6 +401,7 @@ namespace ZabbixConf
 							try
 							{
 								tt.Nodes.Add(((InstanceData)instanceDataEntry.Value).InstanceName);
+								log.Debug(((InstanceData)instanceDataEntry.Value).InstanceName);
 							}
 							catch
 							{
