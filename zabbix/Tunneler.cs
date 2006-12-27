@@ -26,6 +26,7 @@ using System.IO;
 using System.Threading;
 using System.Resources;
 using System.Reflection;
+using ZabbixCommon;
 using log4net;
 
 namespace ZabbixAgent

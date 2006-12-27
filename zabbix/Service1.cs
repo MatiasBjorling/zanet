@@ -103,14 +103,7 @@ namespace ZabbixAgent
 		 */
 		protected static void ThreadOutput() 
 		{
-			
-#if (DEBUG)
-			XmlConfigurator.Configure(Assembly.GetCallingAssembly().GetManifestResourceStream("ZabbixAgent.SubSystem.log_debug.xml"));
-#else
-			XmlConfigurator.Configure(Assembly.GetCallingAssembly().GetManifestResourceStream("ZabbixAgent.SubSystem.log.xml"));
-#endif		
-			ac = new ZabbixAgent.Active();
-			ac.get_active_checks();
+			AgentHandling.Start();
 		}
 
 	}

@@ -1,9 +1,24 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabbixagent", "zabbixagent.csproj", "{56C05D1A-B8EE-45D4-A716-EBB35D8DAB78}"
 	ProjectSection(ProjectDependencies) = postProject
+		{0C6A5F4A-683C-4748-9478-5A186786DA86} = {0C6A5F4A-683C-4748-9478-5A186786DA86}
+		{BBE5BFA7-7012-4A35-B129-ACB26C39F009} = {BBE5BFA7-7012-4A35-B129-ACB26C39F009}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZabbixConf", "..\ZabbixConf\ZabbixConf.csproj", "{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZabbixCounters", "..\ZabbixCounters\ZabbixCounters.csproj", "{BBE5BFA7-7012-4A35-B129-ACB26C39F009}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0C6A5F4A-683C-4748-9478-5A186786DA86} = {0C6A5F4A-683C-4748-9478-5A186786DA86}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZabbixCommon", "..\ZabbixCommon\ZabbixCommon.csproj", "{0C6A5F4A-683C-4748-9478-5A186786DA86}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profile", "..\AMS.Profile\Profile.csproj", "{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
@@ -12,6 +27,8 @@ Global
 		ConfigurationEditor = ConfigurationEditor
 		Debug = Debug
 		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
 		{56C05D1A-B8EE-45D4-A716-EBB35D8DAB78}.ConfigurationEditor.ActiveCfg = Release|.NET
@@ -25,6 +42,24 @@ Global
 		{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}.Debug.Build.0 = Debug|.NET
 		{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}.Release.ActiveCfg = Release|.NET
 		{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}.Release.Build.0 = Release|.NET
+		{BBE5BFA7-7012-4A35-B129-ACB26C39F009}.ConfigurationEditor.ActiveCfg = Release|.NET
+		{BBE5BFA7-7012-4A35-B129-ACB26C39F009}.ConfigurationEditor.Build.0 = Release|.NET
+		{BBE5BFA7-7012-4A35-B129-ACB26C39F009}.Debug.ActiveCfg = Debug|.NET
+		{BBE5BFA7-7012-4A35-B129-ACB26C39F009}.Debug.Build.0 = Debug|.NET
+		{BBE5BFA7-7012-4A35-B129-ACB26C39F009}.Release.ActiveCfg = Release|.NET
+		{BBE5BFA7-7012-4A35-B129-ACB26C39F009}.Release.Build.0 = Release|.NET
+		{0C6A5F4A-683C-4748-9478-5A186786DA86}.ConfigurationEditor.ActiveCfg = Release|.NET
+		{0C6A5F4A-683C-4748-9478-5A186786DA86}.ConfigurationEditor.Build.0 = Release|.NET
+		{0C6A5F4A-683C-4748-9478-5A186786DA86}.Debug.ActiveCfg = Debug|.NET
+		{0C6A5F4A-683C-4748-9478-5A186786DA86}.Debug.Build.0 = Debug|.NET
+		{0C6A5F4A-683C-4748-9478-5A186786DA86}.Release.ActiveCfg = Release|.NET
+		{0C6A5F4A-683C-4748-9478-5A186786DA86}.Release.Build.0 = Release|.NET
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.ConfigurationEditor.ActiveCfg = Release|.NET
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.ConfigurationEditor.Build.0 = Release|.NET
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Debug.ActiveCfg = Debug|.NET
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Debug.Build.0 = Debug|.NET
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Release.ActiveCfg = Release|.NET
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

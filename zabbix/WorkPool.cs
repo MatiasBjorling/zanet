@@ -24,6 +24,7 @@ using System;
 using System.Threading;
 using System.Reflection;
 using System.Collections;
+using ZabbixCommon;
 using ZabbixAgent.Counters;
 using log4net;
 
@@ -113,7 +114,7 @@ namespace ZabbixAgent
 						{
 							averageInteval = Int32.Parse(averagestring);
 						} 
-						catch (Exception ex) 
+						catch (Exception) 
 						{}
 
 						// Add parameters to workjob

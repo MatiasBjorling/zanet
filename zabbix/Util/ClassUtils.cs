@@ -24,8 +24,9 @@ using System;
 using System.Reflection;
 using System.IO;
 using System.Collections;
-using ZabbixAgent.Counters;
 using log4net;
+using ZabbixCommon;
+
 
 namespace ZabbixAgent.Util
 {
@@ -39,12 +40,30 @@ namespace ZabbixAgent.Util
 		/// <summary>
 		/// Looks for ILookCounter Classes and returns them in a arraylist.
 		/// </summary>
-		/// <param name="path"></param>
-		/// <param name="pattern"></param>
-		/// <param name="type"></param>
-		/// <returns></returns>
 		public static ArrayList ScanILoadableCounter()
 		{
+			
+			// Tmo code
+			Assembly ab = Assembly.Load("ZabbixCounters, Culture=neutral, PublicKeyToken=60e868a7b39e2319");
+
+			Type[] asmTypes2 = ab.GetTypes();
+			foreach (Type t in asmTypes2) 
+			{
+				log.Debug("ZabbixCounters: " + t.ToString());
+				if (t.IsClass) 
+				{
+					Type[] interfaces = t.GetInterfaces();
+					foreach (Type i in interfaces) 
+					{
+						if (i.Equals(typeof(ILoadableCounter)))
+						{
+							//a.Add(t);
+							log.Info("Counter: " + t.Name + " found");
+						}
+					}
+				}
+			}
+
 			ArrayList a = new ArrayList(10);
 
 			log.Debug("Class Scan Begin");

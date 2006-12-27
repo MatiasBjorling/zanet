@@ -20,14 +20,18 @@
  * Used Trademarks are owned by their respective owners, There in ZABBIX SIA and Zabbix.
  */
 
+
 using System;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Text;
+using ZabbixCommon;
 using System.Windows.Forms;
 using log4net;
+
+
 
 namespace ZabbixAgent
 {
@@ -63,7 +67,7 @@ namespace ZabbixAgent
 
 		public void get_active_checks() 
 		{
-			log.Info("Starting agent [" + (new Counters.VersionCounter()).getValue() + "]");
+			//log.Info("Starting agent [" + (new Counters.VersionCounter()).getValue() + "]");
 			log.Info("Application start path: " + Application.StartupPath);
 #if (DEBUG)
 log.Info("Started in DEBUGGING mode");

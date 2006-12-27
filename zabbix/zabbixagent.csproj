@@ -29,7 +29,7 @@
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
                     DefineConstants = "DEBUG;TRACE"
-                    DocumentationFile = "zabbixagent.doc.xml"
+                    DocumentationFile = ""
                     DebugSymbols = "true"
                     FileAlignment = "4096"
                     IncrementalBuild = "false"
@@ -130,9 +130,9 @@
                     HintPath = "..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
                 />
                 <Reference
-                    Name = "AMS.Profile"
-                    AssemblyName = "AMS.Profile"
-                    HintPath = "..\ZabbixConf\bin\Debug\AMS.Profile.dll"
+                    Name = "ZabbixCommon"
+                    Project = "{0C6A5F4A-683C-4748-9478-5A186786DA86}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
             </References>
         </Build>
@@ -144,17 +144,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "AgentHandling.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "AssemblyInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Class1.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Configuration.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -197,7 +197,7 @@
                 <File
                     RelPath = "UpdateService.cs"
                     SubType = "code"
-                    BuildAction = "Compile"
+                    BuildAction = "None"
                 />
                 <File
                     RelPath = "WorkJob.cs"
@@ -220,57 +220,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Counters\Disk.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Counters\FileTime.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Counters\Httping.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Counters\ILoadableCounter.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Counters\Perfcounter.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Counters\PerfCounterMapping.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Counters\RemoteUpdate.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Counters\ServiceState.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Counters\SQLSelect.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Counters\UnknownCounter.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Counters\VersionCounter.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

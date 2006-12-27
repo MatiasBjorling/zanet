@@ -21,7 +21,8 @@
  */
 
 using System;
-using ZabbixAgent.Counters;
+using ZabbixCommon;
+
 
 namespace ZabbixAgent
 {

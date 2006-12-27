@@ -22,7 +22,7 @@
 
 using System;
 using System.Threading;
-using ZabbixAgent.Counters;
+using ZabbixCommon;
 using log4net;
 
 namespace ZabbixAgent
@@ -123,7 +123,7 @@ namespace ZabbixAgent
 						msg += ".000000";
 						
 					} 
-					catch (Exception ex) {};
+					catch (Exception) {};
 				
 					//log.Debug("Value: " +msg);
 					c.PushCounter(Thread.CurrentThread.Name, msg);
