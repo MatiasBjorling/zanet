@@ -119,6 +119,11 @@
                     AssemblyName = "log4net"
                     HintPath = "..\zabbix\bin\Debug\log4net.dll"
                 />
+                <Reference
+                    Name = "System.ServiceProcess"
+                    AssemblyName = "System.ServiceProcess"
+                    HintPath = "..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.ServiceProcess.dll"
+                />
             </References>
         </Build>
         <Files>
