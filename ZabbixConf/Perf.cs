@@ -36,7 +36,8 @@ using System.Threading;
 using System.Xml;
 using AMS.Profile;
 using log4net;
-
+using log4net.Config;
+using System.Resources;
 
 
 namespace ZabbixConf
@@ -77,7 +78,9 @@ namespace ZabbixConf
 		private System.Windows.Forms.Label txtValueType; 
 		private ListViewColumnSorter lvwColumnSorter;
 		
-public ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixagent.config");
+		public ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixagent.config");
+
+		XmlConfigurator.Configure(Assembly.GetCallingAssembly().GetManifestResourceStream("ZabbixConfig.SubSystem.log.xml"));
 
 
 		/// <summary>
