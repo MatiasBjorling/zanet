@@ -611,7 +611,7 @@ namespace ZabbixConf
 				string[] arInfo;
 				char[] splitter  = {','};
 				arInfo = tmpips.Split(splitter);
-				for(int x = 0; x < arInfo.Length; x++)
+				for(int x = 0; x < arInfo.Length - 1; x++)
 				{
 					lsbListenIP.SelectedItem = (arInfo[x]);
 				}

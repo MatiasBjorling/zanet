@@ -77,7 +77,6 @@ namespace ZabbixConf
 		private System.Windows.Forms.Label lblValue;
 		private System.Windows.Forms.Label txtValueType; 
 		private ListViewColumnSorter lvwColumnSorter;
-		private System.Windows.Forms.Button button1;
 		
 		private ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixconf.perf");
 
@@ -149,7 +148,6 @@ namespace ZabbixConf
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.btnCounterDelete = new System.Windows.Forms.Button();
-			this.button1 = new System.Windows.Forms.Button();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
@@ -326,7 +324,6 @@ namespace ZabbixConf
 			// 
 			// groupBox3
 			// 
-			this.groupBox3.Controls.Add(this.button1);
 			this.groupBox3.Controls.Add(this.btnCounterDelete);
 			this.groupBox3.Controls.Add(this.listView1);
 			this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -346,14 +343,6 @@ namespace ZabbixConf
 			this.btnCounterDelete.TabIndex = 4;
 			this.btnCounterDelete.Text = "Delete";
 			this.btnCounterDelete.Click += new System.EventHandler(this.btnCounterDelete_Click);
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(112, 128);
-			this.button1.Name = "button1";
-			this.button1.TabIndex = 8;
-			this.button1.Text = "button1";
-			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// Perf
 			// 
@@ -404,7 +393,7 @@ namespace ZabbixConf
 			{
 				// Root
 				TreeNode t = new TreeNode(categories[i].CategoryName);
-
+				//log.Debug("1: " + t.Text);
 				InstanceDataCollectionCollection instanceDataCollectionCollection = categories[i].ReadCategory();
 
 				foreach (DictionaryEntry instanceDataCollectionEntry in instanceDataCollectionCollection)
@@ -419,7 +408,7 @@ namespace ZabbixConf
 							try
 							{
 								tt.Nodes.Add(((InstanceData)instanceDataEntry.Value).InstanceName);
-								log.Debug(((InstanceData)instanceDataEntry.Value).InstanceName);
+								//log.Debug(i + ": " + t.Text + " \\ " + tt.Text + " \\ " + ((InstanceData)instanceDataEntry.Value).InstanceName);
 							}
 							catch
 							{
@@ -429,6 +418,7 @@ namespace ZabbixConf
 					t.Nodes.Add(tt);
 				}
 				tn[i] = t;
+				
 				double progressPercentage = ((double)i + 1) / categories.Length * 100d;
 				backgroundWorker.ReportProgress((int)progressPercentage);
 		
@@ -704,10 +694,6 @@ namespace ZabbixConf
 			this.listView1.Sort();
 		}
 
-		private void button1_Click(object sender, System.EventArgs e)
-		{
-
-		}
 
 	}
 }
