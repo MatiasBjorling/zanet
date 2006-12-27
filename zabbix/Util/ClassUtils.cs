@@ -70,6 +70,28 @@ namespace ZabbixAgent.Util
 				}
 			}
 			log.Debug("Counter Scan Ended");
+
+			// Finding local assemblies.
+			asm = Assembly.GetAssembly(typeof(ZabbixAgent.Active));
+			log.Debug("Fetching default counters");
+			asmTypes = asm.GetTypes();
+			foreach (Type t in asmTypes) 
+			{
+				if (t.IsClass) 
+				{
+					Type[] interfaces = t.GetInterfaces();
+					foreach (Type i in interfaces) 
+					{
+						if (i.Equals(typeof(ILoadableCounter)))
+						{
+							a.Add(t);
+							log.Info("Counter: " + t.Name + " found");
+						}
+					}
+				}
+			}
+			log.Debug("Counter Scan Ended");
+
 			return a;
 		}
 	}
