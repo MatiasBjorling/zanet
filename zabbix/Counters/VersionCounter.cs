@@ -57,6 +57,7 @@ namespace ZabbixAgent.Counters
 
 		public string getValue() 
 		{
+			//return getBuildValue().ToString();
 			return _AgentVersion + " " + getMajorValue() + "." + getLittleValue() + " Build: " + getBuildValue();
 		}
 

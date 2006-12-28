@@ -1,3 +1,24 @@
+/*
+ * This file is part of ZabbixAgent.NET
+ * 
+ * ZabbixAgent.NET is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+
+ * ZabbixAgent.NET is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ZabbixAgent.NET; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ * 
+ * Copyright TMCare a/s
+ *
+ * Used Trademarks are owned by their respective owners, There in ZABBIX SIA and Zabbix.
+ */
 using System;
 using System.Threading;
 using System.Text;
@@ -20,15 +41,18 @@ namespace ZabbixStart
 		private static Assembly agentAssembly = null;
 
 		private static Thread agentThread = null;
+		private static Thread updateThread = null;
 
 		private static IAgentHandling ah = null;
+		private static string version = null;
+		private static UpdateAgent ua = null;
+
+		private static Configuration conf = Configuration.getInstance;
 
 		private Handling()
 		{
 
 		}
-
-
 
 		public static void Start() 
 		{
@@ -41,11 +65,26 @@ namespace ZabbixStart
 			ThreadStart tjob = new ThreadStart(ThreadOutput);
 			agentThread = new Thread(tjob);
 			agentThread.Start();
+
+			// For updating the agent.
+			if (Convert.ToBoolean(conf.GetConfigurationByString("EnableUpdateService", "Updater"))) 
+			{
+				log.Info("Starting monitoring of updates");
+				updateThread = new Thread(new ThreadStart(MonitoringUpdate));
+				updateThread.Start();
+			}
 		}
 
-		/*
-		 * Agent thread
-		 */
+		public static void Stop() 
+		{
+			if (agentThread != null)
+				agentThread.Abort();
+			if (updateThread != null)
+				updateThread.Abort();
+		}
+
+
+		// Agent thread
 		protected static void ThreadOutput() 
 		{
 			
@@ -62,41 +101,37 @@ namespace ZabbixStart
 					if (t.IsClass && t.Name.Equals("AgentHandling"))
 					{
 						ah = (IAgentHandling) Activator.CreateInstance(t);
+					} 
+					else if (t.IsClass && t.Name.Equals("VersionCounter")) 
+					{
+						
+						ILoadableCounter agentversion = (ILoadableCounter) Activator.CreateInstance(t);
+						version = agentversion.getValue();
 					}
 				}
 
 				if (ah == null)
-					log.Error("SECURITY BREACH!!!!!! Loaded a signed DLL which was not distributed from ZabbixAgent.NET");
+					log.Error("SECURITY BREACH! Loaded a signed DLL which was not distributed from ZabbixAgent.NET");
 				else
 					ah.Start();
+
 			} 
 			catch (Exception ex) 
 			{
 				Console.WriteLine(ex.Message);
 				log.Error("Cannot start agent: " + ex.Message);
 			}
+		}
 
-			
-
-
-
-	/*
-			log.Info("Starting agent [" + (new Counters.VersionCounter()).getValue() + "]");
-			
-			while (true) 
+		// Monitoring update service.
+		private static void MonitoringUpdate()
+		{
+			// Hackisk...
+			while (!version.Equals(""))
 			{
-				try 
-				{
-					ZabbixAgent.Active ac = new ZabbixAgent.Active();
-					ZabbixAgent.Passive ap = new ZabbixAgent.Passive();
-					ac.get_active_checks();
-					Thread.Sleep(10000);
-				} 
-				catch (Exception ex)
-				{
-					log.Error(ex.Message + ex.StackTrace);
-				}
-			}*/
+				ua = new UpdateAgent(ah, version);
+				ua.PullLoopUpdateServer();
+			}
 		}
 	}
 }

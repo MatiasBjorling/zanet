@@ -131,7 +131,7 @@
                 />
                 <Reference
                     Name = "System.XML"
-                    AssemblyName = "System.XML"
+                    AssemblyName = "System.Xml"
                     HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
             </References>
@@ -154,11 +154,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Class1.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Connection.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -169,35 +164,10 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "ProjectInstaller.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ProjectInstaller.resx"
-                    DependentUpon = "ProjectInstaller.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Service1.cs"
-                    SubType = "Component"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Service1.resx"
-                    DependentUpon = "Service1.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "Tunneler.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                     CustomToolNamespace = "TMCService.Agent.SubSystem"
-                />
-                <File
-                    RelPath = "UpdateService.cs"
-                    SubType = "code"
-                    BuildAction = "None"
                 />
                 <File
                     RelPath = "WorkJob.cs"

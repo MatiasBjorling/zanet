@@ -28,10 +28,7 @@ using System.Diagnostics;
 using System.ServiceProcess;
 using System.Threading;
 using System.IO;
-using log4net;
-using log4net.Config;
-using System.Resources;
-using System.Reflection;
+
 
 namespace ZabbixStart
 {
@@ -79,31 +76,12 @@ namespace ZabbixStart
 
 		protected override void OnStart(string[] args)
 		{
-			
-			// Start a thread for getting output from plink
-			ThreadStart tjob = new ThreadStart(ThreadOutput);
-			plinkoutputthread = new Thread(tjob);
-			plinkoutputthread.Start();
-
+			Handling.Start();
 		}
  
 		protected override void OnStop()
-		{
-			
-			if (plinkoutputthread != null) 
-			{
-				// Stops secure connections too
-				ac.Stop();
-				plinkoutputthread.Abort();
-			}
-		}
-
-		/*
-		 * Thread til at vise output for plink
-		 */
-		protected static void ThreadOutput() 
-		{
-			AgentHandling.Start();
+		{	
+			Handling.Stop();
 		}
 
 	}

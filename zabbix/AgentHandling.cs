@@ -1,10 +1,4 @@
 using System;
-using System.Threading;
-using System.Text;
-using log4net;
-using log4net.Config;
-using System.Resources;
-using System.Reflection;
 using ZabbixCommon;
 
 namespace ZabbixAgent
@@ -14,7 +8,12 @@ namespace ZabbixAgent
 	/// </summary>
 	public class AgentHandling : IAgentHandling
 	{
-		private static readonly ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixagent");
+		private static readonly log4net.ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixagent");
+
+		ZabbixAgent.Active ac = null;
+		ZabbixAgent.Passive ap = null;
+
+		bool running = true;
 
 		public AgentHandling()
 		{
@@ -23,16 +22,17 @@ namespace ZabbixAgent
 
 		public void Start() 
 		{
+			running = true;
 			log.Info("Starting agent [" + (new Counters.VersionCounter()).getValue() + "]");
 			
-			while (true) 
+			while (running) 
 			{
 				try 
 				{
-					ZabbixAgent.Active ac = new ZabbixAgent.Active();
-					ZabbixAgent.Passive ap = new ZabbixAgent.Passive();
+					ac = new ZabbixAgent.Active();
+					ap = new ZabbixAgent.Passive();
 					ac.get_active_checks();
-					Thread.Sleep(10000);
+					System.Threading.Thread.Sleep(10000);
 				} 
 				catch (Exception ex)
 				{
@@ -43,7 +43,9 @@ namespace ZabbixAgent
 
 		public void Stop() 
 		{
-
+			running = false;
+			if (ac != null)
+				ac.Stop();
 		}
 	}
 }

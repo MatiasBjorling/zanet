@@ -23,7 +23,6 @@
 using System;
 using System.IO;
 using System.Collections;
-using log4net;
 using Microsoft.Win32;
 using System.Xml;
 using AMS.Profile;
@@ -37,7 +36,7 @@ namespace ZabbixCommon
 		//private static readonly string RegistryRoot = ".DEFAULT\\Software\\Zabbix\\MonitoringAgent\\v1";
 		private static readonly string ConfigFile = Application.StartupPath +"\\ZabbixAgent.xml";
 
-		private readonly ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixagent.configuration");
+		private readonly log4net.ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixagent.configuration");
 
 		static Configuration instance = null;
 

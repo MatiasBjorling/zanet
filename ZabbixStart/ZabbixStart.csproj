@@ -56,7 +56,7 @@
                     NoStdLib = "false"
                     NoWarn = ""
                     Optimize = "true"
-                    OutputPath = "bin\Release\"
+                    OutputPath = "..\zabbiz\bin\Release\"
                     RegisterForComInterop = "false"
                     RemoveIntegerChecks = "false"
                     TreatWarningsAsErrors = "false"
@@ -76,7 +76,7 @@
                 />
                 <Reference
                     Name = "System.XML"
-                    AssemblyName = "System.XML"
+                    AssemblyName = "System.Xml"
                     HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
                 <Reference
@@ -99,6 +99,11 @@
                     Name = "ZabbixCommon"
                     Project = "{0C6A5F4A-683C-4748-9478-5A186786DA86}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "System.Web.Services"
+                    AssemblyName = "System.Web.Services"
+                    HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Web.Services.dll"
                 />
             </References>
         </Build>
@@ -142,6 +147,16 @@
                     RelPath = "Service1.resx"
                     DependentUpon = "Service1.cs"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "UpdateAgent.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "UpdateService.cs"
+                    SubType = "code"
+                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Logging\log.xml"
