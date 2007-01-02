@@ -75,6 +75,10 @@ using System.Runtime.CompilerServices;
 //   (*) Delay Signing is an advanced option - see the Microsoft .NET Framework
 //       documentation for more information on this.
 //
-[assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile("../../ZabbixAgent.snk")]
+[assembly: AssemblyDelaySign(true)]
+#if (DEBUG)
+[assembly: AssemblyKeyFile("")]
+#else
+[assembly: AssemblyKeyFile("..\\..\\..\\..\\keys\\ZabbixAgentMaster.snk")]
+#endif
 [assembly: AssemblyKeyName("")]

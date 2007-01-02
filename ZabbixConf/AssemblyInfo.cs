@@ -55,7 +55,11 @@ using System.Runtime.CompilerServices;
 //       documentation for more information on this.
 //
 [assembly: AssemblyDelaySign(false)]
+#if (DEBUG)
 [assembly: AssemblyKeyFile("")]
+#else
+[assembly: AssemblyKeyFile("..\\..\\..\\..\\keys\\ZabbixAgentMaster.snk")]
+#endif
 [assembly: AssemblyKeyName("")]
 
 #region Helper class 

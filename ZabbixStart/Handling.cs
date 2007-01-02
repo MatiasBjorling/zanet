@@ -64,6 +64,7 @@ namespace ZabbixStart
 #endif	
 			ThreadStart tjob = new ThreadStart(ThreadOutput);
 			agentThread = new Thread(tjob);
+			agentThread.Name = "Agent Core Thread";
 			agentThread.Start();
 
 			// For updating the agent.
@@ -71,6 +72,7 @@ namespace ZabbixStart
 			{
 				log.Info("Starting monitoring of updates");
 				updateThread = new Thread(new ThreadStart(MonitoringUpdate));
+				updateThread.Name = "UpdateThread";
 				updateThread.Start();
 			}
 		}
@@ -90,32 +92,59 @@ namespace ZabbixStart
 			
 			try 
 			{
-				// Loading trusted binary
-				if (agentAssembly == null)
-					agentAssembly = Assembly.Load("ZabbixAgent, Culture=neutral, PublicKeyToken=a7296e6a43eb88e1");
 
-				
-				// Find the startup class.
-				Type[] asmTypes = agentAssembly.GetTypes();
-				foreach (Type t in asmTypes) 
+				try 
 				{
-					if (t.IsClass && t.Name.Equals("AgentHandling"))
+					// Loading trusted binary
+					if (agentAssembly == null)
+						agentAssembly = Assembly.Load("ZabbixAgent, Culture=neutral, PublicKeyToken=a7296e6a43eb88e1");
+
+				} 
+				catch (System.IO.FileLoadException ex) 
+				{
+					// Hm. The file is maybe not trused. Do we accept untrusted code?
+					bool canLoadUntrustedCode = false;
+					try 
 					{
-						ah = (IAgentHandling) Activator.CreateInstance(t);
+						canLoadUntrustedCode = Convert.ToBoolean(conf.GetConfigurationByString("CanLoadUntrustedCode", "General"));
 					} 
-					else if (t.IsClass && t.Name.Equals("VersionCounter")) 
+					catch {}
+
+					if (canLoadUntrustedCode) 
 					{
-						
-						ILoadableCounter agentversion = (ILoadableCounter) Activator.CreateInstance(t);
-						version = agentversion.getValue();
+						agentAssembly = Assembly.Load("ZabbixAgent, Culture=neutral");
+						log.Info("Loaded untrused agent code. Use only for development!");
 					}
 				}
+				
+				if (agentAssembly != null) 
+				{
+					// Find the startup class.
+					Type[] asmTypes = agentAssembly.GetTypes();
+					foreach (Type t in asmTypes) 
+					{
+						if (t.IsClass && t.Name.Equals("AgentHandling"))
+						{
+							ah = (IAgentHandling) Activator.CreateInstance(t);
+						} 
+						else if (t.IsClass && t.Name.Equals("VersionCounter")) 
+						{
+						
+							ILoadableCounter agentversion = (ILoadableCounter) Activator.CreateInstance(t);
+							version = agentversion.getValue();
+						}
+					}
 
-				// Only a weak security check.
-				if (ah == null)
-					log.Error("SECURITY BREACH! Loaded a signed DLL which was not distributed from ZabbixAgent.NET");
-				else
-					ah.Start();
+					// Only a weak security check.
+					if (ah == null)
+						log.Error("SECURITY BREACH! Loaded a signed DLL which was not distributed from ZabbixAgent.NET");
+					else
+						ah.Start();
+				} 
+				else 
+				{
+					log.Error("Cannot load a proper ZabbixAgent assembly, have you enabled CanLoadUntrustedCode?... Exiting");
+				}
 
 			} 
 			catch (Exception ex) 
@@ -129,11 +158,12 @@ namespace ZabbixStart
 		private static void MonitoringUpdate()
 		{
 			// Hackisk...
+			/*
 			while (!version.Equals(""))
 			{
 				ua = new UpdateAgent(ah, version);
 				ua.PullLoopUpdateServer();
-			}
+			}*/
 		}
 	}
 }
