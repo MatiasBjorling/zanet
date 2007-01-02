@@ -60,6 +60,7 @@ namespace ZabbixStart
 #if (DEBUG)
 			XmlConfigurator.Configure(Assembly.GetCallingAssembly().GetManifestResourceStream("ZabbixStart.Logging.log_debug.xml"));
 #else
+			//XmlConfigurator.Configure(Assembly.GetCallingAssembly().GetManifestResourceStream("ZabbixStart.Logging.log_debug.xml"));
 			XmlConfigurator.Configure(Assembly.GetCallingAssembly().GetManifestResourceStream("ZabbixStart.Logging.log.xml"));
 #endif	
 			ThreadStart tjob = new ThreadStart(ThreadOutput);

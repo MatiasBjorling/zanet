@@ -47,10 +47,13 @@ namespace ZabbixCore.Util
 			
 			
 			//Assembly asm = Assembly.GetAssembly(typeof(ZabbixAgent.Active));
+#if (DEBUG)
+			Assembly asm = Assembly.Load("ZabbixCounters, Culture=neutral");
+#else
 			Assembly asm = Assembly.Load("ZabbixCounters, Culture=neutral, PublicKeyToken=a7296e6a43eb88e1");
-			
+#endif
 			FileVersionInfo f = FileVersionInfo.GetVersionInfo(asm.Location);
-			log.Info("Loading agent with: [" + f.OriginalFilename + ", Version: " + f.ProductVersion + "]");
+			log.Info("Loading agent with: [" + f.OriginalFilename + ", Version: " + f.ProductVersion + " With debugging: " + f.IsDebug +"]");
 			
 			log.Debug("Counter Scan Begin");
 			Type[] asmTypes = asm.GetTypes();
