@@ -90,8 +90,9 @@ namespace ZabbixStart
 			
 			try 
 			{
+				// Loading trusted binary
 				if (agentAssembly == null)
-					agentAssembly = Assembly.Load("ZabbixAgent, Culture=neutral, PublicKeyToken=166854b3241b8293");
+					agentAssembly = Assembly.Load("ZabbixAgent, Culture=neutral, PublicKeyToken=a7296e6a43eb88e1");
 
 				
 				// Find the startup class.
@@ -110,6 +111,7 @@ namespace ZabbixStart
 					}
 				}
 
+				// Only a weak security check.
 				if (ah == null)
 					log.Error("SECURITY BREACH! Loaded a signed DLL which was not distributed from ZabbixAgent.NET");
 				else
