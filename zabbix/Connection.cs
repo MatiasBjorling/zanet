@@ -30,7 +30,7 @@ using System.Threading;
 using ZabbixCommon;
 using log4net;
 
-namespace ZabbixAgent
+namespace ZabbixCore
 {
 	/// <summary>
 	/// Connection singleton. 

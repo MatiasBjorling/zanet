@@ -53,7 +53,7 @@ using System.Runtime.CompilerServices;
 //   (*) Delay Signing is an advanced option - see the Microsoft .NET Framework
 //       documentation for more information on this.
 //
-[assembly: AssemblyDelaySign(true)]
+[assembly: AssemblyDelaySign(false)]
 #if (DEBUG)
 [assembly: AssemblyKeyFile("")]
 #else

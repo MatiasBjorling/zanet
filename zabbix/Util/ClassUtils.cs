@@ -29,7 +29,7 @@ using ZabbixCommon;
 using System.Diagnostics;
 
 
-namespace ZabbixAgent.Util
+namespace ZabbixCore.Util
 {
 	/// <summary>
 	/// Summary description for ClassUtils.
@@ -37,7 +37,6 @@ namespace ZabbixAgent.Util
 	public class ClassUtils
 	{
 		private static readonly ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixagent.util.classutils");
-
 		/// <summary>
 		/// Looks for ILookCounter Classes and returns them in a arraylist.
 		/// </summary>
@@ -45,9 +44,10 @@ namespace ZabbixAgent.Util
 		{
 			
 			ArrayList a = new ArrayList(10);
-
+			
+			
 			//Assembly asm = Assembly.GetAssembly(typeof(ZabbixAgent.Active));
-			Assembly asm = Assembly.Load("ZabbixCounters, Culture=neutral, PublicKeyToken=60e868a7b39e2319");
+			Assembly asm = Assembly.Load("ZabbixCounters, Culture=neutral, PublicKeyToken=a7296e6a43eb88e1");
 			
 			FileVersionInfo f = FileVersionInfo.GetVersionInfo(asm.Location);
 			log.Info("Loading agent with: [" + f.OriginalFilename + ", Version: " + f.ProductVersion + "]");
@@ -72,7 +72,7 @@ namespace ZabbixAgent.Util
 			log.Debug("Counter Scan Ended");
 
 			// Finding local assemblies.
-			asm = Assembly.GetAssembly(typeof(ZabbixAgent.Active));
+			asm = Assembly.GetAssembly(typeof(ZabbixCore.Active));
 			log.Debug("Fetching default counters");
 			asmTypes = asm.GetTypes();
 			foreach (Type t in asmTypes) 

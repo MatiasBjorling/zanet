@@ -22,7 +22,7 @@
 
 using System;
 
-namespace ZabbixAgent
+namespace ZabbixCore
 {
 	/// <summary>
 	/// Summary description for WorkJobAge.

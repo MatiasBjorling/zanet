@@ -29,7 +29,7 @@ using System.Reflection;
 using ZabbixCommon;
 using log4net;
 
-namespace ZabbixAgent
+namespace ZabbixCore
 {
 	/// <summary>
 	/// Summary description for Tunneler.

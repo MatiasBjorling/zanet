@@ -25,7 +25,7 @@ using System.Threading;
 using ZabbixCommon;
 using log4net;
 
-namespace ZabbixAgent
+namespace ZabbixCore
 {
 	/// <summary>
 	/// WorkThread is the thread which execute a single counter.

@@ -24,7 +24,7 @@ using System;
 using ZabbixCommon;
 
 
-namespace ZabbixAgent
+namespace ZabbixCore
 {
 	/// <summary>
 	/// WorkJob is used for transfering parametres to threads.

@@ -33,7 +33,7 @@ using log4net;
 
 
 
-namespace ZabbixAgent
+namespace ZabbixCore
 {
 	/// <summary>
 	/// Active communication between server and agent implementation.

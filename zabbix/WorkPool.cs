@@ -25,10 +25,10 @@ using System.Threading;
 using System.Reflection;
 using System.Collections;
 using ZabbixCommon;
-using ZabbixAgent.Counters;
+using ZabbixCore.Counters;
 using log4net;
 
-namespace ZabbixAgent
+namespace ZabbixCore
 {
 	/// <summary>
 	/// Summary description for WorkPool.
@@ -53,7 +53,7 @@ namespace ZabbixAgent
 
 		private WorkPool()
 		{
-			ArrayList tmp = ZabbixAgent.Util.ClassUtils.ScanILoadableCounter();
+			ArrayList tmp = ZabbixCore.Util.ClassUtils.ScanILoadableCounter();
 			foreach (Type t in tmp) 
 			{
 				ILoadableCounter c = (ILoadableCounter) Activator.CreateInstance(t);

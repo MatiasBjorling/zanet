@@ -23,7 +23,7 @@
 using System;
 using ZabbixCommon;
 
-namespace ZabbixAgent.Counters
+namespace ZabbixCore.Counters
 {
 	/// <summary>
 	/// Summary description for UnknownCounter.

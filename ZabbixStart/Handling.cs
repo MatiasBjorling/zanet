@@ -97,11 +97,12 @@ namespace ZabbixStart
 				{
 					// Loading trusted binary
 					if (agentAssembly == null)
-						agentAssembly = Assembly.Load("ZabbixAgent, Culture=neutral, PublicKeyToken=a7296e6a43eb88e1");
+						agentAssembly = Assembly.Load("ZabbixCore, Culture=neutral, PublicKeyToken=a7296e6a43eb88e1");
 
 				} 
-				catch (System.IO.FileLoadException ex) 
+				catch (System.IO.FileLoadException) 
 				{
+					Console.WriteLine("Getting untrusted code");
 					// Hm. The file is maybe not trused. Do we accept untrusted code?
 					bool canLoadUntrustedCode = false;
 					try 
@@ -112,7 +113,7 @@ namespace ZabbixStart
 
 					if (canLoadUntrustedCode) 
 					{
-						agentAssembly = Assembly.Load("ZabbixAgent, Culture=neutral");
+						agentAssembly = Assembly.Load("ZabbixCore, Culture=neutral");
 						log.Info("Loaded untrused agent code. Use only for development!");
 					}
 				}
@@ -123,6 +124,7 @@ namespace ZabbixStart
 					Type[] asmTypes = agentAssembly.GetTypes();
 					foreach (Type t in asmTypes) 
 					{
+						Console.WriteLine(t.Name);
 						if (t.IsClass && t.Name.Equals("AgentHandling"))
 						{
 							ah = (IAgentHandling) Activator.CreateInstance(t);
@@ -137,7 +139,7 @@ namespace ZabbixStart
 
 					// Only a weak security check.
 					if (ah == null)
-						log.Error("SECURITY BREACH! Loaded a signed DLL which was not distributed from ZabbixAgent.NET");
+						log.Error("SECURITY BREACH! Loaded a signed DLL which was not distributed from ZabbixAgent.NET... Exiting");
 					else
 						ah.Start();
 				} 
@@ -150,7 +152,7 @@ namespace ZabbixStart
 			catch (Exception ex) 
 			{
 				Console.WriteLine(ex.Message);
-				log.Error("Cannot start agent: " + ex.Message);
+				log.Error("Cannot start agent: " + ex.Message + ex.StackTrace);
 			}
 		}
 

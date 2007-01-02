@@ -1,7 +1,7 @@
 using System;
 using ZabbixCommon;
 
-namespace ZabbixAgent
+namespace ZabbixCore
 {
 	/// <summary>
 	/// Summary description for Startup.
@@ -10,8 +10,8 @@ namespace ZabbixAgent
 	{
 		private static readonly log4net.ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixagent");
 
-		ZabbixAgent.Active ac = null;
-		ZabbixAgent.Passive ap = null;
+		ZabbixCore.Active ac = null;
+		ZabbixCore.Passive ap = null;
 
 		bool running = true;
 
@@ -29,8 +29,8 @@ namespace ZabbixAgent
 			{
 				try 
 				{
-					ac = new ZabbixAgent.Active();
-					ap = new ZabbixAgent.Passive();
+					ac = new ZabbixCore.Active();
+					ap = new ZabbixCore.Passive();
 					ac.get_active_checks();
 					System.Threading.Thread.Sleep(10000);
 				} 

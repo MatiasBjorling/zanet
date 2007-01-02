@@ -26,7 +26,7 @@ using System.Net.Sockets;
 using log4net;
 using ZabbixCommon;
 
-namespace ZabbixAgent
+namespace ZabbixCore
 {
 	/// <summary>
 	/// Summary description for Passive.
