@@ -85,6 +85,8 @@ namespace ZabbixConf
 		private System.Windows.Forms.TextBox txtWorkerSockets;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.ListBox lsbListenIP;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.CheckBox chkCanLoadUntrustedCode;
 		private Hashtable ht = new Hashtable(20);
 
 		// ... and here mono idea died... rip...
@@ -130,6 +132,7 @@ namespace ZabbixConf
 		private void InitializeComponent()
 		{
 			this.grpBoxGeneral = new System.Windows.Forms.GroupBox();
+			this.lsbListenIP = new System.Windows.Forms.ListBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.txtWorkerSockets = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
@@ -158,13 +161,16 @@ namespace ZabbixConf
 			this.lblServerPort = new System.Windows.Forms.Label();
 			this.lblServerHost = new System.Windows.Forms.Label();
 			this.lblHostname = new System.Windows.Forms.Label();
-			this.lsbListenIP = new System.Windows.Forms.ListBox();
+			this.label8 = new System.Windows.Forms.Label();
+			this.chkCanLoadUntrustedCode = new System.Windows.Forms.CheckBox();
 			this.grpBoxGeneral.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudTimeOut)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// grpBoxGeneral
 			// 
+			this.grpBoxGeneral.Controls.Add(this.chkCanLoadUntrustedCode);
+			this.grpBoxGeneral.Controls.Add(this.label8);
 			this.grpBoxGeneral.Controls.Add(this.lsbListenIP);
 			this.grpBoxGeneral.Controls.Add(this.label7);
 			this.grpBoxGeneral.Controls.Add(this.txtWorkerSockets);
@@ -201,6 +207,14 @@ namespace ZabbixConf
 			this.grpBoxGeneral.TabIndex = 5;
 			this.grpBoxGeneral.TabStop = false;
 			this.grpBoxGeneral.Text = "General";
+			// 
+			// lsbListenIP
+			// 
+			this.lsbListenIP.Location = new System.Drawing.Point(376, 120);
+			this.lsbListenIP.Name = "lsbListenIP";
+			this.lsbListenIP.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+			this.lsbListenIP.Size = new System.Drawing.Size(176, 82);
+			this.lsbListenIP.TabIndex = 48;
 			// 
 			// label7
 			// 
@@ -450,13 +464,21 @@ namespace ZabbixConf
 			this.lblHostname.TabIndex = 0;
 			this.lblHostname.Text = "Hostname:";
 			// 
-			// lsbListenIP
+			// label8
 			// 
-			this.lsbListenIP.Location = new System.Drawing.Point(376, 120);
-			this.lsbListenIP.Name = "lsbListenIP";
-			this.lsbListenIP.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-			this.lsbListenIP.Size = new System.Drawing.Size(176, 82);
-			this.lsbListenIP.TabIndex = 48;
+			this.label8.Location = new System.Drawing.Point(8, 304);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(136, 32);
+			this.label8.TabIndex = 49;
+			this.label8.Text = "Can load untrusted code: Use only for development";
+			// 
+			// chkCanLoadUntrustedCode
+			// 
+			this.chkCanLoadUntrustedCode.Location = new System.Drawing.Point(168, 304);
+			this.chkCanLoadUntrustedCode.Name = "chkCanLoadUntrustedCode";
+			this.chkCanLoadUntrustedCode.Size = new System.Drawing.Size(40, 24);
+			this.chkCanLoadUntrustedCode.TabIndex = 50;
+			this.chkCanLoadUntrustedCode.Text = " ";
 			// 
 			// General
 			// 
@@ -494,6 +516,7 @@ namespace ZabbixConf
 			profile.SetValue("General", "QueueLength", txtQueueLength.Text);
 			profile.SetValue("General", "WorkerSockets", txtWorkerSockets.Text);
 			profile.SetValue("General", "ListenIP", selectedips().ToString());
+			profile.SetValue("General", "CanLoadUntrustedCode", chkCanLoadUntrustedCode.Checked.ToString());
 		}
 
 		/// <summary>
@@ -616,7 +639,11 @@ namespace ZabbixConf
 					lsbListenIP.SelectedItem = (arInfo[x]);
 				}
 			} 
-
+			catch {}
+			try 
+			{
+				chkCanLoadUntrustedCode.Checked = Convert.ToBoolean(profile.GetValue("General", "CanLoadUntrustedCode"));
+			}
 			catch {}
 			
 		}
