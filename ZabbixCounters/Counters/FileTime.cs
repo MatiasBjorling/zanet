@@ -52,7 +52,6 @@ namespace ZabbixCounters.Counters
 				DateTime unixepoch = new DateTime(1970, 1, 1, 0, 0, 0, 0);
 
 				System.TimeSpan ts = new TimeSpan(date.Ticks - unixepoch.Ticks);
-				log.Debug(((int)ts.TotalSeconds).ToString());
 				return ((int)ts.TotalSeconds).ToString();
 			} else
 				return "-1";
