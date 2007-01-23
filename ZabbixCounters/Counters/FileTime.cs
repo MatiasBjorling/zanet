@@ -49,11 +49,13 @@ namespace ZabbixCounters.Counters
 			if (File.Exists(filename)) 
 			{
 				DateTime date = File.GetLastWriteTime(filename);
-				//log.Debug("Received date: " +date.ToShortDateString() + " " + date.ToShortTimeString());
-				return date.ToShortDateString() + " " + date.ToShortTimeString();
+				DateTime unixepoch = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+
+				System.TimeSpan ts = new TimeSpan(date.Ticks - unixepoch.Ticks);
+				log.Debug(((int)ts.TotalSeconds).ToString());
+				return ((int)ts.TotalSeconds).ToString();
 			} else
-				//log.Debug("Could not find file");
-				return "File does not exist";
+				return "-1";
 		}
 
 		/// <summary>
