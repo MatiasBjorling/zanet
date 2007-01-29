@@ -44,8 +44,9 @@ namespace ZabbixStart
 		private static Thread updateThread = null;
 
 		private static IAgentHandling ah = null;
-		private static string version = null;
 		private static UpdateAgent ua = null;
+
+		private static string version = null;
 
 		private static Configuration conf = Configuration.getInstance;
 
@@ -67,6 +68,7 @@ namespace ZabbixStart
 			agentThread = new Thread(tjob);
 			agentThread.Name = "Agent Core Thread";
 			agentThread.Start();
+			
 
 			// For updating the agent.
 			if (Convert.ToBoolean(conf.GetConfigurationByString("EnableUpdateService", "Updater"))) 
@@ -74,7 +76,6 @@ namespace ZabbixStart
 				log.Info("Starting monitoring of updates");
 				updateThread = new Thread(new ThreadStart(MonitoringUpdate));
 				updateThread.Name = "UpdateThread";
-				updateThread.Start();
 			}
 		}
 
@@ -86,25 +87,14 @@ namespace ZabbixStart
 				updateThread.Abort();
 		}
 
-
 		// Agent thread
 		protected static void ThreadOutput() 
 		{
-			
 			try 
 			{
-
 				try 
 				{
-					// Loading trusted binary
-					if (agentAssembly == null)
-						agentAssembly = Assembly.Load("ZabbixCore, Culture=neutral, PublicKeyToken=a7296e6a43eb88e1");
-
-				} 
-				catch (System.IO.FileLoadException) 
-				{
-					Console.WriteLine("Getting untrusted code");
-					// Hm. The file is maybe not trused. Do we accept untrusted code?
+					
 					bool canLoadUntrustedCode = false;
 					try 
 					{
@@ -112,11 +102,21 @@ namespace ZabbixStart
 					} 
 					catch {}
 
-					if (canLoadUntrustedCode) 
-					{
-						agentAssembly = Assembly.Load("ZabbixCore, Culture=neutral");
-						log.Info("Loaded untrused agent code. Use only for development!");
-					}
+					// Loading assembly
+					if (agentAssembly == null)
+						if (canLoadUntrustedCode)
+						{
+							agentAssembly = Assembly.Load("ZabbixCore, Culture=neutral");
+							log.Info("Can load untrusted code. Use only for development!");
+						}
+						else 
+						{
+							agentAssembly = Assembly.Load("ZabbixCore, Culture=neutral, PublicKeyToken=a7296e6a43eb88e1");
+						}
+				} 
+				catch (System.IO.FileLoadException ex ) 
+				{
+					log.Error("Could not find assembly: " + ex.Message);
 				}
 				
 				if (agentAssembly != null) 
@@ -125,24 +125,27 @@ namespace ZabbixStart
 					Type[] asmTypes = agentAssembly.GetTypes();
 					foreach (Type t in asmTypes) 
 					{
-						Console.WriteLine(t.Name);
 						if (t.IsClass && t.Name.Equals("AgentHandling"))
 						{
 							ah = (IAgentHandling) Activator.CreateInstance(t);
 						} 
 						else if (t.IsClass && t.Name.Equals("VersionCounter")) 
 						{
-						
 							ILoadableCounter agentversion = (ILoadableCounter) Activator.CreateInstance(t);
 							version = agentversion.getValue();
+							
 						}
 					}
 
 					// Only a weak security check.
 					if (ah == null)
-						log.Error("SECURITY BREACH! Loaded a signed DLL which was not distributed from ZabbixAgent.NET... Exiting");
+						log.Error("SECURITY BREACH! Tried to load a signed DLL which was not distributed from ZabbixAgent.NET... Exiting");
 					else
+					{
+						if (updateThread != null)
+							updateThread.Start();
 						ah.Start();
+					}
 				} 
 				else 
 				{
@@ -155,18 +158,18 @@ namespace ZabbixStart
 				Console.WriteLine(ex.Message);
 				log.Error("Cannot start agent: " + ex.Message + ex.StackTrace);
 			}
+
 		}
 
 		// Monitoring update service.
 		private static void MonitoringUpdate()
 		{
-			// Hackisk...
-			/*
-			while (!version.Equals(""))
+			// If version is null, then blow to pieces.
+			if (version != null) 
 			{
-				ua = new UpdateAgent(ah, version);
+				ua = new UpdateAgent(ah, version, agentAssembly);
 				ua.PullLoopUpdateServer();
-			}*/
+			} 
 		}
 	}
 }
