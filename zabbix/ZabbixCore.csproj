@@ -192,6 +192,21 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Counters\Copy of RemoteUpdate.cs"
+                    SubType = "Code"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "Counters\RemoteUpdateLink.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Counters\RemoteUpdateMD5Sum.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Counters\UnknownCounter.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -205,10 +220,6 @@
                     RelPath = "SubSystem\plink.exe"
                     BuildAction = "EmbeddedResource"
                     CustomToolNamespace = "TMCService.Agent.SubSystem"
-                />
-                <File
-                    RelPath = "SubSystem\update.bat"
-                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "Util\ClassUtils.cs"

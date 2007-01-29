@@ -31,8 +31,6 @@ using ZabbixCommon;
 using System.Windows.Forms;
 using log4net;
 
-
-
 namespace ZabbixCore
 {
 	/// <summary>
