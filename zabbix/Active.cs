@@ -44,14 +44,14 @@ namespace ZabbixCore
 
 		private bool stop = false;
 		private bool useSSH = false;
-		private int refreshTime = 15;
+		private int refreshTime = 30;
 
 		private static readonly ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixagent.active");
 
 		public Active()	{
 			try 
 			{
-				refreshTime = Int32.Parse(conf.GetConfigurationByString("ActiveChecks", "General")); 
+				refreshTime = Int32.Parse(conf.GetConfigurationByString("Refresh", "General")); 
 			} 
 			catch {};
 

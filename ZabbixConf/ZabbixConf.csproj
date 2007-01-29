@@ -200,6 +200,16 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "Network.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Network.resx"
+                    DependentUpon = "Network.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Perf.cs"
                     SubType = "Form"
                     BuildAction = "Compile"

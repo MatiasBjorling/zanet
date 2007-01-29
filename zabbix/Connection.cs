@@ -81,10 +81,11 @@ namespace ZabbixCore
 		// Connection
 		private IPHostEntry hostEntry = null;
 		private Socket socket = null;
+		//private static string hostName = System.Net.Dns.GetHostByName("localhost").HostName;
 		private static string hostName = System.Net.Dns.GetHostByName("localhost").HostName;
 
 		// ConnectionPart
-		private static readonly string connHostName = "<req><host>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(hostName)) + "</host><key>";
+		private static string connHostName = "<req><host>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(hostName)) + "</host><key>";
 
 		// Secure tunnel 
 		private Tunneler tunnel = new Tunneler();
@@ -116,6 +117,16 @@ namespace ZabbixCore
 				else 
 					log.Info("Using non-queue version. Counter reports will not be queued");
 			}
+
+			try 
+			{
+				if (!Convert.ToBoolean(conf.GetConfigurationByString("FQDN", "General"))) 
+				{
+					connHostName = "<req><host>" + Convert.ToBase64String(Encoding.UTF8.GetBytes((string) conf.GetConfigurationByString("Hostname", "General"))) + "</host><key>"; ;
+					log.Debug("Using hostname: " + conf.GetConfigurationByString("Hostname", "General"));
+				}
+			}
+			catch {}
 
 			try 
 			{

@@ -62,7 +62,6 @@ namespace ZabbixConf
 		private System.Windows.Forms.Label lblServerPort;
 		private System.Windows.Forms.Label lblAgentPort;
 		private System.Windows.Forms.Label lblRefresh;
-		private System.Windows.Forms.Label lblActiveChecks;
 		private System.Windows.Forms.Label lblTimeOut;
 		private System.Windows.Forms.Label lblRemComm;
 		private System.Windows.Forms.TextBox txtHostname;
@@ -71,22 +70,18 @@ namespace ZabbixConf
 		private System.Windows.Forms.TextBox txtAgentPort;
 		private System.Windows.Forms.TextBox txtRefresh;
 		private System.Windows.Forms.CheckBox chkFQDN;
-		private System.Windows.Forms.CheckBox chkActiveChecks;
 		private System.Windows.Forms.CheckBox chkRemComm;
 		private System.Windows.Forms.NumericUpDown nudTimeOut;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.TextBox txtQueueLength;
-		private System.Windows.Forms.CheckBox chkUseQueue;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.TextBox txtWorkerSockets;
-		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.ListBox lsbListenIP;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.CheckBox chkCanLoadUntrustedCode;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.CheckBox chkUseQueue;
+		private System.Windows.Forms.TextBox txtQueueLength;
+		private System.Windows.Forms.Label label5;
 		private Hashtable ht = new Hashtable(20);
 
 		// ... and here mono idea died... rip...
@@ -102,11 +97,10 @@ namespace ZabbixConf
 			// Required for Windows Form Designer support
 			//
 			InitializeComponent();
-			enumIPs();
 			ReadValues();
 
 			// The hostname is locked to the FQDN until the performance monitor respects it.
-			txtHostname.Text = System.Net.Dns.GetHostByName(System.Net.Dns.GetHostName()).HostName;
+			//txtHostname.Text = System.Net.Dns.GetHostByName(System.Net.Dns.GetHostName()).HostName;
 		}
 
 		/// <summary>
@@ -132,24 +126,16 @@ namespace ZabbixConf
 		private void InitializeComponent()
 		{
 			this.grpBoxGeneral = new System.Windows.Forms.GroupBox();
-			this.lsbListenIP = new System.Windows.Forms.ListBox();
-			this.label7 = new System.Windows.Forms.Label();
+			this.chkCanLoadUntrustedCode = new System.Windows.Forms.CheckBox();
+			this.label8 = new System.Windows.Forms.Label();
 			this.txtWorkerSockets = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
-			this.txtQueueLength = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.chkUseQueue = new System.Windows.Forms.CheckBox();
-			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.chkRemComm = new System.Windows.Forms.CheckBox();
 			this.lblRemComm = new System.Windows.Forms.Label();
 			this.nudTimeOut = new System.Windows.Forms.NumericUpDown();
 			this.lblTimeOut = new System.Windows.Forms.Label();
-			this.chkActiveChecks = new System.Windows.Forms.CheckBox();
 			this.txtRefresh = new System.Windows.Forms.TextBox();
-			this.lblActiveChecks = new System.Windows.Forms.Label();
 			this.lblRefresh = new System.Windows.Forms.Label();
 			this.txtAgentPort = new System.Windows.Forms.TextBox();
 			this.lblAgentPort = new System.Windows.Forms.Label();
@@ -161,34 +147,32 @@ namespace ZabbixConf
 			this.lblServerPort = new System.Windows.Forms.Label();
 			this.lblServerHost = new System.Windows.Forms.Label();
 			this.lblHostname = new System.Windows.Forms.Label();
-			this.label8 = new System.Windows.Forms.Label();
-			this.chkCanLoadUntrustedCode = new System.Windows.Forms.CheckBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.chkUseQueue = new System.Windows.Forms.CheckBox();
+			this.txtQueueLength = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.grpBoxGeneral.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudTimeOut)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// grpBoxGeneral
 			// 
-			this.grpBoxGeneral.Controls.Add(this.chkCanLoadUntrustedCode);
-			this.grpBoxGeneral.Controls.Add(this.label8);
-			this.grpBoxGeneral.Controls.Add(this.lsbListenIP);
-			this.grpBoxGeneral.Controls.Add(this.label7);
-			this.grpBoxGeneral.Controls.Add(this.txtWorkerSockets);
-			this.grpBoxGeneral.Controls.Add(this.label6);
 			this.grpBoxGeneral.Controls.Add(this.txtQueueLength);
 			this.grpBoxGeneral.Controls.Add(this.label5);
 			this.grpBoxGeneral.Controls.Add(this.label4);
 			this.grpBoxGeneral.Controls.Add(this.label3);
 			this.grpBoxGeneral.Controls.Add(this.chkUseQueue);
-			this.grpBoxGeneral.Controls.Add(this.label2);
+			this.grpBoxGeneral.Controls.Add(this.chkCanLoadUntrustedCode);
+			this.grpBoxGeneral.Controls.Add(this.label8);
+			this.grpBoxGeneral.Controls.Add(this.txtWorkerSockets);
+			this.grpBoxGeneral.Controls.Add(this.label6);
 			this.grpBoxGeneral.Controls.Add(this.label1);
 			this.grpBoxGeneral.Controls.Add(this.chkRemComm);
 			this.grpBoxGeneral.Controls.Add(this.lblRemComm);
 			this.grpBoxGeneral.Controls.Add(this.nudTimeOut);
 			this.grpBoxGeneral.Controls.Add(this.lblTimeOut);
-			this.grpBoxGeneral.Controls.Add(this.chkActiveChecks);
 			this.grpBoxGeneral.Controls.Add(this.txtRefresh);
-			this.grpBoxGeneral.Controls.Add(this.lblActiveChecks);
 			this.grpBoxGeneral.Controls.Add(this.lblRefresh);
 			this.grpBoxGeneral.Controls.Add(this.txtAgentPort);
 			this.grpBoxGeneral.Controls.Add(this.lblAgentPort);
@@ -208,21 +192,20 @@ namespace ZabbixConf
 			this.grpBoxGeneral.TabStop = false;
 			this.grpBoxGeneral.Text = "General";
 			// 
-			// lsbListenIP
+			// chkCanLoadUntrustedCode
 			// 
-			this.lsbListenIP.Location = new System.Drawing.Point(376, 120);
-			this.lsbListenIP.Name = "lsbListenIP";
-			this.lsbListenIP.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-			this.lsbListenIP.Size = new System.Drawing.Size(176, 82);
-			this.lsbListenIP.TabIndex = 48;
+			this.chkCanLoadUntrustedCode.Location = new System.Drawing.Point(168, 232);
+			this.chkCanLoadUntrustedCode.Name = "chkCanLoadUntrustedCode";
+			this.chkCanLoadUntrustedCode.Size = new System.Drawing.Size(40, 24);
+			this.chkCanLoadUntrustedCode.TabIndex = 50;
 			// 
-			// label7
+			// label8
 			// 
-			this.label7.Location = new System.Drawing.Point(264, 120);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(104, 16);
-			this.label7.TabIndex = 47;
-			this.label7.Text = "Listen on interface";
+			this.label8.Location = new System.Drawing.Point(8, 232);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(136, 32);
+			this.label8.TabIndex = 49;
+			this.label8.Text = "Can load untrusted code: Use only for development";
 			// 
 			// txtWorkerSockets
 			// 
@@ -239,54 +222,6 @@ namespace ZabbixConf
 			this.label6.Size = new System.Drawing.Size(100, 16);
 			this.label6.TabIndex = 44;
 			this.label6.Text = "Passive workers";
-			// 
-			// txtQueueLength
-			// 
-			this.txtQueueLength.Location = new System.Drawing.Point(168, 280);
-			this.txtQueueLength.Name = "txtQueueLength";
-			this.txtQueueLength.Size = new System.Drawing.Size(64, 20);
-			this.txtQueueLength.TabIndex = 43;
-			this.txtQueueLength.Text = "50000";
-			// 
-			// label5
-			// 
-			this.label5.Location = new System.Drawing.Point(8, 284);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(72, 16);
-			this.label5.TabIndex = 42;
-			this.label5.Text = "Queue length";
-			// 
-			// label4
-			// 
-			this.label4.Location = new System.Drawing.Point(192, 260);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(216, 16);
-			this.label4.TabIndex = 41;
-			this.label4.Text = "Use only with timestamp patched server.";
-			// 
-			// label3
-			// 
-			this.label3.Location = new System.Drawing.Point(8, 260);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(104, 16);
-			this.label3.TabIndex = 40;
-			this.label3.Text = "Enable queue";
-			// 
-			// chkUseQueue
-			// 
-			this.chkUseQueue.Location = new System.Drawing.Point(168, 260);
-			this.chkUseQueue.Name = "chkUseQueue";
-			this.chkUseQueue.Size = new System.Drawing.Size(16, 16);
-			this.chkUseQueue.TabIndex = 39;
-			// 
-			// label2
-			// 
-			this.label2.Location = new System.Drawing.Point(192, 214);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(100, 11);
-			this.label2.TabIndex = 38;
-			this.label2.Text = "Not implemented";
-			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// label1
 			// 
@@ -314,7 +249,7 @@ namespace ZabbixConf
 			// 
 			// nudTimeOut
 			// 
-			this.nudTimeOut.Location = new System.Drawing.Point(168, 232);
+			this.nudTimeOut.Location = new System.Drawing.Point(168, 208);
 			this.nudTimeOut.Maximum = new System.Decimal(new int[] {
 																	   30,
 																	   0,
@@ -336,22 +271,12 @@ namespace ZabbixConf
 			// 
 			// lblTimeOut
 			// 
-			this.lblTimeOut.Location = new System.Drawing.Point(8, 236);
+			this.lblTimeOut.Location = new System.Drawing.Point(8, 208);
 			this.lblTimeOut.Name = "lblTimeOut";
 			this.lblTimeOut.Size = new System.Drawing.Size(104, 16);
 			this.lblTimeOut.TabIndex = 33;
 			this.lblTimeOut.Text = "Timeout (seconds)";
 			this.lblTimeOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// chkActiveChecks
-			// 
-			this.chkActiveChecks.Enabled = false;
-			this.chkActiveChecks.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.chkActiveChecks.Location = new System.Drawing.Point(168, 212);
-			this.chkActiveChecks.Name = "chkActiveChecks";
-			this.chkActiveChecks.Size = new System.Drawing.Size(16, 16);
-			this.chkActiveChecks.TabIndex = 32;
-			this.chkActiveChecks.TabStop = false;
 			// 
 			// txtRefresh
 			// 
@@ -360,14 +285,6 @@ namespace ZabbixConf
 			this.txtRefresh.Size = new System.Drawing.Size(48, 20);
 			this.txtRefresh.TabIndex = 31;
 			this.txtRefresh.Text = "120";
-			// 
-			// lblActiveChecks
-			// 
-			this.lblActiveChecks.Location = new System.Drawing.Point(8, 212);
-			this.lblActiveChecks.Name = "lblActiveChecks";
-			this.lblActiveChecks.Size = new System.Drawing.Size(96, 16);
-			this.lblActiveChecks.TabIndex = 30;
-			this.lblActiveChecks.Text = "Disable active checks";
 			// 
 			// lblRefresh
 			// 
@@ -397,7 +314,6 @@ namespace ZabbixConf
 			// 
 			this.chkFQDN.Checked = true;
 			this.chkFQDN.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.chkFQDN.Enabled = false;
 			this.chkFQDN.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.chkFQDN.Location = new System.Drawing.Point(167, 40);
 			this.chkFQDN.Name = "chkFQDN";
@@ -464,21 +380,49 @@ namespace ZabbixConf
 			this.lblHostname.TabIndex = 0;
 			this.lblHostname.Text = "Hostname:";
 			// 
-			// label8
+			// label4
 			// 
-			this.label8.Location = new System.Drawing.Point(8, 304);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(136, 32);
-			this.label8.TabIndex = 49;
-			this.label8.Text = "Can load untrusted code: Use only for development";
+			this.label4.Location = new System.Drawing.Point(192, 312);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(216, 16);
+			this.label4.TabIndex = 53;
+			this.label4.Text = "Use only with timestamp patched server.";
+			this.label4.Visible = false;
 			// 
-			// chkCanLoadUntrustedCode
+			// label3
 			// 
-			this.chkCanLoadUntrustedCode.Location = new System.Drawing.Point(168, 304);
-			this.chkCanLoadUntrustedCode.Name = "chkCanLoadUntrustedCode";
-			this.chkCanLoadUntrustedCode.Size = new System.Drawing.Size(40, 24);
-			this.chkCanLoadUntrustedCode.TabIndex = 50;
-			this.chkCanLoadUntrustedCode.Text = " ";
+			this.label3.Location = new System.Drawing.Point(8, 312);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(104, 16);
+			this.label3.TabIndex = 52;
+			this.label3.Text = "Enable queue";
+			this.label3.Visible = false;
+			// 
+			// chkUseQueue
+			// 
+			this.chkUseQueue.Location = new System.Drawing.Point(168, 312);
+			this.chkUseQueue.Name = "chkUseQueue";
+			this.chkUseQueue.Size = new System.Drawing.Size(16, 16);
+			this.chkUseQueue.TabIndex = 51;
+			this.chkUseQueue.Visible = false;
+			// 
+			// txtQueueLength
+			// 
+			this.txtQueueLength.Location = new System.Drawing.Point(168, 288);
+			this.txtQueueLength.Name = "txtQueueLength";
+			this.txtQueueLength.Size = new System.Drawing.Size(64, 20);
+			this.txtQueueLength.TabIndex = 55;
+			this.txtQueueLength.Text = "50000";
+			this.txtQueueLength.Visible = false;
+			// 
+			// label5
+			// 
+			this.label5.Location = new System.Drawing.Point(8, 296);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(72, 16);
+			this.label5.TabIndex = 54;
+			this.label5.Text = "Queue length";
+			this.label5.Visible = false;
 			// 
 			// General
 			// 
@@ -500,7 +444,7 @@ namespace ZabbixConf
 		/// </summary>
 		public void Save()
 		{
-			string listips = selectedips();
+			
 			Xml profile = new Xml(ZabbixAgentConf.ConfigFile);
 
 			profile.SetValue("General", "Hostname", txtHostname.Text);
@@ -509,13 +453,12 @@ namespace ZabbixConf
 			profile.SetValue("General", "ServerPort", txtServerPort.Text);
 			profile.SetValue("General", "AgentPort", txtAgentPort.Text);
 			profile.SetValue("General", "Refresh", txtRefresh.Text);
-			profile.SetValue("General", "ActiveChecks", chkActiveChecks.Checked.ToString());
+			//profile.SetValue("General", "ActiveChecks", chkActiveChecks.Checked.ToString());
 			profile.SetValue("General", "TimeOut", nudTimeOut.Value);
 			profile.SetValue("General", "RemoteCommands", chkRemComm.Checked.ToString());
 			profile.SetValue("General", "UseQueue", chkUseQueue.Checked.ToString());
 			profile.SetValue("General", "QueueLength", txtQueueLength.Text);
 			profile.SetValue("General", "WorkerSockets", txtWorkerSockets.Text);
-			profile.SetValue("General", "ListenIP", selectedips().ToString());
 			profile.SetValue("General", "CanLoadUntrustedCode", chkCanLoadUntrustedCode.Checked.ToString());
 		}
 
@@ -605,7 +548,7 @@ namespace ZabbixConf
 			catch {}
 			try 
 			{	
-				chkActiveChecks.Checked = Convert.ToBoolean(profile.GetValue("General", "ActiveChecks"));
+				//chkActiveChecks.Checked = Convert.ToBoolean(profile.GetValue("General", "ActiveChecks"));
 			} 
 			catch {}
 			try 
@@ -630,18 +573,6 @@ namespace ZabbixConf
 			catch {}
 			try 
 			{
-				string tmpips = profile.GetValue("General", "ListenIP").ToString();
-				string[] arInfo;
-				char[] splitter  = {','};
-				arInfo = tmpips.Split(splitter);
-				for(int x = 0; x < arInfo.Length - 1; x++)
-				{
-					lsbListenIP.SelectedItem = (arInfo[x]);
-				}
-			} 
-			catch {}
-			try 
-			{
 				chkCanLoadUntrustedCode.Checked = Convert.ToBoolean(profile.GetValue("General", "CanLoadUntrustedCode"));
 			}
 			catch {}
@@ -656,36 +587,15 @@ namespace ZabbixConf
 		private void useFQDN_changed(object sender, System.EventArgs e)
 		{
 			if (chkFQDN.Checked == true)
-                txtHostname.Text = System.Net.Dns.GetHostByName(System.Net.Dns.GetHostName()).HostName;
+			{
+				txtHostname.Text = System.Net.Dns.GetHostByName(System.Net.Dns.GetHostName()).HostName;
+				txtHostname.ReadOnly = true;
+			}
 			else
+			{
 				txtHostname.Text = System.Net.Dns.GetHostName();
-		}
-
-		private void enumIPs()
-		{
-			// Get host name
-			String strHostName = System.Net.Dns.GetHostName();
-			
-			// Find host by name
-			System.Net.IPHostEntry iphostentry = System.Net.Dns.GetHostByName(strHostName);
-
-			// Enumerate IP addresses
-			int nIP = 0;
-			foreach(System.Net.IPAddress ipaddress in iphostentry.AddressList)
-			{
-				lsbListenIP.Items.Add(ipaddress.ToString());
+				txtHostname.ReadOnly = false;
 			}
-		}
-
-		private string selectedips()
-		{
-			System.Text.StringBuilder sb = new System.Text.StringBuilder();
-			for(int i=0; i < lsbListenIP.SelectedItems.Count; i++)
-			{
-					sb.Append(lsbListenIP.SelectedItems[i].ToString());
-					sb.Append(",");
-			}
-			return sb.ToString();
 		}
 
 

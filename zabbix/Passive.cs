@@ -142,7 +142,6 @@ namespace ZabbixCore
 				SocketPacket sp = new SocketPacket();
 				sp.currentSocket = s;
 				s.BeginReceive(sp.dataBuffer, 0, sp.dataBuffer.Length, SocketFlags.None, workerCallBack, sp);
-
 			} 
 			catch (SocketException ex)
 			{

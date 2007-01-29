@@ -166,7 +166,7 @@
                 <File
                     RelPath = "UpdateService.cs"
                     SubType = "code"
-                    BuildAction = "Compile"
+                    BuildAction = "None"
                 />
                 <File
                     RelPath = "Logging\log.xml"
