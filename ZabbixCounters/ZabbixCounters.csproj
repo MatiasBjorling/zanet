@@ -130,6 +130,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Counters\FileExist.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Counters\FileTime.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -148,11 +153,6 @@
                     RelPath = "Counters\PerfCounterMapping.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Counters\RemoteUpdate.cs"
-                    SubType = "Code"
-                    BuildAction = "None"
                 />
                 <File
                     RelPath = "Counters\ServiceState.cs"
