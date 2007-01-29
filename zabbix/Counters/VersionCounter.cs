@@ -33,7 +33,7 @@ namespace ZabbixCore.Counters
 		private int _AgentVersionLittle = 9;
 		private int _AgentVersionMajor = 0;
 
-		private int _AgentVersionBuild = 13;
+		private int _AgentVersionBuild = 14;
 		private string _AgentVersion = "Agent.NET";
 
 		public VersionCounter()
