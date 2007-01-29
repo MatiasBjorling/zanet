@@ -38,14 +38,12 @@ namespace ZabbixCounters.Counters
 		public ServiceState(string servicename)
 		{
 			this.servicename = servicename;
-			
 		}
 
 		public ServiceState() {}
 
 		public string getValue() 
 		{
-			Console.WriteLine("Service: " + servicename + " is wanted");
 			services = ServiceController.GetServices();
 			foreach(ServiceController service in services) 
 			{
@@ -79,7 +77,7 @@ namespace ZabbixCounters.Counters
 		/// <returns></returns>
 		public bool isType(string key) 
 		{ 
-			if (key.StartsWith("service_state")) 
+			if (key.StartsWith("service_state"))
 				return true;
 			else
 				return false;
