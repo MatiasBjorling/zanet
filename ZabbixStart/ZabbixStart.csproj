@@ -106,6 +106,11 @@
                     AssemblyName = "System.Web.Services"
                     HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Web.Services.dll"
                 />
+                <Reference
+                    Name = "System.Windows.Forms"
+                    AssemblyName = "System.Windows.Forms"
+                    HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -122,7 +127,7 @@
                 <File
                     RelPath = "Class1.cs"
                     SubType = "Code"
-                    BuildAction = "Compile"
+                    BuildAction = "None"
                 />
                 <File
                     RelPath = "Handling.cs"
@@ -142,11 +147,15 @@
                 <File
                     RelPath = "Service1.cs"
                     SubType = "Component"
-                    BuildAction = "None"
+                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Service1.resx"
                     DependentUpon = "Service1.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "update.bat"
                     BuildAction = "EmbeddedResource"
                 />
                 <File

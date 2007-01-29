@@ -34,23 +34,27 @@ namespace ZabbixStart
 {
 	public class Service1 : System.ServiceProcess.ServiceBase
 	{
-		private Thread plinkoutputthread;
 		private System.ComponentModel.Container components = null;
-
-		//private static ZabbixAgent.Active ac = null;
 
 		public Service1()
 		{
 			InitializeComponent();
 		}
 
-		static void Main()
+		static void Main(string[] args)
 		{
+			if (args.Length == 0)
+			{
+				System.ServiceProcess.ServiceBase[] ServicesToRun;
+				ServicesToRun = new System.ServiceProcess.ServiceBase[] { new Service1() };
+				System.ServiceProcess.ServiceBase.Run(ServicesToRun);
+			}
+			else 
+			{
+				if (args[0].Equals("console"))
+					Handling.Start();
+			}
 			
-			System.ServiceProcess.ServiceBase[] ServicesToRun;
-			ServicesToRun = new System.ServiceProcess.ServiceBase[] { new Service1() };
-
-			System.ServiceProcess.ServiceBase.Run(ServicesToRun);
 		}
 
 		private void InitializeComponent()
