@@ -43,7 +43,7 @@ namespace ZabbixCommon
 		// Instance lock
 		static readonly object uselock =  new object();
 
-
+		
 
 		// New Configuration
 		private Hashtable ht = new Hashtable(20);
@@ -52,6 +52,23 @@ namespace ZabbixCommon
 		{
 			
 		}
+
+		// Small hashtable to keep elements between processes.
+		private static Hashtable globalHashtable = new Hashtable(1);
+		private static readonly object hashtableLock = new object();
+
+		public static object GetObjectInHashByKey(string key) 
+		{
+			lock (hashtableLock)
+				return globalHashtable[key];
+		}
+
+		public static void SetObjectInHashByKey(string key, string val) 
+		{
+			lock (hashtableLock)
+				globalHashtable[key] = val;
+		}
+
 
 		/// <summary>
 		/// Returns a configuration parameter from configuration file as a string.
