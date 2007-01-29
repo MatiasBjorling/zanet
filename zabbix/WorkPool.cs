@@ -150,13 +150,24 @@ namespace ZabbixCore
 			}
 
 			// Kill old threads
-			foreach (WorkJobAge tmp in aging) 
+			for (int i = (aging.Count - 1); i > 0; i--) 
+			{
+				WorkJobAge tmp = (WorkJobAge) aging[i];
+				if (tmp.age < agingcount - 5) 
+				{
+					tmp.tooOld = true;	
+					aging.Remove(tmp);
+				}
+			}
+			
+				
+			/*foreach (WorkJobAge tmp in aging) 
 			{
 				if (tmp.age < agingcount - 5) {
 					tmp.tooOld = true;	
 					aging.Remove(tmp);
 				}
-			}
+			}*/
 		}
 
 		private static void StartWorkedThread() 
