@@ -156,26 +156,11 @@ namespace ZabbixCommon
 					log.Info("Loaded configuration");
 				} 
 				else throw new Exception("Cannot find configuration file " + ConfigFile + " or configuration file is empty.");
+				profile.Buffer().Close();
+				profile.Buffer().Dispose();
 			} catch (Exception ex) {				
 				log.Error(ex.Message);
 			}
 		}
-
-/* Deprecated code (Using registry for configuration settings)
-		public void GetConfiguration() 
-		{
-			
-			RegistryKey key = Registry.Users.OpenSubKey(RegistryRoot);
-
-			if (key != null) 
-			{
-				foreach(string val in key.GetValueNames()) 
-				{
-					//MessageBox.Show(key.GetValue(val).GetType().ToString());
-					ht.Add(val, key.GetValue(val));
-				}			
-			}
-		}
-*/
 	}
 }

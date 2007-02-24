@@ -72,7 +72,7 @@ namespace ZabbixCore
 			int times = 0;
 			DateTime ts = new DateTime(DateTime.Now.Ticks).AddSeconds(averageInterval);
 
-			log.Debug("Starting Thread: " + Thread.CurrentThread.Name);
+			//log.Debug("Starting Thread: " + Thread.CurrentThread.Name);
 			while (true) 
 			{
 				if (wja.tooOld) 

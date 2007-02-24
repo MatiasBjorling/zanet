@@ -99,7 +99,7 @@ namespace ZabbixCore
 
 				if (counterobj != null) {
 					// Make new thread with counter
-					Thread t = new Thread(new ThreadStart(WorkPool.StartWorkedThread));
+					Thread t = ThreadManager.GetThread(key, new ThreadStart(WorkPool.StartWorkedThread)); //new Thread(new ThreadStart(WorkPool.StartWorkedThread));
 					
 					WorkJob wj = WorkJob.getJob;
 					lock (lockobj) 
@@ -122,7 +122,7 @@ namespace ZabbixCore
 						wj.AddParams(key, interval, unknown, counterobj, wja, averageInteval);
 
 						// Give thread key name
-						t.Name = key;
+						//t.Name = key; Deprecated
 						if (createNew)
 							t.Start();
 

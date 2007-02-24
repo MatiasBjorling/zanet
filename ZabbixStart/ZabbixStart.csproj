@@ -125,11 +125,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Class1.cs"
-                    SubType = "Code"
-                    BuildAction = "None"
-                />
-                <File
                     RelPath = "Handling.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
