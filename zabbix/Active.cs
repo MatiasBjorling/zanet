@@ -46,6 +46,8 @@ namespace ZabbixCore
 		private bool useSSH = false;
 		private int refreshTime = 30;
 
+		private string hostnameAddress = "";
+
 		private static readonly ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixagent.active");
 
 		public Active()	{
@@ -60,7 +62,17 @@ namespace ZabbixCore
 				useSSH = Convert.ToBoolean(conf.GetConfigurationByString("Use", "SSH"));
 			} 
 			catch {};
-			
+
+			try 
+			{
+				hostnameAddress = conf.GetConfigurationByString("Hostname", "General");
+
+				if (hostnameAddress.Equals(""))
+				{
+					hostnameAddress = System.Net.Dns.GetHostByName("LocalHost").HostName;
+				}
+			} 
+			catch {};
 		}
 
 		public void get_active_checks() 
@@ -72,7 +84,7 @@ log.Info("Started in DEBUGGING mode");
 #endif
 			// Host
 			//log.Debug("ZBX_GET_ACTIVE_CHECKS\n" + System.Net.Dns.GetHostByName("LocalHost").HostName);
-			String askForActiveClients = "ZBX_GET_ACTIVE_CHECKS\n" + System.Net.Dns.GetHostByName("LocalHost").HostName + "\n";
+			String askForActiveClients = "ZBX_GET_ACTIVE_CHECKS\n" + hostnameAddress + "\n";
 			
 			try 
 			{
