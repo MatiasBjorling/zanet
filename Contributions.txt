@@ -1,0 +1,2 @@
+Daniel Barlow - 20/11-2007
+Added a fix for FQDN hostname.

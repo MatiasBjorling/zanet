@@ -1,7 +1,7 @@
 <VisualStudioProject>
-    <CSHARP LastOpenVersion = "7.10.6030" >
+    <CSHARP LastOpenVersion = "7.10.3077" >
         <Build>
-            <Settings ReferencePath = "C:\Development\HEAD\ZabbixConf\SubSystem\;C:\Development\HEAD\zabbix\bin\Debug\" >
+            <Settings ReferencePath = "C:\Development\HEAD\ZabbixConf\SubSystem\;C:\Development\HEAD\zabbix\bin\Debug\;C:\Development\HEAD\log4net-1.2.10\bin\net\1.1\release\" >
                 <Config
                     Name = "Debug"
                     EnableASPDebugging = "false"

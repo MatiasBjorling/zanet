@@ -15,7 +15,7 @@
  * along with ZabbixAgent.NET; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  * 
- * Copyright TMCare a/s
+ * Copyright ZabbixAgent.NET a/s
  *
  * Used Trademarks are owned by their respective owners, There in ZABBIX SIA and Zabbix.
  */
@@ -44,7 +44,7 @@ using ZabbixCommon;
 /// <remarks/>
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Web.Services.WebServiceBindingAttribute(Name="UpdateSoapBinding", Namespace="http://mon.tmcare.dk")]
+[System.Web.Services.WebServiceBindingAttribute(Name="UpdateSoapBinding", Namespace="http://mon.ZabbixAgent.NET.dk")]
 public class UpdateService : System.Web.Services.Protocols.SoapHttpClientProtocol {
     
     /// <remarks/>
@@ -54,7 +54,7 @@ public class UpdateService : System.Web.Services.Protocols.SoapHttpClientProtoco
     }
 
     /// <remarks/>
-    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://mon.tmcare.dk", ResponseNamespace="http://mon.tmcare.dk", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://mon.ZabbixAgent.NET.dk", ResponseNamespace="http://mon.ZabbixAgent.NET.dk", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
     [return: System.Xml.Serialization.XmlElementAttribute("getNewVersionLinkReturn")]
     public string getNewVersionLink(string Customer, string ServerName, string CurrentVersion) {
         object[] results = this.Invoke("getNewVersionLink", new object[] {

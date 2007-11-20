@@ -15,7 +15,7 @@
  * along with ZabbixAgent.NET; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  * 
- * Copyright TMCare a/s
+ * Copyright ZabbixAgent.NET a/s
  *
  * Used Trademarks are owned by their respective owners, There in ZABBIX SIA and Zabbix.
  */
@@ -83,7 +83,7 @@ namespace ZabbixStart
 			// 
 			// serviceInstaller1
 			// 
-			this.serviceInstaller1.DisplayName = "TMCare Remote Monitoring";
+			this.serviceInstaller1.DisplayName = "ZabbixAgent.NET Remote Monitoring";
 			this.serviceInstaller1.ServiceName = "zabbixagentnet";
 			this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
 			// 

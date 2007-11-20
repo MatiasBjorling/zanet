@@ -15,7 +15,7 @@
  * along with ZabbixAgent.NET; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  * 
- * Copyright TMCare a/s
+ * Copyright ZabbixAgent.NET
  *
  * Used Trademarks are owned by their respective owners, There in ZABBIX SIA and Zabbix.
  */
@@ -304,34 +304,37 @@ namespace ZabbixConf
 
 				for (int i=0;i<categories.Length;i++) 
 				{
-					// Root
-					TreeNode t = new TreeNode(categories[i].CategoryName);
-					
-					InstanceDataCollectionCollection instanceDataCollectionCollection = categories[i].ReadCategory();
-					foreach (DictionaryEntry instanceDataCollectionEntry in instanceDataCollectionCollection)
+					if (categories[i].CategoryName.Equals("Processor"))
 					{
-
-						InstanceDataCollection idc = (InstanceDataCollection)instanceDataCollectionEntry.Value;
-						TreeNode tt = new TreeNode();
-						tt.Text = idc.CounterName;
-						if (idc.Count > 1) 
+						// Root
+						TreeNode t = new TreeNode(categories[i].CategoryName);
+					
+						InstanceDataCollectionCollection instanceDataCollectionCollection = categories[i].ReadCategory();
+						foreach (DictionaryEntry instanceDataCollectionEntry in instanceDataCollectionCollection)
 						{
-							foreach (DictionaryEntry instanceDataEntry in (InstanceDataCollection)instanceDataCollectionEntry.Value)
+
+							InstanceDataCollection idc = (InstanceDataCollection)instanceDataCollectionEntry.Value;
+							TreeNode tt = new TreeNode();
+							tt.Text = idc.CounterName;
+							if (idc.Count > 1) 
 							{
-								try
+								foreach (DictionaryEntry instanceDataEntry in (InstanceDataCollection)instanceDataCollectionEntry.Value)
 								{
-									tt.Nodes.Add(((InstanceData)instanceDataEntry.Value).InstanceName);
-								}
-								catch
-								{
+									try
+									{
+										tt.Nodes.Add(((InstanceData)instanceDataEntry.Value).InstanceName);
+									}
+									catch
+									{
+									}
 								}
 							}
+						
+						
+							t.Nodes.Add(tt);
 						}
-						
-						
-						t.Nodes.Add(tt);
+						tn[i] = t;
 					}
-					tn[i] = t;
 				}
 			}
 			catch (Exception e)

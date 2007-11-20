@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.6030"
+        ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
         ProjectGuid = "{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}"
     >
@@ -110,12 +110,6 @@
                     HintPath = "..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
                 <Reference
-                    Name = "log4net"
-                    AssemblyName = "log4net"
-                    HintPath = "..\zabbix\bin\Debug\log4net.dll"
-                    Private = "False"
-                />
-                <Reference
                     Name = "System.ServiceProcess"
                     AssemblyName = "System.ServiceProcess"
                     HintPath = "..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.ServiceProcess.dll"
@@ -125,6 +119,11 @@
                     Project = "{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                     Private = "False"
+                />
+                <Reference
+                    Name = "log4net"
+                    AssemblyName = "log4net"
+                    HintPath = "..\log4net-1.2.10\bin\net\1.1\release\log4net.dll"
                 />
             </References>
         </Build>
