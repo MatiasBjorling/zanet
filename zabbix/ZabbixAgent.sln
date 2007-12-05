@@ -1,4 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 8.00
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZabbixCore", "ZabbixCore.csproj", "{56C05D1A-B8EE-45D4-A716-EBB35D8DAB78}"
 	ProjectSection(ProjectDependencies) = postProject
 		{0C6A5F4A-683C-4748-9478-5A186786DA86} = {0C6A5F4A-683C-4748-9478-5A186786DA86}
@@ -6,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZabbixCore", "ZabbixCore.cs
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZabbixConf", "..\ZabbixConf\ZabbixConf.csproj", "{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZabbixCounters", "..\ZabbixCounters\ZabbixCounters.csproj", "{BBE5BFA7-7012-4A35-B129-ACB26C39F009}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -15,12 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZabbixCounters", "..\Zabbix
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZabbixCommon", "..\ZabbixCommon\ZabbixCommon.csproj", "{0C6A5F4A-683C-4748-9478-5A186786DA86}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profile", "..\AMS.Profile\Profile.csproj", "{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZabbixStart", "..\ZabbixStart\ZabbixStart.csproj", "{9645AECD-B7B8-4CD6-8A72-16CFB220B047}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -32,52 +27,49 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZabbixStart", "..\ZabbixSta
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(SolutionConfiguration) = preSolution
-		ConfigurationEditor = ConfigurationEditor
-		Debug = Debug
-		Release = Release
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		ConfigurationEditor|Any CPU = ConfigurationEditor|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectDependencies) = postSolution
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56C05D1A-B8EE-45D4-A716-EBB35D8DAB78}.ConfigurationEditor|Any CPU.ActiveCfg = Release|Any CPU
+		{56C05D1A-B8EE-45D4-A716-EBB35D8DAB78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C05D1A-B8EE-45D4-A716-EBB35D8DAB78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C05D1A-B8EE-45D4-A716-EBB35D8DAB78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C05D1A-B8EE-45D4-A716-EBB35D8DAB78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}.ConfigurationEditor|Any CPU.ActiveCfg = ConfigurationEditor|Any CPU
+		{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}.ConfigurationEditor|Any CPU.Build.0 = ConfigurationEditor|Any CPU
+		{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBE5BFA7-7012-4A35-B129-ACB26C39F009}.ConfigurationEditor|Any CPU.ActiveCfg = Release|Any CPU
+		{BBE5BFA7-7012-4A35-B129-ACB26C39F009}.ConfigurationEditor|Any CPU.Build.0 = Release|Any CPU
+		{BBE5BFA7-7012-4A35-B129-ACB26C39F009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBE5BFA7-7012-4A35-B129-ACB26C39F009}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBE5BFA7-7012-4A35-B129-ACB26C39F009}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBE5BFA7-7012-4A35-B129-ACB26C39F009}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C6A5F4A-683C-4748-9478-5A186786DA86}.ConfigurationEditor|Any CPU.ActiveCfg = Release|Any CPU
+		{0C6A5F4A-683C-4748-9478-5A186786DA86}.ConfigurationEditor|Any CPU.Build.0 = Release|Any CPU
+		{0C6A5F4A-683C-4748-9478-5A186786DA86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C6A5F4A-683C-4748-9478-5A186786DA86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C6A5F4A-683C-4748-9478-5A186786DA86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C6A5F4A-683C-4748-9478-5A186786DA86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.ConfigurationEditor|Any CPU.ActiveCfg = Release|Any CPU
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.ConfigurationEditor|Any CPU.Build.0 = Release|Any CPU
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9645AECD-B7B8-4CD6-8A72-16CFB220B047}.ConfigurationEditor|Any CPU.ActiveCfg = Release|Any CPU
+		{9645AECD-B7B8-4CD6-8A72-16CFB220B047}.ConfigurationEditor|Any CPU.Build.0 = Release|Any CPU
+		{9645AECD-B7B8-4CD6-8A72-16CFB220B047}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9645AECD-B7B8-4CD6-8A72-16CFB220B047}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9645AECD-B7B8-4CD6-8A72-16CFB220B047}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9645AECD-B7B8-4CD6-8A72-16CFB220B047}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfiguration) = postSolution
-		{56C05D1A-B8EE-45D4-A716-EBB35D8DAB78}.ConfigurationEditor.ActiveCfg = Release|.NET
-		{56C05D1A-B8EE-45D4-A716-EBB35D8DAB78}.Debug.ActiveCfg = Debug|.NET
-		{56C05D1A-B8EE-45D4-A716-EBB35D8DAB78}.Debug.Build.0 = Debug|.NET
-		{56C05D1A-B8EE-45D4-A716-EBB35D8DAB78}.Release.ActiveCfg = Release|.NET
-		{56C05D1A-B8EE-45D4-A716-EBB35D8DAB78}.Release.Build.0 = Release|.NET
-		{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}.ConfigurationEditor.ActiveCfg = ConfigurationEditor|.NET
-		{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}.ConfigurationEditor.Build.0 = ConfigurationEditor|.NET
-		{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}.Debug.ActiveCfg = Debug|.NET
-		{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}.Debug.Build.0 = Debug|.NET
-		{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}.Release.ActiveCfg = Release|.NET
-		{87A4B44B-54B5-42E1-B9F3-17C92C5B61A4}.Release.Build.0 = Release|.NET
-		{BBE5BFA7-7012-4A35-B129-ACB26C39F009}.ConfigurationEditor.ActiveCfg = Release|.NET
-		{BBE5BFA7-7012-4A35-B129-ACB26C39F009}.ConfigurationEditor.Build.0 = Release|.NET
-		{BBE5BFA7-7012-4A35-B129-ACB26C39F009}.Debug.ActiveCfg = Debug|.NET
-		{BBE5BFA7-7012-4A35-B129-ACB26C39F009}.Debug.Build.0 = Debug|.NET
-		{BBE5BFA7-7012-4A35-B129-ACB26C39F009}.Release.ActiveCfg = Release|.NET
-		{BBE5BFA7-7012-4A35-B129-ACB26C39F009}.Release.Build.0 = Release|.NET
-		{0C6A5F4A-683C-4748-9478-5A186786DA86}.ConfigurationEditor.ActiveCfg = Release|.NET
-		{0C6A5F4A-683C-4748-9478-5A186786DA86}.ConfigurationEditor.Build.0 = Release|.NET
-		{0C6A5F4A-683C-4748-9478-5A186786DA86}.Debug.ActiveCfg = Debug|.NET
-		{0C6A5F4A-683C-4748-9478-5A186786DA86}.Debug.Build.0 = Debug|.NET
-		{0C6A5F4A-683C-4748-9478-5A186786DA86}.Release.ActiveCfg = Release|.NET
-		{0C6A5F4A-683C-4748-9478-5A186786DA86}.Release.Build.0 = Release|.NET
-		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.ConfigurationEditor.ActiveCfg = Release|.NET
-		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.ConfigurationEditor.Build.0 = Release|.NET
-		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Debug.ActiveCfg = Debug|.NET
-		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Debug.Build.0 = Debug|.NET
-		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Release.ActiveCfg = Release|.NET
-		{F8DE8838-3350-4F1C-9B43-50DFE42DB6A8}.Release.Build.0 = Release|.NET
-		{9645AECD-B7B8-4CD6-8A72-16CFB220B047}.ConfigurationEditor.ActiveCfg = Release|.NET
-		{9645AECD-B7B8-4CD6-8A72-16CFB220B047}.ConfigurationEditor.Build.0 = Release|.NET
-		{9645AECD-B7B8-4CD6-8A72-16CFB220B047}.Debug.ActiveCfg = Debug|.NET
-		{9645AECD-B7B8-4CD6-8A72-16CFB220B047}.Debug.Build.0 = Debug|.NET
-		{9645AECD-B7B8-4CD6-8A72-16CFB220B047}.Release.ActiveCfg = Release|.NET
-		{9645AECD-B7B8-4CD6-8A72-16CFB220B047}.Release.Build.0 = Release|.NET
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-	EndGlobalSection
-	GlobalSection(ExtensibilityAddIns) = postSolution
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
