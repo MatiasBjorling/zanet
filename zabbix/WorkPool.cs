@@ -82,6 +82,7 @@ namespace ZabbixCore
 		// Active host
 		public void addJob(string key, int interval, int unknown) 
 		{
+            log.Debug("Adding job - Key: " + key + ", Interval:" + interval + ", Unknown:" + unknown);
 			key = key.Trim();
 			Thread obj = (Thread)threads[key];
 			ILoadableCounter counterobj = null;
@@ -172,9 +173,17 @@ namespace ZabbixCore
 
 		private static void StartWorkedThread() 
 		{
-			WorkThread wt = new WorkThread();
-			wt.ThreadStart();
-			wt.PushData();
+            try
+            {
+			    WorkThread wt = new WorkThread();
+			    wt.ThreadStart();
+			    wt.PushData();
+            }
+            catch (Exception e)
+            {
+                log.Error(e.Message);
+                throw e;
+            }
 		}
 
 		public void StopAllThreads() 

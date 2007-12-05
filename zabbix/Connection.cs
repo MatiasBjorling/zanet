@@ -90,6 +90,7 @@ namespace ZabbixCore
 		// Secure tunnel 
 		private Tunneler tunnel = new Tunneler();
 		private bool useSSH = false;
+        private Int32 rcvTimeout = -1;
 
 		// Configurations
 		int queueLength = 65768; // Arbitrary ( ... 500.000 can be allocated for a few megs )
@@ -127,6 +128,13 @@ namespace ZabbixCore
 				}
 			}
 			catch {}
+
+            // Allow a configurable timeout for receiving data
+            try
+            {
+                rcvTimeout = Convert.ToInt32(conf.GetConfigurationByString("TimeOut", "General"));
+            }
+            catch { }
 
 			try 
 			{
@@ -201,6 +209,13 @@ namespace ZabbixCore
 					if (tmpSocket.Connected) 
 					{
 						s = tmpSocket;
+
+                        //apply a timeout if one is configured
+                        if (rcvTimeout > 0)
+                        {
+                            s.ReceiveTimeout = rcvTimeout * 1000;
+                        }
+
 						break; 
 					} 
 					else 
@@ -264,7 +279,14 @@ namespace ZabbixCore
 			} 
 			else /* Just send if queue is not used */
 			{
-				SendTo(connHostName + Convert.ToBase64String(Encoding.UTF8.GetBytes(e.Key)) + "</key><data>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(e.Val)) + "</data></req>");			
+                try
+                {
+                    SendTo(connHostName + Convert.ToBase64String(Encoding.UTF8.GetBytes(e.Key)) + "</key><data>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(e.Val)) + "</data></req>");			
+                }
+                catch (Exception ex)
+                {
+                    log.Info(ex.Message);
+                }
 			}
 		}
 
@@ -280,17 +302,22 @@ namespace ZabbixCore
 				if (socket != null && socket.Connected) 
 				{
 					byte[] data = Encoding.UTF8.GetBytes(message + "\n");
-					
-					socket.Send(data,data.Length,0);
-					int bytes = 0;					
-					do 
-					{
-						bytes = socket.Receive(recvbytes, recvbytes.Length, 0);
-						response += Encoding.ASCII.GetString(recvbytes,0, bytes);
-					} while (bytes > 0); 
 
-					// Close and cleanup connection. 
-					socket.Close();
+                    try
+                    {
+                        socket.Send(data, data.Length, 0);
+                        int bytes = 0;
+                        do
+                        {
+                            bytes = socket.Receive(recvbytes, recvbytes.Length, 0);
+                            response += Encoding.ASCII.GetString(recvbytes, 0, bytes);
+                        } while (bytes > 0);
+                    }
+                    finally
+                    {
+                        // Close and cleanup connection. 
+                        socket.Close();
+                    }
 				} 				
 			}
 			//log.Debug("Msg: " + message + " Res: \"" + response + "\"");

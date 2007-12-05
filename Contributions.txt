@@ -1,2 +1,6 @@
-Daniel Barlow - 20/11-2007
-Added a fix for FQDN hostname.
+Daniel Barlow
+20/11-2007
+ Added a fix for FQDN hostname.
+06/12-2007
+ Added version patch for showing the build in the zabbix interface and shortening it a bit so it fits.
+ Added a resilience patch for better handling of communication between the zabbix agent and server.

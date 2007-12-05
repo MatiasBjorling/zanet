@@ -33,7 +33,7 @@ namespace ZabbixCore.Counters
 		private int _AgentVersionLittle = 9;
 		private int _AgentVersionMajor = 0;
 
-		private int _AgentVersionBuild = 14;
+		private int _AgentVersionBuild = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Build;
 		private string _AgentVersion = "Agent.NET";
 
 		public VersionCounter()
@@ -58,7 +58,7 @@ namespace ZabbixCore.Counters
 		public string getValue() 
 		{
 			//return getBuildValue().ToString();
-			return _AgentVersion + " " + getMajorValue() + "." + getLittleValue() + " Build: " + getBuildValue();
+			return _AgentVersion + " " + getMajorValue() + "." + getLittleValue() + ": " + getBuildValue();
 		}
 
 		/// <summary>
