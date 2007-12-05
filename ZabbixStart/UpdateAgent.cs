@@ -40,7 +40,8 @@ namespace ZabbixStart
 		Assembly agent = null;
 
 		string version = "";
-		string hostname = System.Net.Dns.GetHostByName("LocalHost").HostName;
+	    private string hostname = System.Net.Dns.GetHostName();
+		
 		string customerGroup = "";
 
 		private static readonly log4net.ILog log = log4net.LogManager.GetLogger("net.sourceforge.zabbixstart.update");

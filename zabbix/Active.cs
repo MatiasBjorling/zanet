@@ -22,14 +22,10 @@
 
 
 using System;
-using System.IO;
-using System.Net;
-using System.Net.Sockets;
 using System.Threading;
-using System.Text;
-using ZabbixCommon;
 using System.Windows.Forms;
 using log4net;
+using ZabbixCommon;
 
 namespace ZabbixCore
 {
@@ -69,7 +65,7 @@ namespace ZabbixCore
 
 				if (hostnameAddress.Equals(""))
 				{
-					hostnameAddress = System.Net.Dns.GetHostByName("LocalHost").HostName;
+				    hostnameAddress = System.Net.Dns.GetHostName();
 				}
 			} 
 			catch {};

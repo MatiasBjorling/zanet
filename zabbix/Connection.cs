@@ -82,7 +82,7 @@ namespace ZabbixCore
 		private IPHostEntry hostEntry = null;
 		private Socket socket = null;
 		//private static string hostName = System.Net.Dns.GetHostByName("localhost").HostName;
-		private static string hostName = System.Net.Dns.GetHostByName("localhost").HostName;
+	    private static string hostName = System.Net.Dns.GetHostName();
 
 		// ConnectionPart
 		private static string connHostName = "<req><host>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(hostName)) + "</host><key>";
@@ -179,12 +179,12 @@ namespace ZabbixCore
 			// Get IP for DNS
 			if (useSSH)
 			{
-				hostEntry = Dns.GetHostByName("localhost");
+			    hostEntry = Dns.GetHostEntry("localhost");
 				serverport = Int32.Parse(conf.GetConfigurationByString("LocalPort", "SSH"));
 			} 
 			else 
 			{
-				hostEntry = Dns.GetHostByName(conf.GetConfigurationByString("ServerHost"));
+			    hostEntry = Dns.GetHostEntry(conf.GetConfigurationByString("ServerHost"));
 				serverport = Int32.Parse(conf.GetConfigurationByString("ServerPort"));
 			}
 
