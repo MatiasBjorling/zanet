@@ -1,0 +1,123 @@
+Index: Connection.cs
+===================================================================
+--- Connection.cs	(revision 76)
++++ Connection.cs	(working copy)
+@@ -90,6 +90,7 @@
+ 		// Secure tunnel 
+ 		private Tunneler tunnel = new Tunneler();
+ 		private bool useSSH = false;
++        private Int32 rcvTimeout = -1;
+ 
+ 		// Configurations
+ 		int queueLength = 65768; // Arbitrary ( ... 500.000 can be allocated for a few megs )
+@@ -128,6 +129,13 @@
+ 			}
+ 			catch {}
+ 
++            // Allow a configurable timeout for receiving data
++            try
++            {
++                rcvTimeout = Convert.ToInt32(conf.GetConfigurationByString("TimeOut", "General"));
++            }
++            catch { }
++
+ 			try 
+ 			{
+ 				try 
+@@ -201,6 +209,13 @@
+ 					if (tmpSocket.Connected) 
+ 					{
+ 						s = tmpSocket;
++
++                        //apply a timeout if one is configured
++                        if (rcvTimeout > 0)
++                        {
++                            s.ReceiveTimeout = rcvTimeout * 1000;
++                        }
++
+ 						break; 
+ 					} 
+ 					else 
+@@ -264,7 +279,14 @@
+ 			} 
+ 			else /* Just send if queue is not used */
+ 			{
+-				SendTo(connHostName + Convert.ToBase64String(Encoding.UTF8.GetBytes(e.Key)) + "</key><data>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(e.Val)) + "</data></req>");			
++                try
++                {
++                    SendTo(connHostName + Convert.ToBase64String(Encoding.UTF8.GetBytes(e.Key)) + "</key><data>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(e.Val)) + "</data></req>");			
++                }
++                catch (Exception ex)
++                {
++                    log.Info(ex.Message);
++                }
+ 			}
+ 		}
+ 
+@@ -280,17 +302,22 @@
+ 				if (socket != null && socket.Connected) 
+ 				{
+ 					byte[] data = Encoding.UTF8.GetBytes(message + "\n");
+-					
+-					socket.Send(data,data.Length,0);
+-					int bytes = 0;					
+-					do 
+-					{
+-						bytes = socket.Receive(recvbytes, recvbytes.Length, 0);
+-						response += Encoding.ASCII.GetString(recvbytes,0, bytes);
+-					} while (bytes > 0); 
+ 
+-					// Close and cleanup connection. 
+-					socket.Close();
++                    try
++                    {
++                        socket.Send(data, data.Length, 0);
++                        int bytes = 0;
++                        do
++                        {
++                            bytes = socket.Receive(recvbytes, recvbytes.Length, 0);
++                            response += Encoding.ASCII.GetString(recvbytes, 0, bytes);
++                        } while (bytes > 0);
++                    }
++                    finally
++                    {
++                        // Close and cleanup connection. 
++                        socket.Close();
++                    }
+ 				} 				
+ 			}
+ 			//log.Debug("Msg: " + message + " Res: \"" + response + "\"");
+Index: WorkPool.cs
+===================================================================
+--- WorkPool.cs	(revision 76)
++++ WorkPool.cs	(working copy)
+@@ -82,6 +82,7 @@
+ 		// Active host
+ 		public void addJob(string key, int interval, int unknown) 
+ 		{
++            log.Debug("Adding job - Key: " + key + ", Interval:" + interval + ", Unknown:" + unknown);
+ 			key = key.Trim();
+ 			Thread obj = (Thread)threads[key];
+ 			ILoadableCounter counterobj = null;
+@@ -172,9 +173,17 @@
+ 
+ 		private static void StartWorkedThread() 
+ 		{
+-			WorkThread wt = new WorkThread();
+-			wt.ThreadStart();
+-			wt.PushData();
++            try
++            {
++			    WorkThread wt = new WorkThread();
++			    wt.ThreadStart();
++			    wt.PushData();
++            }
++            catch (Exception e)
++            {
++                log.Error(e.Message);
++                throw e;
++            }
+ 		}
+ 
+ 		public void StopAllThreads() 
+
