@@ -60,7 +60,6 @@ namespace ZabbixStart
 
 		public void PullLoopUpdateServer()
 		{
-			version = version;
 			// Get update information from update service.	
 			while (true)
 			{
