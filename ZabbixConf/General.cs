@@ -125,316 +125,315 @@ namespace ZabbixConf
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.grpBoxGeneral = new System.Windows.Forms.GroupBox();
-			this.chkCanLoadUntrustedCode = new System.Windows.Forms.CheckBox();
-			this.label8 = new System.Windows.Forms.Label();
-			this.txtWorkerSockets = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
-			this.chkRemComm = new System.Windows.Forms.CheckBox();
-			this.lblRemComm = new System.Windows.Forms.Label();
-			this.nudTimeOut = new System.Windows.Forms.NumericUpDown();
-			this.lblTimeOut = new System.Windows.Forms.Label();
-			this.txtRefresh = new System.Windows.Forms.TextBox();
-			this.lblRefresh = new System.Windows.Forms.Label();
-			this.txtAgentPort = new System.Windows.Forms.TextBox();
-			this.lblAgentPort = new System.Windows.Forms.Label();
-			this.chkFQDN = new System.Windows.Forms.CheckBox();
-			this.lblFQDN = new System.Windows.Forms.Label();
-			this.txtServerPort = new System.Windows.Forms.TextBox();
-			this.txtServerHost = new System.Windows.Forms.TextBox();
-			this.txtHostname = new System.Windows.Forms.TextBox();
-			this.lblServerPort = new System.Windows.Forms.Label();
-			this.lblServerHost = new System.Windows.Forms.Label();
-			this.lblHostname = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.chkUseQueue = new System.Windows.Forms.CheckBox();
-			this.txtQueueLength = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.grpBoxGeneral.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.nudTimeOut)).BeginInit();
-			this.SuspendLayout();
-			// 
-			// grpBoxGeneral
-			// 
-			this.grpBoxGeneral.Controls.Add(this.txtQueueLength);
-			this.grpBoxGeneral.Controls.Add(this.label5);
-			this.grpBoxGeneral.Controls.Add(this.label4);
-			this.grpBoxGeneral.Controls.Add(this.label3);
-			this.grpBoxGeneral.Controls.Add(this.chkUseQueue);
-			this.grpBoxGeneral.Controls.Add(this.chkCanLoadUntrustedCode);
-			this.grpBoxGeneral.Controls.Add(this.label8);
-			this.grpBoxGeneral.Controls.Add(this.txtWorkerSockets);
-			this.grpBoxGeneral.Controls.Add(this.label6);
-			this.grpBoxGeneral.Controls.Add(this.label1);
-			this.grpBoxGeneral.Controls.Add(this.chkRemComm);
-			this.grpBoxGeneral.Controls.Add(this.lblRemComm);
-			this.grpBoxGeneral.Controls.Add(this.nudTimeOut);
-			this.grpBoxGeneral.Controls.Add(this.lblTimeOut);
-			this.grpBoxGeneral.Controls.Add(this.txtRefresh);
-			this.grpBoxGeneral.Controls.Add(this.lblRefresh);
-			this.grpBoxGeneral.Controls.Add(this.txtAgentPort);
-			this.grpBoxGeneral.Controls.Add(this.lblAgentPort);
-			this.grpBoxGeneral.Controls.Add(this.chkFQDN);
-			this.grpBoxGeneral.Controls.Add(this.lblFQDN);
-			this.grpBoxGeneral.Controls.Add(this.txtServerPort);
-			this.grpBoxGeneral.Controls.Add(this.txtServerHost);
-			this.grpBoxGeneral.Controls.Add(this.txtHostname);
-			this.grpBoxGeneral.Controls.Add(this.lblServerPort);
-			this.grpBoxGeneral.Controls.Add(this.lblServerHost);
-			this.grpBoxGeneral.Controls.Add(this.lblHostname);
-			this.grpBoxGeneral.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.grpBoxGeneral.Location = new System.Drawing.Point(8, 8);
-			this.grpBoxGeneral.Name = "grpBoxGeneral";
-			this.grpBoxGeneral.Size = new System.Drawing.Size(560, 344);
-			this.grpBoxGeneral.TabIndex = 5;
-			this.grpBoxGeneral.TabStop = false;
-			this.grpBoxGeneral.Text = "General";
-			// 
-			// chkCanLoadUntrustedCode
-			// 
-			this.chkCanLoadUntrustedCode.Location = new System.Drawing.Point(168, 232);
-			this.chkCanLoadUntrustedCode.Name = "chkCanLoadUntrustedCode";
-			this.chkCanLoadUntrustedCode.Size = new System.Drawing.Size(40, 24);
-			this.chkCanLoadUntrustedCode.TabIndex = 50;
-			// 
-			// label8
-			// 
-			this.label8.Location = new System.Drawing.Point(8, 232);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(136, 32);
-			this.label8.TabIndex = 49;
-			this.label8.Text = "Can load untrusted code: Use only for development";
-			// 
-			// txtWorkerSockets
-			// 
-			this.txtWorkerSockets.Location = new System.Drawing.Point(168, 136);
-			this.txtWorkerSockets.Name = "txtWorkerSockets";
-			this.txtWorkerSockets.Size = new System.Drawing.Size(48, 20);
-			this.txtWorkerSockets.TabIndex = 45;
-			this.txtWorkerSockets.Text = "4";
-			// 
-			// label6
-			// 
-			this.label6.Location = new System.Drawing.Point(8, 140);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(100, 16);
-			this.label6.TabIndex = 44;
-			this.label6.Text = "Passive workers";
-			// 
-			// label1
-			// 
-			this.label1.Location = new System.Drawing.Point(224, 88);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(264, 32);
-			this.label1.TabIndex = 37;
-			this.label1.Text = "If SSH is used. Zabbix server is localhost and the port is the local bound port.";
-			// 
-			// chkRemComm
-			// 
-			this.chkRemComm.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.chkRemComm.Location = new System.Drawing.Point(168, 188);
-			this.chkRemComm.Name = "chkRemComm";
-			this.chkRemComm.Size = new System.Drawing.Size(16, 16);
-			this.chkRemComm.TabIndex = 36;
-			// 
-			// lblRemComm
-			// 
-			this.lblRemComm.Location = new System.Drawing.Point(8, 188);
-			this.lblRemComm.Name = "lblRemComm";
-			this.lblRemComm.Size = new System.Drawing.Size(144, 16);
-			this.lblRemComm.TabIndex = 35;
-			this.lblRemComm.Text = "Use remote commands";
-			// 
-			// nudTimeOut
-			// 
-			this.nudTimeOut.Location = new System.Drawing.Point(168, 208);
-			this.nudTimeOut.Maximum = new System.Decimal(new int[] {
-																	   30,
-																	   0,
-																	   0,
-																	   0});
-			this.nudTimeOut.Minimum = new System.Decimal(new int[] {
-																	   1,
-																	   0,
-																	   0,
-																	   0});
-			this.nudTimeOut.Name = "nudTimeOut";
-			this.nudTimeOut.Size = new System.Drawing.Size(32, 20);
-			this.nudTimeOut.TabIndex = 34;
-			this.nudTimeOut.Value = new System.Decimal(new int[] {
-																	 3,
-																	 0,
-																	 0,
-																	 0});
-			// 
-			// lblTimeOut
-			// 
-			this.lblTimeOut.Location = new System.Drawing.Point(8, 208);
-			this.lblTimeOut.Name = "lblTimeOut";
-			this.lblTimeOut.Size = new System.Drawing.Size(104, 16);
-			this.lblTimeOut.TabIndex = 33;
-			this.lblTimeOut.Text = "Timeout (seconds)";
-			this.lblTimeOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// txtRefresh
-			// 
-			this.txtRefresh.Location = new System.Drawing.Point(168, 160);
-			this.txtRefresh.Name = "txtRefresh";
-			this.txtRefresh.Size = new System.Drawing.Size(48, 20);
-			this.txtRefresh.TabIndex = 31;
-			this.txtRefresh.Text = "120";
-			// 
-			// lblRefresh
-			// 
-			this.lblRefresh.Location = new System.Drawing.Point(8, 164);
-			this.lblRefresh.Name = "lblRefresh";
-			this.lblRefresh.Size = new System.Drawing.Size(152, 16);
-			this.lblRefresh.TabIndex = 29;
-			this.lblRefresh.Text = "Refresh Active Checks (secs)";
-			// 
-			// txtAgentPort
-			// 
-			this.txtAgentPort.Location = new System.Drawing.Point(168, 112);
-			this.txtAgentPort.Name = "txtAgentPort";
-			this.txtAgentPort.Size = new System.Drawing.Size(49, 20);
-			this.txtAgentPort.TabIndex = 28;
-			this.txtAgentPort.Text = "10050";
-			// 
-			// lblAgentPort
-			// 
-			this.lblAgentPort.Location = new System.Drawing.Point(8, 116);
-			this.lblAgentPort.Name = "lblAgentPort";
-			this.lblAgentPort.Size = new System.Drawing.Size(136, 16);
-			this.lblAgentPort.TabIndex = 27;
-			this.lblAgentPort.Text = "Agent listen port";
-			// 
-			// chkFQDN
-			// 
-			this.chkFQDN.Checked = true;
-			this.chkFQDN.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.chkFQDN.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.chkFQDN.Location = new System.Drawing.Point(167, 40);
-			this.chkFQDN.Name = "chkFQDN";
-			this.chkFQDN.Size = new System.Drawing.Size(16, 16);
-			this.chkFQDN.TabIndex = 26;
-			this.chkFQDN.TabStop = false;
-			this.chkFQDN.CheckedChanged += new System.EventHandler(this.useFQDN_changed);
-			// 
-			// lblFQDN
-			// 
-			this.lblFQDN.Location = new System.Drawing.Point(8, 44);
-			this.lblFQDN.Name = "lblFQDN";
-			this.lblFQDN.Size = new System.Drawing.Size(100, 16);
-			this.lblFQDN.TabIndex = 25;
-			this.lblFQDN.Text = "Use FQDN ?";
-			// 
-			// txtServerPort
-			// 
-			this.txtServerPort.Location = new System.Drawing.Point(168, 88);
-			this.txtServerPort.Name = "txtServerPort";
-			this.txtServerPort.Size = new System.Drawing.Size(48, 20);
-			this.txtServerPort.TabIndex = 2;
-			this.txtServerPort.Text = "10051";
-			// 
-			// txtServerHost
-			// 
-			this.txtServerHost.Location = new System.Drawing.Point(168, 64);
-			this.txtServerHost.Name = "txtServerHost";
-			this.txtServerHost.Size = new System.Drawing.Size(256, 20);
-			this.txtServerHost.TabIndex = 1;
-			this.txtServerHost.Text = "";
-			// 
-			// txtHostname
-			// 
-			this.txtHostname.Location = new System.Drawing.Point(168, 16);
-			this.txtHostname.Name = "txtHostname";
-			this.txtHostname.ReadOnly = true;
-			this.txtHostname.Size = new System.Drawing.Size(256, 20);
-			this.txtHostname.TabIndex = 22;
-			this.txtHostname.TabStop = false;
-			this.txtHostname.Text = "";
-			// 
-			// lblServerPort
-			// 
-			this.lblServerPort.Location = new System.Drawing.Point(8, 92);
-			this.lblServerPort.Name = "lblServerPort";
-			this.lblServerPort.Size = new System.Drawing.Size(136, 16);
-			this.lblServerPort.TabIndex = 12;
-			this.lblServerPort.Text = "Zabbix server port";
-			// 
-			// lblServerHost
-			// 
-			this.lblServerHost.Location = new System.Drawing.Point(8, 68);
-			this.lblServerHost.Name = "lblServerHost";
-			this.lblServerHost.Size = new System.Drawing.Size(136, 16);
-			this.lblServerHost.TabIndex = 11;
-			this.lblServerHost.Text = "Zabbix server address";
-			// 
-			// lblHostname
-			// 
-			this.lblHostname.Location = new System.Drawing.Point(8, 20);
-			this.lblHostname.Name = "lblHostname";
-			this.lblHostname.Size = new System.Drawing.Size(88, 16);
-			this.lblHostname.TabIndex = 0;
-			this.lblHostname.Text = "Hostname:";
-			// 
-			// label4
-			// 
-			this.label4.Location = new System.Drawing.Point(192, 312);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(216, 16);
-			this.label4.TabIndex = 53;
-			this.label4.Text = "Use only with timestamp patched server.";
-			this.label4.Visible = false;
-			// 
-			// label3
-			// 
-			this.label3.Location = new System.Drawing.Point(8, 312);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(104, 16);
-			this.label3.TabIndex = 52;
-			this.label3.Text = "Enable queue";
-			this.label3.Visible = false;
-			// 
-			// chkUseQueue
-			// 
-			this.chkUseQueue.Location = new System.Drawing.Point(168, 312);
-			this.chkUseQueue.Name = "chkUseQueue";
-			this.chkUseQueue.Size = new System.Drawing.Size(16, 16);
-			this.chkUseQueue.TabIndex = 51;
-			this.chkUseQueue.Visible = false;
-			// 
-			// txtQueueLength
-			// 
-			this.txtQueueLength.Location = new System.Drawing.Point(168, 288);
-			this.txtQueueLength.Name = "txtQueueLength";
-			this.txtQueueLength.Size = new System.Drawing.Size(64, 20);
-			this.txtQueueLength.TabIndex = 55;
-			this.txtQueueLength.Text = "50000";
-			this.txtQueueLength.Visible = false;
-			// 
-			// label5
-			// 
-			this.label5.Location = new System.Drawing.Point(8, 296);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(72, 16);
-			this.label5.TabIndex = 54;
-			this.label5.Text = "Queue length";
-			this.label5.Visible = false;
-			// 
-			// General
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(576, 366);
-			this.Controls.Add(this.grpBoxGeneral);
-			this.HelpButton = true;
-			this.Name = "General";
-			this.Text = "General Settings";
-			this.grpBoxGeneral.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.nudTimeOut)).EndInit();
-			this.ResumeLayout(false);
+            this.grpBoxGeneral = new System.Windows.Forms.GroupBox();
+            this.txtQueueLength = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.chkUseQueue = new System.Windows.Forms.CheckBox();
+            this.chkCanLoadUntrustedCode = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtWorkerSockets = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.chkRemComm = new System.Windows.Forms.CheckBox();
+            this.lblRemComm = new System.Windows.Forms.Label();
+            this.nudTimeOut = new System.Windows.Forms.NumericUpDown();
+            this.lblTimeOut = new System.Windows.Forms.Label();
+            this.txtRefresh = new System.Windows.Forms.TextBox();
+            this.lblRefresh = new System.Windows.Forms.Label();
+            this.txtAgentPort = new System.Windows.Forms.TextBox();
+            this.lblAgentPort = new System.Windows.Forms.Label();
+            this.chkFQDN = new System.Windows.Forms.CheckBox();
+            this.lblFQDN = new System.Windows.Forms.Label();
+            this.txtServerPort = new System.Windows.Forms.TextBox();
+            this.txtServerHost = new System.Windows.Forms.TextBox();
+            this.txtHostname = new System.Windows.Forms.TextBox();
+            this.lblServerPort = new System.Windows.Forms.Label();
+            this.lblServerHost = new System.Windows.Forms.Label();
+            this.lblHostname = new System.Windows.Forms.Label();
+            this.grpBoxGeneral.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTimeOut)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // grpBoxGeneral
+            // 
+            this.grpBoxGeneral.Controls.Add(this.txtQueueLength);
+            this.grpBoxGeneral.Controls.Add(this.label5);
+            this.grpBoxGeneral.Controls.Add(this.label4);
+            this.grpBoxGeneral.Controls.Add(this.label3);
+            this.grpBoxGeneral.Controls.Add(this.chkUseQueue);
+            this.grpBoxGeneral.Controls.Add(this.chkCanLoadUntrustedCode);
+            this.grpBoxGeneral.Controls.Add(this.label8);
+            this.grpBoxGeneral.Controls.Add(this.txtWorkerSockets);
+            this.grpBoxGeneral.Controls.Add(this.label6);
+            this.grpBoxGeneral.Controls.Add(this.label1);
+            this.grpBoxGeneral.Controls.Add(this.chkRemComm);
+            this.grpBoxGeneral.Controls.Add(this.lblRemComm);
+            this.grpBoxGeneral.Controls.Add(this.nudTimeOut);
+            this.grpBoxGeneral.Controls.Add(this.lblTimeOut);
+            this.grpBoxGeneral.Controls.Add(this.txtRefresh);
+            this.grpBoxGeneral.Controls.Add(this.lblRefresh);
+            this.grpBoxGeneral.Controls.Add(this.txtAgentPort);
+            this.grpBoxGeneral.Controls.Add(this.lblAgentPort);
+            this.grpBoxGeneral.Controls.Add(this.chkFQDN);
+            this.grpBoxGeneral.Controls.Add(this.lblFQDN);
+            this.grpBoxGeneral.Controls.Add(this.txtServerPort);
+            this.grpBoxGeneral.Controls.Add(this.txtServerHost);
+            this.grpBoxGeneral.Controls.Add(this.txtHostname);
+            this.grpBoxGeneral.Controls.Add(this.lblServerPort);
+            this.grpBoxGeneral.Controls.Add(this.lblServerHost);
+            this.grpBoxGeneral.Controls.Add(this.lblHostname);
+            this.grpBoxGeneral.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.grpBoxGeneral.Location = new System.Drawing.Point(8, 8);
+            this.grpBoxGeneral.Name = "grpBoxGeneral";
+            this.grpBoxGeneral.Size = new System.Drawing.Size(560, 344);
+            this.grpBoxGeneral.TabIndex = 5;
+            this.grpBoxGeneral.TabStop = false;
+            this.grpBoxGeneral.Text = "General";
+            // 
+            // txtQueueLength
+            // 
+            this.txtQueueLength.Location = new System.Drawing.Point(168, 288);
+            this.txtQueueLength.Name = "txtQueueLength";
+            this.txtQueueLength.Size = new System.Drawing.Size(64, 20);
+            this.txtQueueLength.TabIndex = 55;
+            this.txtQueueLength.Text = "50000";
+            this.txtQueueLength.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(8, 296);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(72, 16);
+            this.label5.TabIndex = 54;
+            this.label5.Text = "Queue length";
+            this.label5.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(192, 312);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(216, 16);
+            this.label4.TabIndex = 53;
+            this.label4.Text = "Use only with timestamp patched server.";
+            this.label4.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(8, 312);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(104, 16);
+            this.label3.TabIndex = 52;
+            this.label3.Text = "Enable queue";
+            this.label3.Visible = false;
+            // 
+            // chkUseQueue
+            // 
+            this.chkUseQueue.Location = new System.Drawing.Point(168, 312);
+            this.chkUseQueue.Name = "chkUseQueue";
+            this.chkUseQueue.Size = new System.Drawing.Size(16, 16);
+            this.chkUseQueue.TabIndex = 51;
+            this.chkUseQueue.Visible = false;
+            // 
+            // chkCanLoadUntrustedCode
+            // 
+            this.chkCanLoadUntrustedCode.Location = new System.Drawing.Point(168, 232);
+            this.chkCanLoadUntrustedCode.Name = "chkCanLoadUntrustedCode";
+            this.chkCanLoadUntrustedCode.Size = new System.Drawing.Size(40, 24);
+            this.chkCanLoadUntrustedCode.TabIndex = 50;
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(8, 232);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(136, 32);
+            this.label8.TabIndex = 49;
+            this.label8.Text = "Can load untrusted code: Use only for development";
+            // 
+            // txtWorkerSockets
+            // 
+            this.txtWorkerSockets.Location = new System.Drawing.Point(168, 136);
+            this.txtWorkerSockets.Name = "txtWorkerSockets";
+            this.txtWorkerSockets.Size = new System.Drawing.Size(48, 20);
+            this.txtWorkerSockets.TabIndex = 45;
+            this.txtWorkerSockets.Text = "4";
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(8, 140);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(100, 16);
+            this.label6.TabIndex = 44;
+            this.label6.Text = "Passive workers";
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(224, 88);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(264, 32);
+            this.label1.TabIndex = 37;
+            this.label1.Text = "If SSH is used. Zabbix server is localhost and the port is the local bound port.";
+            // 
+            // chkRemComm
+            // 
+            this.chkRemComm.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.chkRemComm.Location = new System.Drawing.Point(168, 188);
+            this.chkRemComm.Name = "chkRemComm";
+            this.chkRemComm.Size = new System.Drawing.Size(16, 16);
+            this.chkRemComm.TabIndex = 36;
+            // 
+            // lblRemComm
+            // 
+            this.lblRemComm.Location = new System.Drawing.Point(8, 188);
+            this.lblRemComm.Name = "lblRemComm";
+            this.lblRemComm.Size = new System.Drawing.Size(144, 16);
+            this.lblRemComm.TabIndex = 35;
+            this.lblRemComm.Text = "Use remote commands";
+            // 
+            // nudTimeOut
+            // 
+            this.nudTimeOut.Location = new System.Drawing.Point(168, 208);
+            this.nudTimeOut.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.nudTimeOut.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudTimeOut.Name = "nudTimeOut";
+            this.nudTimeOut.Size = new System.Drawing.Size(40, 20);
+            this.nudTimeOut.TabIndex = 34;
+            this.nudTimeOut.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
+            // lblTimeOut
+            // 
+            this.lblTimeOut.Location = new System.Drawing.Point(8, 208);
+            this.lblTimeOut.Name = "lblTimeOut";
+            this.lblTimeOut.Size = new System.Drawing.Size(104, 16);
+            this.lblTimeOut.TabIndex = 33;
+            this.lblTimeOut.Text = "Timeout (seconds)";
+            this.lblTimeOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtRefresh
+            // 
+            this.txtRefresh.Location = new System.Drawing.Point(168, 160);
+            this.txtRefresh.Name = "txtRefresh";
+            this.txtRefresh.Size = new System.Drawing.Size(48, 20);
+            this.txtRefresh.TabIndex = 31;
+            this.txtRefresh.Text = "120";
+            // 
+            // lblRefresh
+            // 
+            this.lblRefresh.Location = new System.Drawing.Point(8, 164);
+            this.lblRefresh.Name = "lblRefresh";
+            this.lblRefresh.Size = new System.Drawing.Size(152, 16);
+            this.lblRefresh.TabIndex = 29;
+            this.lblRefresh.Text = "Refresh Active Checks (secs)";
+            // 
+            // txtAgentPort
+            // 
+            this.txtAgentPort.Location = new System.Drawing.Point(168, 112);
+            this.txtAgentPort.Name = "txtAgentPort";
+            this.txtAgentPort.Size = new System.Drawing.Size(49, 20);
+            this.txtAgentPort.TabIndex = 28;
+            this.txtAgentPort.Text = "10050";
+            // 
+            // lblAgentPort
+            // 
+            this.lblAgentPort.Location = new System.Drawing.Point(8, 116);
+            this.lblAgentPort.Name = "lblAgentPort";
+            this.lblAgentPort.Size = new System.Drawing.Size(136, 16);
+            this.lblAgentPort.TabIndex = 27;
+            this.lblAgentPort.Text = "Agent listen port";
+            // 
+            // chkFQDN
+            // 
+            this.chkFQDN.Checked = true;
+            this.chkFQDN.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkFQDN.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.chkFQDN.Location = new System.Drawing.Point(167, 40);
+            this.chkFQDN.Name = "chkFQDN";
+            this.chkFQDN.Size = new System.Drawing.Size(16, 16);
+            this.chkFQDN.TabIndex = 26;
+            this.chkFQDN.TabStop = false;
+            this.chkFQDN.CheckedChanged += new System.EventHandler(this.useFQDN_changed);
+            // 
+            // lblFQDN
+            // 
+            this.lblFQDN.Location = new System.Drawing.Point(8, 44);
+            this.lblFQDN.Name = "lblFQDN";
+            this.lblFQDN.Size = new System.Drawing.Size(100, 16);
+            this.lblFQDN.TabIndex = 25;
+            this.lblFQDN.Text = "Use FQDN ?";
+            // 
+            // txtServerPort
+            // 
+            this.txtServerPort.Location = new System.Drawing.Point(168, 88);
+            this.txtServerPort.Name = "txtServerPort";
+            this.txtServerPort.Size = new System.Drawing.Size(48, 20);
+            this.txtServerPort.TabIndex = 2;
+            this.txtServerPort.Text = "10051";
+            // 
+            // txtServerHost
+            // 
+            this.txtServerHost.Location = new System.Drawing.Point(168, 64);
+            this.txtServerHost.Name = "txtServerHost";
+            this.txtServerHost.Size = new System.Drawing.Size(256, 20);
+            this.txtServerHost.TabIndex = 1;
+            // 
+            // txtHostname
+            // 
+            this.txtHostname.Location = new System.Drawing.Point(168, 16);
+            this.txtHostname.Name = "txtHostname";
+            this.txtHostname.ReadOnly = true;
+            this.txtHostname.Size = new System.Drawing.Size(256, 20);
+            this.txtHostname.TabIndex = 22;
+            this.txtHostname.TabStop = false;
+            // 
+            // lblServerPort
+            // 
+            this.lblServerPort.Location = new System.Drawing.Point(8, 92);
+            this.lblServerPort.Name = "lblServerPort";
+            this.lblServerPort.Size = new System.Drawing.Size(136, 16);
+            this.lblServerPort.TabIndex = 12;
+            this.lblServerPort.Text = "Zabbix server port";
+            // 
+            // lblServerHost
+            // 
+            this.lblServerHost.Location = new System.Drawing.Point(8, 68);
+            this.lblServerHost.Name = "lblServerHost";
+            this.lblServerHost.Size = new System.Drawing.Size(136, 16);
+            this.lblServerHost.TabIndex = 11;
+            this.lblServerHost.Text = "Zabbix server address";
+            // 
+            // lblHostname
+            // 
+            this.lblHostname.Location = new System.Drawing.Point(8, 20);
+            this.lblHostname.Name = "lblHostname";
+            this.lblHostname.Size = new System.Drawing.Size(88, 16);
+            this.lblHostname.TabIndex = 0;
+            this.lblHostname.Text = "Hostname:";
+            // 
+            // General
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.ClientSize = new System.Drawing.Size(576, 366);
+            this.Controls.Add(this.grpBoxGeneral);
+            this.HelpButton = true;
+            this.Name = "General";
+            this.Text = "General Settings";
+            this.grpBoxGeneral.ResumeLayout(false);
+            this.grpBoxGeneral.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTimeOut)).EndInit();
+            this.ResumeLayout(false);
 
 		}
 		#endregion

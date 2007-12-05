@@ -22,21 +22,12 @@
 
 
 using System;
-using System.Drawing;
 using System.Collections;
-using System.ComponentModel;
-using System.Windows.Forms;
-using System.Data;
-using Microsoft.Win32;
-using System.IO;
 using System.Reflection;
-using System.Threading;
-using System.Diagnostics;
-using System.Xml;
 using System.ServiceProcess;
+using System.Windows.Forms;
+using System.Xml;
 using log4net.Config;
-
-
 
 namespace ZabbixConf
 {
@@ -80,8 +71,9 @@ namespace ZabbixConf
 		{
 			InitializeComponent();
 
-			foreach (string s in Assembly.GetCallingAssembly().GetManifestResourceNames())
-				Console.WriteLine(s);
+            //foreach (string s in Assembly.GetCallingAssembly().GetManifestResourceNames())
+            //    Console.WriteLine(s);
+
 			XmlConfigurator.Configure(Assembly.GetCallingAssembly().GetManifestResourceStream("ZabbixConf.SubSystem.log_debug.xml"));
 
 			//getValues();
@@ -217,7 +209,9 @@ namespace ZabbixConf
 			Application.EnableVisualStyles();
 			Application.DoEvents();
 			ZabbixAgentConf form = new ZabbixAgentConf();
-			form.LoadFromXml("settings.xml");
+		    string directory = Assembly.GetExecutingAssembly().Location;
+		    directory = directory.Substring(0, directory.LastIndexOf("\\") + 1);
+			form.LoadFromXml(string.Format("{0}\\settings.xml", directory));
 			Application.Run(form);
 
 		}
