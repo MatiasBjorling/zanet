@@ -62,8 +62,7 @@ namespace ZabbixCounters.Counters
 		/// <returns></returns>
 		public string getValue() 
 		{
-			ManagementObject mydisk = new 
-			ManagementObject("win32_logicaldisk.deviceid='" + diskname + "'"); 
+			ManagementObject mydisk = new ManagementObject("win32_logicaldisk.deviceid='" + diskname + "'"); 
 			mydisk.Get();
 			if (disktype.Equals("total") )
 				return mydisk["Size"].ToString();

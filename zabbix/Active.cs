@@ -80,7 +80,7 @@ log.Info("Started in DEBUGGING mode");
 #endif
 			// Host
 			//log.Debug("ZBX_GET_ACTIVE_CHECKS\n" + System.Net.Dns.GetHostByName("LocalHost").HostName);
-			String askForActiveClients = "ZBX_GET_ACTIVE_CHECKS\n" + hostnameAddress + "\n";
+            String askForActiveClients = "ZBX_GET_ACTIVE_CHECKS\n" + hostnameAddress;
 			
 			try 
 			{

@@ -22,13 +22,12 @@
 
 using System;
 using System.Collections;
-using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using ZabbixCommon;
 using log4net;
+using ZabbixCommon;
 
 namespace ZabbixCore
 {
@@ -51,13 +50,13 @@ namespace ZabbixCore
 			public string Key
 			{
 				get { return key; }
-				set { this.key = value; }
+				set { key = value; }
 			}
 
 			public string Val
 			{
 				get { return val; }
-				set { this.val = value; }
+				set { val = value; }
 			}
 		}
 
@@ -76,28 +75,35 @@ namespace ZabbixCore
 		// Connection lock
 		private readonly object connlock = new object();
 
-		Configuration conf = Configuration.getInstance;
+	    private readonly Configuration conf = Configuration.getInstance;
 
 		// Connection
 		private IPHostEntry hostEntry = null;
 		private Socket socket = null;
-		//private static string hostName = System.Net.Dns.GetHostByName("localhost").HostName;
-	    private static string hostName = System.Net.Dns.GetHostName();
+		private static string hostName = System.Net.Dns.GetHostByName("localhost").HostName;
+
 
 		// ConnectionPart
-		private static string connHostName = "<req><host>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(hostName)) + "</host><key>";
+		private static string connHostName = "<host>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(hostName)) + "</host><key>";
 
 		// Secure tunnel 
 		private Tunneler tunnel = new Tunneler();
 		private bool useSSH = false;
         private Int32 rcvTimeout = -1;
-
+        
 		// Configurations
-		int queueLength = 65768; // Arbitrary ( ... 500.000 can be allocated for a few megs )
+		private int queueLength = 65768; // Arbitrary ( ... 500.000 can be allocated for a few megs )
+	    private bool isOldVersion = false; // Pre 1.4 Zabbix didnt have a prefix for sending messages. 
+
+        // 1.4 Zabbix Server prefix.
+        //private string messagePrefix = "ZBXD" + new char[9] { '\x01', '\x00', '\x00', '\x00', '\x00', '\x00', '\x00', '\x00', '\x00' };
+        private string messagePrefix = "";//new char[13] { '\x5a', '\x42', '\x58', '\x44', '\x01', '\x00', '\x00', '\x00', '\x00', '\x00', '\x00', '\x00', '\x00' };
+
 
 		private Connection() {
-			
-			// Setup queue
+            //char[] messagePrefixTmp = new char[9] { '\x01', '\x00', '\x00', '\x00', '\x00', '\x00', '\x00', '\x00', '\x00'}.ToString();
+		    
+		    // Setup queue
 			NewCounterInQueue += new NewCounterInQueueEventHandler(this.sendCountersFromQueue);
 
 			// Get static configuration
@@ -110,7 +116,8 @@ namespace ZabbixCore
 				if(Convert.ToBoolean(conf.GetConfigurationByString("UseQueue"))) 
 					commandQueue = new Queue(queueLength);
 			} 
-			catch {}
+			catch (Exception)
+			{}
 			finally 
 			{
 				if (commandQueue != null) 
@@ -123,7 +130,7 @@ namespace ZabbixCore
 			{
 				if (!Convert.ToBoolean(conf.GetConfigurationByString("FQDN", "General"))) 
 				{
-					connHostName = "<req><host>" + Convert.ToBase64String(Encoding.UTF8.GetBytes((string) conf.GetConfigurationByString("Hostname", "General"))) + "</host><key>"; ;
+					connHostName = "<host>" + Convert.ToBase64String(Encoding.UTF8.GetBytes((string) conf.GetConfigurationByString("Hostname", "General"))) + "</host><key>"; ;
 					log.Debug("Using hostname: " + conf.GetConfigurationByString("Hostname", "General"));
 				}
 			}
@@ -190,10 +197,11 @@ namespace ZabbixCore
 			    hostEntry = Dns.GetHostEntry("localhost");
 				serverport = Int32.Parse(conf.GetConfigurationByString("LocalPort", "SSH"));
 			} 
-			else 
+			else
 			{
-			    hostEntry = Dns.GetHostEntry(conf.GetConfigurationByString("ServerHost"));
-				serverport = Int32.Parse(conf.GetConfigurationByString("ServerPort"));
+                hostEntry = Dns.GetHostByAddress(conf.GetConfigurationByString("ServerHost"));
+			    
+			    serverport = Int32.Parse(conf.GetConfigurationByString("ServerPort"));
 			}
 
 			foreach(IPAddress address in hostEntry.AddressList) 
@@ -248,6 +256,8 @@ namespace ZabbixCore
 			//log.Debug("Responses in Counter Queue: " +  commandQueue.Count);
 			//log.Debug("Key: " + e.Key + " Value: " +e.Val);
 
+		    string response = "";
+
 			if (commandQueue != null) 
 			{
 				// If not just a wakeupevent, but a counter which want to send some data, push to queue
@@ -264,8 +274,8 @@ namespace ZabbixCore
 						
 							// Get unixtime
 							string timestamp = ((long)(DateTime.Now.AddHours(-2).AddMinutes(-20).ToUniversalTime() - new DateTime(1970, 1, 1)).TotalSeconds).ToString();
-							// connHostName is <reg><host>hostName</host><key>
-							SendTo(connHostName + Convert.ToBase64String(Encoding.UTF8.GetBytes(cqe.Key)) + "</key><data>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(cqe.Val)) + "</data><timestamp>"+ Convert.ToBase64String(Encoding.UTF8.GetBytes(timestamp)) +"</timestamp></req>");			
+							
+							response = SendTo(messagePrefix + "<req>" + connHostName + Convert.ToBase64String(Encoding.UTF8.GetBytes(cqe.Key)) + "</key><data>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(cqe.Val)) + "</data><timestamp>"+ Convert.ToBase64String(Encoding.UTF8.GetBytes(timestamp)) +"</timestamp></req>", true);			
 						} 
 						catch (SocketException) 
 						{
@@ -281,30 +291,40 @@ namespace ZabbixCore
 			{
                 try
                 {
-                    SendTo(connHostName + Convert.ToBase64String(Encoding.UTF8.GetBytes(e.Key)) + "</key><data>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(e.Val)) + "</data></req>");			
+                    response = SendTo(messagePrefix + "<req>" + connHostName + Convert.ToBase64String(Encoding.UTF8.GetBytes(e.Key)) + "</key><data>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(e.Val)) + "</data></req>", true);			
                 }
                 catch (Exception ex)
                 {
                     log.Info(ex.Message);
                 }
 			}
+
+            if (!response.Equals("OK"))
+                log.Debug("Didnt received a proper response from Zabbix Server: " + response);
 		}
 
+        public string SendTo(string message)
+        {
+            return SendTo(message, false);
+        }
 
-		public string SendTo(string message) 
+		public string SendTo(string message, bool withPrefix) 
 		{
-			Byte[] recvbytes = new Byte[256];
-			string response = "";
-			lock (connlock) 
-			{
-				SetSocket(GetSocket());
-				
-				if (socket != null && socket.Connected) 
-				{
-					byte[] data = Encoding.UTF8.GetBytes(message + "\n");
+            Byte[] recvbytes = new Byte[256];
+            string response = "";
+
+            lock (connlock)
+            {
+                SetSocket(GetSocket());
+
+                if (socket != null && socket.Connected)
+                {
+
 
                     try
                     {
+                        byte[] data = Encoding.ASCII.GetBytes(message + "\n");
+
                         socket.Send(data, data.Length, 0);
                         int bytes = 0;
                         do
@@ -318,10 +338,10 @@ namespace ZabbixCore
                         // Close and cleanup connection. 
                         socket.Close();
                     }
-				} 				
-			}
-			//log.Debug("Msg: " + message + " Res: \"" + response + "\"");
-			return response;			
+                }
+            }
+            //log.Debug("Msg: " + message + " Res: \"" + response + "\"");
+            return response;	
 		}
 
 		public void CloseSecureConnections() 
