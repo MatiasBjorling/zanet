@@ -64,7 +64,11 @@ ShowUninstDetails show
 !macroend
 
 Section -Main SEC0000
-    !insertmacro CREATE_SMGROUP_SHORTCUT "ZabbixAgent Configuration" $INSTDIR\ZabbixConf.exe
+
+    SetOutPath $INSTDIR
+    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\ZabbixAgent Configuration.lnk" $INSTDIR\ZabbixConf.exe
+    ;!insertmacro CREATE_SMGROUP_SHORTCUT "ZabbixAgent Configuration" $INSTDIR\ZabbixConf.exe
+   
     SetOutPath $INSTDIR
     SetOverwrite on
     File /r ..\bin\Release\*
@@ -81,6 +85,7 @@ Section -post SEC0001
     !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
     SetOutPath $SMPROGRAMS\$StartMenuGroup
     CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Uninstall $(^Name).lnk" $INSTDIR\uninstall.exe
+
     !insertmacro MUI_STARTMENU_WRITE_END
     WriteRegStr HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayName "$(^Name)"
     WriteRegStr HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayVersion "${VERSION}"
