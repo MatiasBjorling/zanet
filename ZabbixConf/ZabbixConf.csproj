@@ -201,33 +201,43 @@
     </Compile>
     <EmbeddedResource Include="Configuration.resx">
       <DependentUpon>Configuration.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="General.resx">
       <DependentUpon>General.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GLabel.resx">
       <DependentUpon>GLabel.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Info.resx">
       <DependentUpon>Info.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Logging.resx">
       <DependentUpon>Logging.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Network.resx">
       <DependentUpon>Network.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Perf.resx">
       <DependentUpon>Perf.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PerformanceCounters.resx">
       <DependentUpon>PerformanceCounters.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SQL.resx">
       <DependentUpon>SQL.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SSH.resx">
       <DependentUpon>SSH.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SubSystem\log_debug.xml" />
     <EmbeddedResource Include="SubSystem\plink.exe">
@@ -235,12 +245,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Updater.resx">
       <DependentUpon>Updater.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UserParams.resx">
       <DependentUpon>UserParams.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="WMI.resx">
       <DependentUpon>WMI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
