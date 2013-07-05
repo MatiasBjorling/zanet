@@ -1,0 +1,3 @@
+Zanet is a .NET agent for Zabbix monitoring on Windows. It supports monitoring of services, performance counters, SQL, and application monitoring.
+
+It is easily extensible and have automatic roll out of updates for clients.
